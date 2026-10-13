@@ -1,0 +1,15 @@
+{
+  "name": "mehridian-presentation",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./index.js" },
+  "quartz": {
+    "name": "mehridian-presentation",
+    "displayName": "Mehridian presentation",
+    "description": "Shared portfolio styling and navigation; retains normal Markdown and wikilinks.",
+    "category": ["transformer", "pageType"],
+    "quartzVersion": ">=5.0.0",
+    "defaultOrder": 55
+  }
+}

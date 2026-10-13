@@ -2,3 +2,5 @@ node_modules/
 .quartz/
 public/
 .DS_Store
+quartz-engine/
+preview/
