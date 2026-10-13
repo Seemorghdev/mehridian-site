@@ -2,10 +2,9 @@
 configuration:
   pageTitle: Mehridian
   pageTitleSuffix: ""
-  enableSPA: true
-  enablePopovers: true
-  analytics:
-    provider: plausible
+  enableSPA: false
+  enablePopovers: false
+  analytics: null
   locale: en-US
   baseUrl: Seemorghdev.github.io/mehridian-site
   ignorePatterns:
@@ -13,12 +12,12 @@ configuration:
     - templates
     - .obsidian
   theme:
-    fontOrigin: googleFonts
-    cdnCaching: true
+    fontOrigin: local
+    cdnCaching: false
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+      header: Arial
+      body: Arial
+      code: monospace
     colors:
       lightMode:
         light: "#faf8f8"
@@ -87,12 +86,13 @@ plugins:
     enabled: true
     options:
       markdownLinkResolution: shortest
+      externalLinkIcon: false
     order: 60
   - source: github:quartz-community/description
     enabled: true
     order: 70
   - source: github:quartz-community/latex
-    enabled: true
+    enabled: false
     options:
       renderEngine: katex
     order: 80
@@ -109,7 +109,7 @@ plugins:
     enabled: false
     order: 92
   - source: github:quartz-community/fonts
-    enabled: true
+    enabled: false
   - source: github:quartz-community/remove-draft
     enabled: true
   - source: github:quartz-community/explicit-publish
@@ -142,11 +142,11 @@ plugins:
   - source: github:quartz-community/favicon
     enabled: true
   - source: github:quartz-community/og-image
-    enabled: true
+    enabled: false
   - source: github:quartz-community/cname
-    enabled: true
+    enabled: false
   - source: github:quartz-community/canvas-page
-    enabled: true
+    enabled: false
   - source: github:quartz-community/content-page
     enabled: true
   - source: github:quartz-community/folder-page
@@ -159,7 +159,7 @@ plugins:
       position: left
       priority: 50
   - source: github:quartz-community/graph
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -223,11 +223,12 @@ plugins:
       position: afterBody
       priority: 10
   - source: github:quartz-community/footer
-    enabled: true
+    enabled: false
     options:
       links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+        Home: https://seemorghdev.github.io/mehridian-site/
+        Projects: https://seemorghdev.github.io/mehridian-site/#projects
+        Public code: https://github.com/Seemorghdev/edge-evidence-reference-platform-public
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer
@@ -251,7 +252,7 @@ plugins:
         - tags
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5
@@ -263,11 +264,11 @@ plugins:
       name: quartz-themes
       repo: github:saberzero1/quartz-themes
       subdir: plugin
-    enabled: true
+    enabled: false
     options:
       theme: default
   - source: github:quartz-community/obsidian-plugin-excalidraw
-    enabled: true
+    enabled: false
     options:
       enableInteraction: true
       darkMode: auto
@@ -285,7 +286,25 @@ layout:
         beforeBody: []
         left: []
         right: []
-    content: {}
+    content:
+      exclude:
+        - table-of-contents
+        - explorer
+        - graph
+        - search
+        - backlinks
+        - article-title
+        - content-meta
+        - page-title
+        - darkmode
+        - reader-mode
+        - breadcrumbs
+        - footer
+        - spacer
+      positions:
+        beforeBody: []
+        left: []
+        right: []
     folder:
       exclude:
         - reader-mode
