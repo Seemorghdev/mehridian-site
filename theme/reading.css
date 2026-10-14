@@ -20,7 +20,9 @@
 :root[saved-theme="dark"] .mehr-hero-art [stroke="#995037"] {stroke:var(--mehr-accent);}
 :root[saved-theme="dark"] .mehr-hero-art [fill="#995037"] {fill:var(--mehr-accent);}
 .popover > .popover-inner {width:min(32rem,calc(100vw - 40px));background:var(--mehr-white);color:var(--mehr-ink);border-color:var(--mehr-line);line-height:1.65;box-shadow:0 12px 42px #0003;}
-.popover .popover-hint:not(.mehr-content) {display:none;}
+.popover .popover-hint:not(.mehr-content):not(.mehr-preview-excerpt) {display:none;}
+.popover .mehr-preview-excerpt {padding:18px 0;margin:0;display:block;font-size:15px;}
+.popover .mehr-preview-excerpt h2 {margin-top:0;}
 .popover .mehr-content {max-width:none;padding:18px 0;margin:0;font-size:15px;}
 .popover h1 {font-size:24px;line-height:1.2;margin:0 0 16px;}
 .popover h2 {font-size:19px;line-height:1.35;margin:24px 0 12px;}

@@ -37,3 +37,4 @@ jobs:
           node scripts/check-connected-notes.mjs
           node scripts/check-garden.mjs
           node scripts/check-reading.mjs
+          node scripts/prepare-page-policy-fixtures.mjs
