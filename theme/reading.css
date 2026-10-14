@@ -27,7 +27,7 @@
 .popover h3 {font-size:16px;line-height:1.4;}
 .popover p,.popover li {color:var(--mehr-muted);}
 .popover a {color:var(--mehr-blue);}
-.popover a.anchor {display:none;}
+.popover :is(h1,h2,h3,h4,h5,h6) > a[role="anchor"][aria-hidden="true"][data-no-popover="true"] {display:none;}
 .popover code {color:var(--mehr-ink);background:var(--mehr-soft);overflow-wrap:anywhere;}
 .popover img {max-width:100%;height:auto;}
 .popover .hero-visual {display:none;}

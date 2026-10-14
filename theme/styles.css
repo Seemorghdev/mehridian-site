@@ -44,7 +44,8 @@ body { background: var(--mehr-paper); color: var(--mehr-ink); }
 #quartz-root article a:hover { text-decoration: underline; text-underline-offset: 5px; }
 #quartz-root article a:focus-visible, #quartz-root article summary:focus-visible { outline: 2px solid var(--mehr-accent); outline-offset: 5px; border-radius: 2px; }
 #quartz-root article img { max-width: 100%; height: auto; border-radius: 0; margin: 0; }
-#quartz-root article a.anchor { display: none; }
+/* Quartz generates role="anchor" links, not an .anchor class. Keep IDs/URLs. */
+#quartz-root article :is(h1,h2,h3,h4,h5,h6) > a[role="anchor"][aria-hidden="true"][data-no-popover="true"] { display: none; }
 #quartz-root .mehr-header { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 29px 0; border-bottom: 1px solid var(--mehr-line); }
 #quartz-root a.mehr-brand { color: var(--mehr-ink); font-size: 22px; font-weight: 650; letter-spacing: -.04em; display: inline-flex; align-items: center; gap: 11px; }
 #quartz-root a.mehr-brand::before { content: ""; display: block; height: 20px; width: 16px; border-left: 2px solid var(--mehr-accent); border-right: 2px solid var(--mehr-accent); transform: skewY(-18deg); }

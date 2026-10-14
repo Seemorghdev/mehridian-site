@@ -24,7 +24,7 @@ deployment, custom domain, or Project 03 content is included.
 | Check | Result |
 | --- | --- |
 | Pinned production Quartz engine/configuration, Node 22 | Build passed; 5 Markdown pages |
-| Unit regressions | 26 passed |
+| Unit regressions | 27 passed |
 | Authored preview boundary, blocking theme initialization | Passed on all 5 pages |
 | Published index and curated-content boundary | Exactly 5 existing pages; no new notes |
 | Native wikilinks, backlinks, assets | Passed |
@@ -39,6 +39,15 @@ deployment, custom domain, or Project 03 content is included.
 | Controlled missing graph dependencies | Explicit fallback; links/backlinks retained |
 | Controlled reduced motion and unavailable storage | Reading fallback and theme toggle remain usable |
 | Normal browser console | No errors or warnings observed |
+| Generated heading permalink glyphs | Hidden on pages and previews; heading IDs, anchored URLs and authored links retained |
+
+The review follow-up fixes a selector mismatch: the pinned Quartz renderer uses
+`role="anchor"`, `aria-hidden="true"`, and `data-no-popover="true"`, not an
+`anchor` CSS class. Only that generated direct child of a heading is hidden.
+Build regressions verify the real markup and retained targets across all five
+pages. Home, mobile note and native preview screenshots were refreshed in both
+themes; other screenshots show unchanged graph/search behavior from the initial
+v0.6.1 verification.
 
 Local fixtures reference existing published pages only, live in ignored preview
 output, are not in the content index, and are not invoked by deployment workflows.

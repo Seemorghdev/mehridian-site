@@ -30,6 +30,22 @@ test('preview anchors retain destination page and Pages prefix',()=>{
     assert.equal(new URL(link.properties.href,base).pathname+new URL(link.properties.href,base).hash,expected);
   }
 });
+test('only generated decorative heading permalinks are hidden in pages and previews',()=>{
+  const selector=':is(h1,h2,h3,h4,h5,h6) > a[role="anchor"][aria-hidden="true"][data-no-popover="true"]';
+  for(const [file,scope] of [['styles.css','#quartz-root article'],['reading.css','.popover']]){
+    const css=readFileSync(new URL('./'+file,import.meta.url),'utf8');
+    assert.ok(css.includes(scope+' '+selector));
+    const rule=css.slice(css.indexOf(scope+' '+selector)).split('}')[0];
+    assert.match(rule,/display:\s*none/);
+    assert.ok(!css.includes('a.anchor'), 'Do not depend on the nonexistent class or hide authored links by class');
+  }
+  const authored={tagName:'a',properties:{href:'#section',className:['anchor']},children:[{type:'text',value:'Read the section'}]};
+  const heading={tagName:'h2',properties:{id:'section'},children:[authored]};
+  rebaseReadingAnchors({children:[heading]},'notes/example');
+  assert.equal(authored.properties.href,'./example#section');
+  assert.equal(heading.properties.id,'section');
+  assert.equal(authored.properties.role,undefined);
+});
 test('saved theme takes precedence; system dark respected; fallback is light',()=>{
   const script=readFileSync(new URL('./theme-init.js',import.meta.url),'utf8');
   for(const [saved,systemDark,expected] of [['light',true,'light'],['dark',false,'dark'],[null,true,'dark'],[null,false,'light'],['invalid',false,'light']]){

@@ -19,9 +19,21 @@ for(const page of pages){
  assert.equal(before.length,1);assert.ok(!before[0].attrs.some(a=>['async','defer'].includes(a.name)));
  const href=attr(before[0],'src');const script=readFileSync(new URL('preview/'+page.replace(/[^/]+$/,'')+href,root),'utf8');
  assert.match(script,/saved-theme/);
+ // Guard the actual generated role/attributes rather than a nonexistent class.
+ const headings=walk(reading[0]).filter(n=>/^h[1-6]$/.test(n.tagName??''));
+ const permalinks=headings.flatMap(n=>(n.childNodes??[]).filter(a=>a.tagName==='a'&&attr(a,'role')==='anchor').map(a=>({heading:n,link:a})));
+ assert.ok(permalinks.length>0,page+': generated permalink fixture present');
+ for(const {heading,link} of permalinks){
+  assert.equal(attr(link,'aria-hidden'),'true');assert.equal(attr(link,'data-no-popover'),'true');
+  assert.equal(attr(link,'tabindex'),'-1');
+  const url=new URL(attr(link,'href'),'https://example.com/mehridian-site/'+page.replace(/index$/,''));
+  assert.equal(decodeURIComponent(url.hash.slice(1)),attr(heading,'id'),page+': heading target retained');
+  assert.ok(url.pathname.startsWith('/mehridian-site/'));
+ }
 }
 const note=readFileSync(new URL('preview/notes/agent-vs-deterministic-inspector.html',root),'utf8');
 assert.match(note,/data-preview-index=/);assert.ok(note.includes('An interface can explain'));
 const config=readFileSync(new URL('quartz.config.yaml',root),'utf8');assert.match(config,/enablePopovers: true/);
 const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root)));assert.equal(Object.keys(index).length,5);
 console.log('native_reading_preview_boundary=pass');console.log('early_theme_init=pass');console.log('published_content_index=5');
+console.log('generated_heading_permalink_targets=pass');
