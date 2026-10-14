@@ -15,8 +15,8 @@ test("root and nested pages get usable relative Home/Projects links", () => {
   for (const [slug, prefix] of [["index", "./"], ["projects/index", "../"], ["projects/edge-evidence", "../"], ["notes/example", "../"]]) {
     const tree = render(slug, [el("h1", [t("Title")])]);
     const links = nodes(tree).filter((n) => n.tagName === "a");
-    assert.ok(links.some((n) => n.properties.href === `${prefix}index.md`));
-    assert.ok(links.some((n) => n.properties.href === `${prefix}projects/index.md`));
+    assert.ok(links.some((n) => n.properties.href === `${prefix==='./'?'':'../'}./`));
+    assert.ok(links.some((n) => n.properties.href === `${prefix==='./'?'':'../'}./projects/`));
     assert.equal(nodes(tree).filter((n) => n.properties?.ariaLabel === "Main navigation").length, 1);
     assert.equal(nodes(tree).filter((n) => n.properties?.ariaLabel === "Footer navigation").length, 1);
   }
@@ -57,7 +57,7 @@ test("current navigation distinguishes home from project pages", () => {
 });
 
 test("Notes navigation is relative and the profile link exposes no contact details", () => {
-  for (const [slug, href] of [["index", "./notes/index.md"], ["notes/example", "../notes/index.md"]]) {
+  for (const [slug, href] of [["index", "./notes/"], ["notes/example", ".././notes/"]]) {
     const links = nodes(render(slug, [el("h1", [t("Title")])])).filter(n => n.tagName === "a");
     assert.ok(links.some(n => n.properties.href === href));
     assert.ok(links.some(n => n.properties.href === "https://github.com/Seemorghdev"));

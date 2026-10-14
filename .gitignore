@@ -4,3 +4,4 @@ public/
 .DS_Store
 quartz-engine/
 preview/
+theme/.graph-build/

@@ -88,7 +88,9 @@ plugins:
       position: right
       priority: 30
   - source: github:quartz-community/crawl-links
-    enabled: true
+    # Theme runs native CrawlLinks before and after the shell, then preserves
+    # authored-only relationships. Do not run a second shell-contaminating pass.
+    enabled: false
     options:
       markdownLinkResolution: shortest
       externalLinkIcon: false
@@ -141,6 +143,7 @@ plugins:
   - source: github:quartz-community/content-index
     enabled: true
     options:
+      includeEmptyFiles: false
       enableSiteMap: true
       enableRSS: true
       rssSlug: feed
