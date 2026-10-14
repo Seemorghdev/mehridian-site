@@ -9,6 +9,7 @@ const pages=['index','projects/index','projects/edge-evidence','notes/index','no
 for(const page of pages){
  const html=readFileSync(new URL('preview/'+page+'.html',root),'utf8');
  const nodes=walk(parse(html));
+ assert.ok(!html.includes('https://seemorghdev.github.io/mehridian-site'),page+': no legacy site origin in output');
  const hints=nodes.filter(n=>(attr(n,'class')??'').split(' ').includes('popover-hint'));
  const reading=hints.filter(n=>attr(n,'id')==='mehr-content');
  assert.equal(reading.length,1,page+': one authored preview boundary');
@@ -26,14 +27,14 @@ for(const page of pages){
  for(const {heading,link} of permalinks){
   assert.equal(attr(link,'aria-hidden'),'true');assert.equal(attr(link,'data-no-popover'),'true');
   assert.equal(attr(link,'tabindex'),'-1');
-  const url=new URL(attr(link,'href'),'https://example.com/mehridian-site/'+page.replace(/index$/,''));
+  const url=new URL(attr(link,'href'),'https://mehridian.tech/'+page.replace(/index$/,''));
   assert.equal(decodeURIComponent(url.hash.slice(1)),attr(heading,'id'),page+': heading target retained');
-  assert.ok(url.pathname.startsWith('/mehridian-site/'));
+  assert.equal(url.pathname, new URL(page.replace(/index$/, ''), 'https://mehridian.tech/').pathname, page+': permalink uses root-domain path');
  }
 }
 const note=readFileSync(new URL('preview/notes/agent-vs-deterministic-inspector.html',root),'utf8');
 assert.match(note,/data-preview-index=/);assert.ok(note.includes('An interface can explain'));
-const config=readFileSync(new URL('quartz.config.yaml',root),'utf8');assert.match(config,/enablePopovers: true/);
+const config=readFileSync(new URL('quartz.config.yaml',root),'utf8');assert.match(config,/enablePopovers: true/);assert.match(config,/baseUrl: mehridian\.tech/);
 const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root)));assert.equal(Object.keys(index).length,5);
 console.log('native_reading_preview_boundary=pass');console.log('early_theme_init=pass');console.log('published_content_index=5');
 console.log('generated_heading_permalink_targets=pass');

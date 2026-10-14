@@ -6,7 +6,7 @@ configuration:
   enablePopovers: true
   analytics: null
   locale: en-US
-  baseUrl: Seemorghdev.github.io/mehridian-site
+  baseUrl: mehridian.tech
   ignorePatterns:
     - private
     - templates
@@ -236,8 +236,8 @@ plugins:
     enabled: false
     options:
       links:
-        Home: https://seemorghdev.github.io/mehridian-site/
-        Projects: https://seemorghdev.github.io/mehridian-site/#projects
+        Home: https://mehridian.tech/
+        Projects: https://mehridian.tech/projects/
         Public code: https://github.com/Seemorghdev/edge-evidence-reference-platform-public
   - source: github:quartz-community/recent-notes
     enabled: false
