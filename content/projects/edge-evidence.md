@@ -79,6 +79,8 @@ presentation: case-study
   </div>
 </section>
 
+For a plain-English explanation of the inspection boundary, read [[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]]. It separates rules, language models, tool use, and permission to act.
+
 <section class="case-section" id="public-code" aria-labelledby="code-title">
   <div><p class="eyebrow">05 / Follow the implementation</p><h2 id="code-title">Public code.<br>Clear responsibilities.</h2></div>
   <div class="body code-links">

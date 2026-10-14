@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const root = new URL("../", import.meta.url);
-const pages = ["index", "projects/index", "projects/edge-evidence"];
+const pages = ["index", "projects/index", "projects/edge-evidence", "notes/index", "notes/agent-vs-deterministic-inspector"];
 const generated = pages.map((page) => {
   const source = readFileSync(new URL(`content/${page}.md`, root), "utf8");
   assert.ok(!source.includes("<style>"), `${page}: duplicated page CSS`);
@@ -33,7 +33,7 @@ const stylesheet = generated.map((html) => [...html.matchAll(/href="([^"]*resour
 assert.deepEqual(stylesheet[0], stylesheet[1]);
 assert.deepEqual(stylesheet[1], stylesheet[2]);
 assert.ok(existsSync(fileURLToPath(new URL("preview/assets/edge-evidence-gateway.jpg", root))));
-console.log("built_pages=3");
+console.log(`built_pages=${pages.length}`);
 console.log("headings_navigation_links_assets=pass");
 console.log("shared_styles=pass");
 console.log("public_output_boundary=pass");
