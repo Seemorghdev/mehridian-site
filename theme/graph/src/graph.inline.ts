@@ -108,6 +108,7 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
       }
 
       var config = JSON.parse(graph.dataset["cfg"] || "{}");
+      var previews = JSON.parse(graph.dataset.previewIndex || '{}');
       var enableDrag = config.drag;
       var enableZoom = config.zoom;
       var depth = config.depth;
@@ -302,6 +303,24 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
       var dragDistance = 0;
       var dragging = false;
       var currentTransform = d3.zoomIdentity;
+      const preview=document.createElement('div');
+      preview.className='graph-node-preview';preview.setAttribute('role','tooltip');preview.hidden=true;
+      preview.id='graph-preview-'+Math.random().toString(36).slice(2);
+      const previewTitle=document.createElement('strong'),previewExcerpt=document.createElement('p');
+      preview.append(previewTitle,previewExcerpt);document.body.appendChild(preview);
+      function hideNodePreview(){preview.hidden=true;}
+      function showNodePreview(node,keyboard=false){
+        if(dragging || (!keyboard && !matchMedia('(hover: hover) and (pointer: fine)').matches))return;
+        if(!keyboard && graph.querySelector('.graph-node-focus:focus'))return;
+        const info=previews[node.id] ?? (node.id === '/' || node.id === '' ? previews.index : undefined);if(!info)return;
+        previewTitle.textContent=info.title;previewExcerpt.textContent=info.excerpt;
+        preview.hidden=false;
+        const rect=app.canvas.getBoundingClientRect();
+        const x=rect.x+currentTransform.x+(node.x+width/2)*currentTransform.k;
+        const y=rect.y+currentTransform.y+(node.y+height/2)*currentTransform.k;
+        preview.style.left=Math.max(12,Math.min(innerWidth-preview.offsetWidth-12,x+20))+'px';
+        preview.style.top=Math.max(12,Math.min(innerHeight-preview.offsetHeight-12,y+20))+'px';
+      }
 
       function nodeRadius(d) {
         var numLinks = 0;
@@ -446,6 +465,7 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
           var oldLabelOpacity = 0;
           g.on("pointerover", function (e) {
             updateHoverInfo(n.id);
+            showNodePreview(n);
             oldLabelOpacity = labelRef.alpha;
             if (!dragging) {
               renderPixiFromD3();
@@ -453,6 +473,7 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
           });
 
           g.on("pointerleave", function () {
+            if(!graph.querySelector('.graph-node-focus:focus'))hideNodePreview();
             updateHoverInfo(null);
             labelRef.alpha = oldLabelOpacity;
             if (!dragging) {
@@ -462,11 +483,22 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
         })(node, gfx, label);
 
         nodesContainer.addChild(gfx);
+        const focusButton=document.createElement('button');
+        const keyboardNode=node;
+        focusButton.type='button';focusButton.className='graph-node-focus';
+        focusButton.setAttribute('aria-label','Read '+node.text);
+        focusButton.setAttribute('aria-describedby',preview.id);
+        focusButton.addEventListener('focus',()=>showNodePreview(keyboardNode,true));
+        focusButton.addEventListener('blur',hideNodePreview);
+        focusButton.addEventListener('click',()=>{window.location.href=resolveBasePath(routes.get(keyboardNode.id)??keyboardNode.id);});
+        focusButton.addEventListener('keydown',event=>{if(event.key==='Escape')hideNodePreview();});
+        graph.appendChild(focusButton);
 
         nodeRenderData.push({
           simulationData: node,
           gfx: gfx,
           label: label,
+          focusButton,
           color: color,
           alpha: 1,
           active: false,
@@ -506,6 +538,7 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
         };
 
         var dragStarted = function (event) {
+          hideNodePreview();
           if (!event.active) simulation.alphaTarget(1).restart();
           event.subject.fx = event.subject.x;
           event.subject.fy = event.subject.y;
@@ -567,6 +600,7 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
 
       if (enableZoom) {
         var zoomed = function (event) {
+          hideNodePreview();
           currentTransform = event.transform;
           stage.scale.set(currentTransform.k, currentTransform.k);
           stage.position.set(currentTransform.x, currentTransform.y);
@@ -611,6 +645,10 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
           var x = n.simulationData.x;
           var y = n.simulationData.y;
           if (x != null && y != null) {
+            const px=currentTransform.x+(x+width/2)*currentTransform.k;
+            const py=currentTransform.y+(y+height/2)*currentTransform.k;
+            n.focusButton.hidden=px<0||px>width||py<0||py>height;
+            n.focusButton.style.left=(px-22)+'px';n.focusButton.style.top=(py-22)+'px';
             n.gfx.position.set(x + width / 2, y + height / 2);
             if (n.label) {
               const half = n.label.width / 2 + 8;
@@ -652,6 +690,8 @@ import { canNavigateGesture, nodeHitRadius, pageRoute } from "./interaction.mjs"
           // PixiJS may throw if WebGL context was already lost.
         }
         view.remove();
+        preview.remove();
+        for(const node of nodeRenderData)node.focusButton.remove();
       };
     }
 

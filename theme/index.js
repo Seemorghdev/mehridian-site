@@ -7,8 +7,9 @@ import { h, cloneElement } from "../quartz-engine/node_modules/preact/dist/preac
 import { installHero } from "./hero.js";
 import Graph from "./.graph-build/index.js";
 import { publishedConnections, publishedPages } from "./connections.js";
+import { readingExcerpt, readingOnly, rebaseReadingAnchors } from './reading.js';
 
-const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./graph.css", import.meta.url), "utf8");
+const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./graph.css", import.meta.url), "utf8") + '\n' + readFileSync(new URL('./reading.css',import.meta.url),'utf8');
 const text = (value) => ({ type: "text", value });
 const element = (tagName, properties = {}, children = []) => ({
   type: "element", tagName, properties, children,
@@ -28,13 +29,17 @@ export function MehridianPresentation() {
   return {
     name: "MehridianPresentation",
     externalResources() {
-      return { css: [{ content: styles, inline: true }] };
+      return { css: [{ content: styles, inline: true }], js:[{
+        script:readFileSync(new URL('./theme-init.js',import.meta.url),'utf8'),
+        contentType:'inline',loadTime:'beforeDOMReady',
+      }] };
     },
     htmlPlugins(ctx = { allSlugs: [] }) {
       return [() => (tree, file) => {
         // Resolve a copy of the authored content with Quartz itself, before adding
         // shared navigation. Header/footer links are not knowledge relationships.
         const authoredFile = { data: { slug: file.data.slug } };
+        file.data.mehridianExcerpt = readingExcerpt(tree);
         CrawlLinks({ markdownLinkResolution: "shortest", externalLinkIcon: false })
           .htmlPlugins(ctx)[0]()(structuredClone(tree), authoredFile);
 
@@ -62,6 +67,7 @@ export function MehridianPresentation() {
             link("Projects", projects, isProject ? { ariaCurrent: slug === "projects/index" ? "page" : "location" } : {}),
             link("Notes", notes, isNote ? { ariaCurrent: slug === "notes/index" ? "page" : "location" } : {}),
           ]),
+          element('button',{type:'button',className:['mehr-theme-toggle'],ariaLabel:'Switch to dark appearance',ariaPressed:'false'},[text('Dark')]),
         ]);
         const footer = element("footer", { className: ["mehr-footer"] }, [
           element("div", {}, [
@@ -79,10 +85,11 @@ export function MehridianPresentation() {
         tree.children = [
           link("Skip to content", "#mehr-content", { className: ["mehr-skip"] }),
           nav,
-          element("div", { id: "mehr-content", className: ["mehr-content", `mehr-${mode}`] }, body),
+          element("div", { id: "mehr-content", className: ["mehr-content", `mehr-${mode}`, 'popover-hint'] }, body),
           footer,
         ];
         CrawlLinks({ markdownLinkResolution:"shortest", externalLinkIcon:false }).htmlPlugins(ctx)[0]()(tree,file);
+        rebaseReadingAnchors(tree.children.find(n=>n.properties?.id==='mehr-content'),slug);
         file.data.links = authoredFile.data.links;
       }];
     },
@@ -98,18 +105,18 @@ export function MehridianProjectIndex() {
   const renderNote = connectedNoteBody();
   const body = props => {
     const slug = String(props.fileData?.slug);
-    if (!slug.startsWith("notes/")) return renderContent(props);
-    const article = slug !== "notes/index" ? renderNote(props) : renderContent(props);
+    if (!slug.startsWith("notes/")) return readingOnly(renderContent(props),cloneElement);
+    const article = readingOnly(slug !== "notes/index" ? renderNote(props) : renderContent(props),cloneElement);
     return insertSections(article, "start", h("div", { class: "mehr-note-tools" },
       h(search, props), h("span", {}, "Search published pages · Ctrl/Cmd + K")));
   };
   body.css = [renderNote.css, search.css].flat().join('\n');
-  body.afterDOMLoaded = [renderNote.afterDOMLoaded, search.afterDOMLoaded, readFileSync(new URL("./search-accessibility.js", import.meta.url), "utf8")].flat().join('\n');
+  body.afterDOMLoaded = [renderNote.afterDOMLoaded, search.afterDOMLoaded, readFileSync(new URL("./search-accessibility.js", import.meta.url), "utf8"),readFileSync(new URL('./theme-controls.js',import.meta.url),'utf8')].flat().join('\n');
   return {
     ...page,
     name: "MehridianAuthoredPages",
     priority: 20,
-    match: ({ slug }) => slug === "projects/index" || slug.startsWith("notes/"),
+    match: ({ slug }) => slug === 'index' || slug.startsWith('projects/') || slug.startsWith("notes/"),
     body: () => body,
   };
 }
@@ -150,7 +157,15 @@ function connectionMap(props, graph) {
   const prefix = "../".repeat(Math.max(0,String(props.fileData.slug).split('/').length-1)) || './';
   const href = node => prefix + (node.slug === 'index' ? '' : node.slug.replace(/\/index$/, '/'));
   const widget=graph(props);
-  const modal=widget.props.children[2];
+  const previewIndex=JSON.stringify(Object.fromEntries(pages.map(f=>[String(f.slug).replace(/\/index$/,'').replace(/\/$/,''),{title:f.frontmatter.title,excerpt:f.mehridianExcerpt??''}])));
+  function addPreviews(node){
+    if(node?.props?.class==='graph-container'||node?.props?.class==='global-graph-container')return cloneElement(node,{'data-preview-index':previewIndex});
+    if(!node?.props?.children)return node;
+    const children=Array.isArray(node.props.children)?node.props.children:[node.props.children];
+    return cloneElement(node,{},...children.map(addPreviews));
+  }
+  const previewWidget=addPreviews(widget);
+  const modal=previewWidget.props.children[2];
   const withLinks=cloneElement(modal, {role:'dialog','aria-modal':'true','aria-label':'Published knowledge graph'},
     ...(Array.isArray(modal.props.children)?modal.props.children:[modal.props.children]),
     h('button',{type:'button',class:'graph-close'},'Close graph'),
@@ -160,7 +175,7 @@ function connectionMap(props, graph) {
     h('p',{},'Authored links between published pages. Connections do not imply shared evidence or endorsement.'),
     h('button',{class:'graph-enable',type:'button','aria-expanded':'false'},'Enable interactive graph'),
     h('p',{class:'graph-motion-notice'},'Reduced motion is enabled. Explore through the connected-page links and backlinks below.'),
-    h('div',{class:'native-graph-host',hidden:true},cloneElement(widget,{},...widget.props.children.slice(0,2),withLinks)),
-    h('p',{class:'graph-instructions'},'Drag nodes to arrange them; scroll or pinch to zoom; drag empty space to pan. Select a node to read it. Open the full map with the corner button. Escape closes it.'),
+    h('div',{class:'native-graph-host',hidden:true},cloneElement(previewWidget,{},...previewWidget.props.children.slice(0,2),withLinks)),
+    h('p',{class:'graph-instructions'},'Drag nodes to arrange them; scroll or pinch to zoom; drag empty space to pan. Hover or Tab to a node for a preview; click or press Enter to read it. Open the full map with the corner button. Escape closes it.'),
     h('nav',{class:'local-text-links','aria-label':'Connected pages — text alternative'},...map.neighbors.map(f=>h('a',{href:href(f)},f.frontmatter.title))));
 }

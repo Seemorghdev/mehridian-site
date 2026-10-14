@@ -3,7 +3,7 @@ configuration:
   pageTitle: Mehridian
   pageTitleSuffix: ""
   enableSPA: false
-  enablePopovers: false
+  enablePopovers: true
   analytics: null
   locale: en-US
   baseUrl: Seemorghdev.github.io/mehridian-site
@@ -205,7 +205,9 @@ plugins:
       position: left
       priority: 10
   - source: github:quartz-community/darkmode
-    enabled: true
+    # Header control reuses Quartz state/events, with saved preference precedence.
+    # Do not also install the native sidebar's competing event handler.
+    enabled: false
     layout:
       position: left
       priority: 30

@@ -35,12 +35,14 @@ test("ordinary connected notes need no copied styles or shell", () => {
   assert.ok(nodes(tree).some((n) => n.properties?.className?.includes("mehr-note")));
 });
 
-test("presentation injects shared styles without client JavaScript", () => {
+test("presentation injects shared styles and early theme initialization only", () => {
   const resources = MehridianPresentation().externalResources();
   assert.equal(resources.css.length, 1);
   assert.equal(resources.css[0].inline, true);
   assert.ok(resources.css[0].content.includes("--mehr-paper"));
-  assert.equal(resources.js, undefined);
+  assert.equal(resources.js.length, 1);
+  assert.equal(resources.js[0].loadTime,'beforeDOMReady');
+  assert.match(resources.js[0].script,/saved-theme/);
   assert.ok(!/https?:\/\//.test(resources.css[0].content));
 });
 
@@ -70,7 +72,7 @@ test("Notes index and connected note reuse the content renderer", () => {
   assert.equal(note.layout, "content");
   assert.equal(note.match({slug:"notes/example"}), true);
   assert.equal(note.match({slug:"notes/index"}), true);
-  assert.equal(note.match({slug:"projects/edge-evidence"}), false);
+  assert.equal(note.match({slug:"projects/edge-evidence"}), true);
   assert.equal(typeof note.body, "function");
   assert.equal(typeof note.body(), "function");
 });
@@ -91,7 +93,7 @@ test("authored Projects and Notes indexes override the folder listing", () => {
   const page = MehridianProjectIndex();
   assert.equal(page.match({ slug: "projects/index" }), true);
   assert.equal(page.match({ slug: "notes/index" }), true);
-  assert.equal(page.match({ slug: "projects/edge-evidence" }), false);
+  assert.equal(page.match({ slug: "projects/edge-evidence" }), true);
   assert.equal(page.layout, "content");
   assert.equal(typeof page.body, "function");
 });
