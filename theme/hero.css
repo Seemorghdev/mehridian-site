@@ -1,0 +1,22 @@
+/* Only decorative SVG transforms move. No frame loop, filters, media or requests. */
+#quartz-root .hero-visual { position: relative; min-width: 0; }
+#quartz-root .meridian-traveller { transform-origin: 0 0; animation: meridian-orbit 64s linear infinite; }
+#quartz-root .meridian-companion { transform-origin: 0 0; animation: meridian-orbit 112s linear infinite reverse; }
+@keyframes meridian-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#quartz-root .hero-motion-control {
+  position: absolute; top: 14px; right: 15px; display: inline-flex; align-items: center;
+  gap: 6px; padding: 4px 6px; color: var(--mehr-muted); font-size: 10px; line-height: 1.4;
+  background: #f8f7f4e8; border-radius: 2px; cursor: pointer;
+}
+#quartz-root .hero-motion-control input { width: 12px; height: 12px; margin: 0; accent-color: var(--mehr-accent); }
+#quartz-root .hero-motion-control:focus-within { outline: 2px solid var(--mehr-accent); outline-offset: 3px; }
+#quartz-root .hero-visual:has(.hero-motion-pause:checked) .meridian-traveller,
+#quartz-root .hero-visual:has(.hero-motion-pause:checked) .meridian-companion { animation-play-state: paused; }
+/* Explicit default static positions remain meaningful without animation/CSS. */
+@media (prefers-reduced-motion: reduce) {
+  #quartz-root .meridian-traveller, #quartz-root .meridian-companion { animation: none; }
+  #quartz-root .hero-motion-control { display: none; }
+}
+@media (max-width: 650px) {
+  #quartz-root .hero-motion-control { top: 10px; right: 10px; }
+}
