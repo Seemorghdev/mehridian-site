@@ -118,10 +118,18 @@ body { background: var(--mehr-paper); color: var(--mehr-ink); }
 #quartz-root .mehr-note h3 { margin-top: 30px; }
 #quartz-root .mehr-note ul { padding-left: 22px; }
 #quartz-root .mehr-note blockquote { border-color: var(--mehr-accent); }
+#quartz-root .mehr-note li { margin-bottom: 12px; }
+#quartz-root .mehr-note p a, #quartz-root .mehr-note li a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #87908e; }
+#quartz-root .mehr-note code { overflow-wrap: anywhere; }
+#quartz-root .mehr-note-backlinks { max-width: 790px; padding: 24px 0 35px; border-top: 1px solid var(--mehr-line); }
+#quartz-root .mehr-note-backlinks h3 { font-size: 16px; color: var(--mehr-ink); margin: 0 0 14px; }
+#quartz-root .mehr-note-backlinks ul { padding-left: 20px; margin: 0; max-height: none; }
+#quartz-root .mehr-note-backlinks li { margin: 8px 0; }
+#quartz-root .mehr-note-backlinks a { color: var(--mehr-blue); font-size: 15px; }
 #quartz-root .mehr-footer { display: flex; justify-content: space-between; align-items: start; gap: 30px; padding: 35px 0 42px; border-top: 1px solid var(--mehr-line); font-size: 13px; }
 #quartz-root .mehr-brand-small { color: var(--mehr-ink); font-size: 17px; letter-spacing: -.03em; font-weight: 600; }
 #quartz-root .mehr-footer p { font-size: 12px; margin: 9px 0 0; }
-#quartz-root .mehr-footer nav { gap: 24px; font-size: 13px; }
+#quartz-root .mehr-footer nav { gap: 14px 24px; font-size: 13px; flex-wrap: wrap; }
 @media (max-width: 900px) {
   #quartz-root.page { padding: 0 34px; }
   #quartz-root .hero { gap: 35px; }
@@ -134,7 +142,7 @@ body { background: var(--mehr-paper); color: var(--mehr-ink); }
 @media (max-width: 650px) {
   #quartz-root.page { padding: 0 24px; }
   #quartz-root article { font-size: 16px; }
-  #quartz-root .mehr-header { padding: 23px 0; gap: 18px; }
+  #quartz-root .mehr-header { padding: 23px 0; gap: 18px; flex-wrap: wrap; }
   #quartz-root a.mehr-brand { font-size: 20px; }
   #quartz-root .mehr-header nav { gap: 22px; font-size: 13px; }
   #quartz-root .hero { grid-template-columns: 1fr; padding: 48px 0 42px; gap: 30px; }

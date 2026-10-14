@@ -50,16 +50,47 @@ test("presentation does not expose arbitrary frontmatter values", () => {
 });
 
 test("current navigation distinguishes home from project pages", () => {
-  for (const slug of ["index", "projects/index", "projects/edge-evidence"]) {
+  for (const slug of ["index", "projects/index", "projects/edge-evidence", "notes/index", "notes/example"]) {
     const tree = render(slug, [el("h1", [t("Title")])]);
     assert.equal(nodes(tree).filter((n) => n.properties?.ariaCurrent).length, 1);
   }
 });
 
-test("only the authored Projects index overrides the folder listing", () => {
+test("Notes navigation is relative and the profile link exposes no contact details", () => {
+  for (const [slug, href] of [["index", "./notes/index.md"], ["notes/example", "../notes/index.md"]]) {
+    const links = nodes(render(slug, [el("h1", [t("Title")])])).filter(n => n.tagName === "a");
+    assert.ok(links.some(n => n.properties.href === href));
+    assert.ok(links.some(n => n.properties.href === "https://github.com/Seemorghdev"));
+    assert.ok(!links.some(n => String(n.properties.href).startsWith("mailto:")));
+  }
+});
+
+test("Notes index and connected note reuse the content renderer", () => {
+  const note = MehridianProjectIndex();
+  assert.equal(note.layout, "content");
+  assert.equal(note.match({slug:"notes/example"}), true);
+  assert.equal(note.match({slug:"notes/index"}), true);
+  assert.equal(note.match({slug:"projects/edge-evidence"}), false);
+  assert.equal(typeof note.body, "function");
+  assert.equal(typeof note.body(), "function");
+});
+
+test("connected note renderer places native backlinks before the shared footer", () => {
+  const tree = render("notes/example", [el("h1", [t("Example")]), el("p", [t("Body")])]);
+  const vnode = MehridianProjectIndex().body()({
+    tree, fileData: { slug: "notes/example", frontmatter: { title: "Example" } },
+    allFiles: [], cfg: { locale: "en-US" },
+  });
+  const sections = vnode.props.children.props.children.props.children;
+  const backlinkAt = sections.findIndex(node => node?.type === "aside");
+  const footerAt = sections.findIndex(node => node?.type === "footer");
+  assert.ok(backlinkAt >= 0 && footerAt > backlinkAt);
+});
+
+test("authored Projects and Notes indexes override the folder listing", () => {
   const page = MehridianProjectIndex();
   assert.equal(page.match({ slug: "projects/index" }), true);
-  assert.equal(page.match({ slug: "notes/index" }), false);
+  assert.equal(page.match({ slug: "notes/index" }), true);
   assert.equal(page.match({ slug: "projects/edge-evidence" }), false);
   assert.equal(page.layout, "content");
   assert.equal(typeof page.body, "function");
