@@ -8,6 +8,7 @@ import { installHero } from "./hero.js";
 import Graph from "./.graph-build/index.js";
 import { publishedConnections, publishedPages } from "./connections.js";
 import { readingExcerpt, readingOnly, rebaseReadingAnchors } from './reading.js';
+import { applyPagePolicy, gateBacklinkPreviews } from './page-policy.js';
 
 const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./graph.css", import.meta.url), "utf8") + '\n' + readFileSync(new URL('./reading.css',import.meta.url),'utf8');
 const text = (value) => ({ type: "text", value });
@@ -90,6 +91,7 @@ export function MehridianPresentation() {
         ];
         CrawlLinks({ markdownLinkResolution:"shortest", externalLinkIcon:false }).htmlPlugins(ctx)[0]()(tree,file);
         rebaseReadingAnchors(tree.children.find(n=>n.properties?.id==='mehr-content'),slug);
+        applyPagePolicy(tree, slug);
         file.data.links = authoredFile.data.links;
       }];
     },
@@ -132,7 +134,8 @@ function connectedNoteBody() {
     const article = renderContent(props);
     return insertSections(article, "end",
       props.fileData.frontmatter?.graph === false ? null : connectionMap(props, graph),
-      h("aside", { class: "mehr-note-backlinks", "aria-label": "Backlinks" }, h(backlinks, props)),
+      h("aside", { class: "mehr-note-backlinks", "aria-label": "Backlinks" },
+        gateBacklinkPreviews(backlinks(props), String(props.fileData.slug), cloneElement)),
     );
   };
   body.css = [backlinks.css,graph.css].join('\n');
@@ -169,7 +172,7 @@ function connectionMap(props, graph) {
   const withLinks=cloneElement(modal, {role:'dialog','aria-modal':'true','aria-label':'Published knowledge graph'},
     ...(Array.isArray(modal.props.children)?modal.props.children:[modal.props.children]),
     h('button',{type:'button',class:'graph-close'},'Close graph'),
-    h('nav',{class:'global-text-links','aria-label':'All published pages — text alternative'},...pages.map(f=>h('a',{href:href(f)},f.frontmatter.title))));
+    h('nav',{class:'global-text-links','aria-label':'All published pages — text alternative'},...pages.map(f=>h('a',{href:href(f),'data-no-popover':'true'},f.frontmatter.title))));
   return h('section',{class:'mehr-native-graph','aria-label':'Explore connections'},
     h('h2',{},'Explore the connections'),
     h('p',{},'Authored links between published pages. Connections do not imply shared evidence or endorsement.'),
@@ -177,5 +180,5 @@ function connectionMap(props, graph) {
     h('p',{class:'graph-motion-notice'},'Reduced motion is enabled. Explore through the connected-page links and backlinks below.'),
     h('div',{class:'native-graph-host',hidden:true},cloneElement(previewWidget,{},...previewWidget.props.children.slice(0,2),withLinks)),
     h('p',{class:'graph-instructions'},'Drag nodes to arrange them; scroll or pinch to zoom; drag empty space to pan. Hover or Tab to a node for a preview; click or press Enter to read it. Open the full map with the corner button. Escape closes it.'),
-    h('nav',{class:'local-text-links','aria-label':'Connected pages — text alternative'},...map.neighbors.map(f=>h('a',{href:href(f)},f.frontmatter.title))));
+    h('nav',{class:'local-text-links','aria-label':'Connected pages — text alternative'},...map.neighbors.map(f=>h('a',{href:href(f),'data-no-popover':'true'},f.frontmatter.title))));
 }

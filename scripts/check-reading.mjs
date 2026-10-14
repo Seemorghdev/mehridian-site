@@ -11,17 +11,23 @@ for(const page of pages){
  const nodes=walk(parse(html));
  assert.ok(!html.includes('https://seemorghdev.github.io/mehridian-site'),page+': no legacy site origin in output');
  const hints=nodes.filter(n=>(attr(n,'class')??'').split(' ').includes('popover-hint'));
- const reading=hints.filter(n=>attr(n,'id')==='mehr-content');
- assert.equal(reading.length,1,page+': one authored preview boundary');
- assert.ok(!walk(reading[0]).some(n=>['header','footer'].includes(n.tagName)||/mehr-native-graph|mehr-note-tools/.test(attr(n,'class')??'')));
- assert.ok(hints.filter(n=>attr(n,'id')!=='mehr-content').every(n=>!text(n).trim()),page+': all other native hints empty');
+ const reading=nodes.find(n=>attr(n,'id')==='mehr-content');
+ const meaningful=hints.filter(n=>text(n).trim());
+ assert.equal(meaningful.length,page==='index'||page==='projects/index'?0:1,page+': approved destination region only');
+ if(page.startsWith('notes/')) assert.equal(meaningful[0],reading);
+ if(page==='projects/edge-evidence') assert.equal(attr(meaningful[0],'aria-labelledby'),'problem-title');
+ assert.ok(meaningful.every(n=>!walk(n).some(x=>['header','footer'].includes(x.tagName)||/mehr-native-graph|mehr-note-tools/.test(attr(x,'class')??''))));
+ for(const anchor of nodes.filter(n=>n.tagName==='a'&&(attr(n,'class')??'').split(' ').includes('internal'))){
+   if(!page.startsWith('notes/')||!walk(reading).includes(anchor)&&!nodes.filter(n=>attr(n,'class')==='mehr-note-backlinks').some(n=>walk(n).includes(anchor)))
+     assert.equal(attr(anchor,'data-no-popover'),'true',page+': source link opt-out');
+ }
  assert.equal(nodes.filter(n=>(attr(n,'class')??'').includes('mehr-theme-toggle')).length,1);
  const before=nodes.filter(n=>n.tagName==='script'&&/resource-before/.test(attr(n,'src')??''));
  assert.equal(before.length,1);assert.ok(!before[0].attrs.some(a=>['async','defer'].includes(a.name)));
  const href=attr(before[0],'src');const script=readFileSync(new URL('preview/'+page.replace(/[^/]+$/,'')+href,root),'utf8');
  assert.match(script,/saved-theme/);
  // Guard the actual generated role/attributes rather than a nonexistent class.
- const headings=walk(reading[0]).filter(n=>/^h[1-6]$/.test(n.tagName??''));
+ const headings=walk(reading).filter(n=>/^h[1-6]$/.test(n.tagName??''));
  const permalinks=headings.flatMap(n=>(n.childNodes??[]).filter(a=>a.tagName==='a'&&attr(a,'role')==='anchor').map(a=>({heading:n,link:a})));
  assert.ok(permalinks.length>0,page+': generated permalink fixture present');
  for(const {heading,link} of permalinks){
