@@ -28,6 +28,6 @@ offline=offline.replace(/<link\b[^>]*>/g,tag=>{
 });
 const photo=readFileSync(new URL("content/assets/edge-evidence-gateway.jpg",root)).toString("base64");
 offline=offline.replaceAll('src="./assets/edge-evidence-gateway.jpg"',`src="data:image/jpeg;base64,${photo}"`);
-offline=offline.replaceAll('href="./','href="https://seemorghdev.github.io/mehridian-site/');
+offline=offline.replaceAll('href="./','href="https://mehridian.tech/');
 writeFileSync(new URL("preview/review/prototype.html",root),offline);
 console.log("local review directions and static fallback prepared");
