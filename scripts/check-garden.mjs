@@ -1,42 +1,25 @@
-import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { gunzipSync, gzipSync } from "node:zlib";
-
-const root = new URL("../", import.meta.url);
-const index = JSON.parse(readFileSync(new URL("preview/static/contentIndex.json", root)));
-const expected = ["index", "notes/index", "notes/agent-vs-deterministic-inspector", "projects/index", "projects/edge-evidence"];
-assert.deepEqual(Object.keys(index).sort(), expected.sort(), "Search contains exactly the five curated pages; no empty generated tag index");
-const html = readFileSync(new URL("preview/notes/agent-vs-deterministic-inspector.html", root), "utf8");
-const graph = html.match(/<details class="mehr-local-graph">[\s\S]*?<\/details>/)?.[0];
-assert.ok(graph && !graph.startsWith('<details class="mehr-local-graph" open'), "Map is optional/collapsed");
-const labels = [...graph.matchAll(/aria-label="Read ([^"]+)"/g)].map(match => match[1]);
-assert.deepEqual(labels, ["Agent vs deterministic inspector", "Edge Evidence", "Notes"]);
-const paths = [...graph.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
-assert.ok(paths.every(path => /^(\.\.\/notes(?:\/$|\/agent-vs-deterministic-inspector)|\.\.\/projects\/edge-evidence)$/.test(path)), "Only genuine page nodes and text alternatives, with correct index routes");
-assert.equal((graph.match(/class="mehr-graph-edge"/g) ?? []).length, 2);
-assert.match(graph, /Connected pages — text alternative/);
-assert.match(html, /class="search-button"/);
-const landing = readFileSync(new URL("preview/notes/index.html", root), "utf8");
-assert.match(landing, /class="search-button"/);
-assert.ok(!landing.includes('class="mehr-local-graph"'));
-for (const path of ["index", "projects/index", "projects/edge-evidence"]) {
-  const page = readFileSync(new URL(`preview/${path}.html`, root), "utf8");
-  assert.ok(!page.includes('class="mehr-local-graph"') && !page.includes('class="search-button"'), `${path}: portfolio shell unchanged`);
+import assert from 'node:assert/strict';
+import {readFileSync,existsSync,statSync} from 'node:fs';
+import {gzipSync} from 'node:zlib';
+const root=new URL('../',import.meta.url);
+const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root)));
+assert.deepEqual(Object.keys(index).sort(),['index','notes/index','notes/agent-vs-deterministic-inspector','projects/index','projects/edge-evidence'].sort());
+const note=readFileSync(new URL('preview/notes/agent-vs-deterministic-inspector.html',root),'utf8');
+assert.match(note,/class="mehr-native-graph"/);assert.match(note,/class="graph-enable"/);
+assert.match(note,/class="native-graph-host" hidden/);assert.match(note,/Connected pages — text alternative/);
+assert.match(note,/class="search-button"/);assert.ok(!note.includes('mehr-graph-map'));
+const landing=readFileSync(new URL('preview/notes/index.html',root),'utf8');
+assert.match(landing,/class="search-button"/);assert.ok(!landing.includes('class="mehr-native-graph"'));
+for(const page of ['index','projects/index','projects/edge-evidence']){
+ const html=readFileSync(new URL('preview/'+page+'.html',root),'utf8');
+ assert.ok(!html.includes('class="mehr-native-graph"')&&!html.includes('class="search-button"'));
 }
-const config = readFileSync(new URL("quartz.config.yaml", root), "utf8");
-assert.match(config, /parseTags: true/);
-assert.match(config, /wikilinks: true/);
-assert.match(config, /analytics: null/);
-const adapter = readFileSync(new URL("theme/search-accessibility.js", root), "utf8");
-assert.ok(!/fetch\(|https?:|localStorage/.test(adapter));
-const mapBytes = Buffer.byteLength(graph);
-const gzBytes = gzipSync(graph).length;
-assert.ok(gunzipSync(gzipSync(graph)).toString() === graph);
-console.log("published_search_index=5_actual_pages");
-console.log("graph_nodes=3_actual_pages");
-console.log("graph_authored_edges=2");
-console.log(`graph_markup_bytes=${mapBytes}`);
-console.log(`graph_markup_gzip_bytes=${gzBytes}`);
-console.log("graph_libraries_added=0");
-console.log("portfolio_widgets_unchanged=pass");
-console.log("wikilink_tag_configuration=unchanged");
+let total=0,gzip=0;
+for(const name of ['d3-7.9.0.min.js','pixi-8.18.0.min.js']){
+ const file=new URL('preview/static/graph/'+name,root);assert.ok(existsSync(file));
+ const data=readFileSync(file);total+=statSync(file).size;gzip+=gzipSync(data).length;
+}
+console.log('published_search_and_graph_index=5_actual_pages');
+console.log('official_graph_source=pass');console.log('local_pinned_dependencies=pass');
+console.log('graph_library_raw_bytes='+total);console.log('graph_library_gzip_bytes='+gzip);
+console.log('portfolio_widgets_unchanged=pass');

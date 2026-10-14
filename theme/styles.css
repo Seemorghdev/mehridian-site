@@ -139,18 +139,7 @@ body { background: var(--mehr-paper); color: var(--mehr-ink); }
 #quartz-root .mehr-note-tools .search-layout .result-card h3 { font-size: 17px; }
 #quartz-root .mehr-note-tools .search-layout .result-card p.card-description { display: block; font-size: 14px; line-height: 1.5; color: var(--mehr-muted); }
 #quartz-root .mehr-note-tools .search-layout .result-card { min-height: 44px; }
-#quartz-root .mehr-local-graph { max-width: 790px; margin: 0; padding: 24px 0; }
-#quartz-root .mehr-local-graph summary { min-height: 28px; font-size: 16px; }
-#quartz-root .mehr-local-graph .mehr-graph-caption { max-width: 640px; color: var(--mehr-muted); font-size: 14px; line-height: 1.6; margin: 16px 0; }
-#quartz-root .mehr-graph-map { display: block; width: 100%; max-width: 400px; margin: 24px auto; overflow: visible; }
-#quartz-root .mehr-graph-edge { fill: none; stroke: #a6b8b9; stroke-width: 1.5; }
-#quartz-root .mehr-graph-node rect { fill: var(--mehr-white); stroke: #859c9f; stroke-width: 1; }
-#quartz-root .mehr-graph-node text { fill: var(--mehr-ink); font-size: 13px; font-family: inherit; }
-#quartz-root .mehr-graph-node.is-current rect { fill: var(--mehr-soft); stroke: var(--mehr-blue); }
-#quartz-root .mehr-graph-node:hover rect, #quartz-root .mehr-graph-node:focus-visible rect { stroke: var(--mehr-accent); stroke-width: 3; }
-#quartz-root .mehr-graph-links { display: flex; flex-wrap: wrap; gap: 10px 24px; list-style: none; padding: 0; margin: 0; }
-#quartz-root .mehr-graph-links a { display: inline-block; padding: 8px 0; min-height: 28px; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
-#quartz-root .mehr-note-tools :focus-visible, #quartz-root .mehr-local-graph :focus-visible { outline: 2px solid var(--mehr-accent); outline-offset: 4px; }
+#quartz-root .mehr-note-tools :focus-visible { outline: 2px solid var(--mehr-accent); outline-offset: 4px; }
 #quartz-root .mehr-footer { display: flex; justify-content: space-between; align-items: start; gap: 30px; padding: 35px 0 42px; border-top: 1px solid var(--mehr-line); font-size: 13px; }
 #quartz-root .mehr-brand-small { color: var(--mehr-ink); font-size: 17px; letter-spacing: -.03em; font-weight: 600; }
 #quartz-root .mehr-footer p { font-size: 12px; margin: 9px 0 0; }
@@ -205,5 +194,5 @@ body { background: var(--mehr-paper); color: var(--mehr-ink); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  #quartz-root .mehr-note-tools *, #quartz-root .mehr-local-graph * { animation: none !important; transition: none !important; }
+  #quartz-root .mehr-note-tools * { animation: none !important; transition: none !important; }
 }

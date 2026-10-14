@@ -1,42 +1,51 @@
-# Mehridian v0.6 review
+# Mehridian v0.6 — official graph infrastructure review
 
-Local validation: 14 October 2026 (UTC). Draft only; no publish or deployment.
+Local verification: 14 October 2026 (UTC). Draft only; no publish or deployment.
 
-## Scope and tradeoffs
+## Implementation
 
-- Existing five public Markdown pages and one existing image; no new notes or sections.
-- Notes landing copy improves the connection between the one technical note and Edge Evidence.
-- Native Quartz Search is exposed on Notes pages. Search index: exactly five authored pages.
-- Technical notes automatically receive an optional, initially collapsed local map and existing native Backlinks.
-- Native graph renderer investigated: it loads D3 and PixiJS from a CDN. This PR instead uses Quartz's CrawlLinks-resolved authored relationships, rendered as a linked SVG at build time. It is **not** the force-directed canvas widget. No drag/zoom, physics simulation, or graph client libraries; all nodes are ordinary navigable links. A full linked text alternative is provided.
-- Diagram: three actual pages, two relationships. Current graph markup: 1,818 bytes / 668 bytes gzip. No added graph network request, animation, or visited tracking.
-- Only authored links participate; common header/footer navigation does not inflate the graph.
-- Six-neighbor diagram cap keeps future maps compact; every neighbor remains in the linked text list. No full-site map at this scale.
-- The existing hero implementation and portfolio content are unchanged.
+- Existing five public Markdown pages plus one existing image. No new content in this revision.
+- Homemade SVG renderer removed. Official Quartz Graph source is retained under theme/graph,
+  pinned to 46f0ba1c3c0cc484697572e7bcf315fa384d80d2 with MIT license and explicit local-change notes.
+- Source-level fixes: click/drag displacement threshold, zoom-adjusted 44px node hit area,
+  wrapped labels, wider collision spacing, opt-in lifecycle and cleanup. No generated-code patching.
+- D3 7.9.0 and Pixi 8.18.0 are npm-lock pinned and emitted as same-origin minified assets.
+  Total raw library size: 1,076,106 bytes; gzip estimate: 317,587 bytes. This is an estimate,
+  not a measured mobile transfer or frame-rate benchmark. Dependencies load only after opt-in.
+- One authored-link index feeds native graph, search and backlinks. Shared menus do not create graph edges.
+- Retained native Search and keyboard/close/focus adapter. Notes alone show graph/search;
+  portfolio pages and existing homepage hero stay unchanged.
+- Text alternatives and native backlinks remain available without the graph. Canvas nodes are not
+  individually keyboard-focusable; all five pages are linked in the modal text alternative.
+- Reduced motion skips graph loading; browser-local visited state is best-effort, not analytics.
 
-## Local checks
+## Checks and observed interactions
 
-- Pinned production engine `9cf87ff1c248a8ca551093214b0fec3b31415009`, Node 22.23.3, actual deployment YAML/lock, fresh site checkout with restored engine dependency cache.
-- Quartz build: five Markdown inputs, 53 emitted files. Cold dependency installation was not repeated; cache-restored local-plugin rebinding was exercised.
-- `node --test theme/*.test.mjs`: 21 passing tests.
-- `node scripts/check-build.mjs`: headings, shared theme, all relative links/assets, public-output boundary pass.
-- `node scripts/check-connected-notes.mjs`: six-file curated manifest, native wikilinks and Backlinks pass.
-- `node scripts/check-garden.mjs`: five-page search index, three real graph nodes, two authored connections, no graph widget on portfolio pages, native tag/wikilink configuration unchanged.
-- Browser: desktop 1440×960 and mobile 390×844; additional 320px CSS-viewport layout check. No horizontal overflow observed.
-- Node navigation: Edge Evidence and Notes open correctly; technical note backlink and reciprocal case-study wikilink work.
-- Search returns the technical note; arrow/Enter navigation, Tab/Shift+Tab containment, Escape/focus return, Cmd+K, and explicit close button tested. Mobile result list scrolls within the modal.
-- Fresh final desktop/mobile browser tabs: no console warnings/errors observed.
-- Hero normal animation and pause control tested. Forced reduced-motion CSS fixture yields static hero and hidden pause control; **OS media preference was not emulated**. Actual media rules remain intact, and the graph itself never animates.
-- Local preview clean-URL redirects now retain `/mehridian-site/`; this corrects the local rehearsal only, not the hosted application.
+- Actual pinned Quartz engine 9cf87ff1c248a8ca551093214b0fec3b31415009; Node 22.23.3 production build.
+- Five Markdown files, 54 emitted files before copied dependency assets.
+- 19 unit tests pass: gesture displacement/round-trip drag, target sizing, routes, privacy,
+  source lifecycle, presentation and retained hero tests.
+- Build, curated manifest, native wikilink/backlink, five-page search/graph and asset checks pass.
+- Real browser: desktop 1280x800 and mobile 390x844. Wrapped labels and linked alternatives fit;
+  no horizontal page overflow observed. Mobile testing used a desktop browser viewport, not a physical phone.
+- Actual node drag moves the node without navigation; normal node click navigates to Notes.
+- Native zoom and empty-space pan tested. Global close, Tab into text links, Escape and focus return pass.
+- Search finds the technical note and Enter opens it. Backlinks remain visible.
+- Hide graph removes canvas. Controlled missing-library test shows explicit fallback text;
+  connected-page links remain usable. Expected 404/console errors apply only to that fault fixture.
+- Controlled reduced-motion fixture: zero graph library requests/canvas, normal links retained.
+  OS media preference was not changed or emulated.
+- Fresh successful browser tab has no warnings/errors. All observed graph dependency requests are same-origin.
+- No timing/FPS benchmark, real-device multi-touch/pinch test, or large-garden usability claim.
 
-## Publishing boundary and ownership
+## Publishing boundary
 
-- `content/` is byte-identical to the curated Obsidian `Public/site/` folder (five Markdown files and the existing image).
-- Only the curated Notes landing source changed. Original private note and all private journal/research/Project 03 material remain unchanged and excluded.
-- `quartz.config.yaml` is byte-identical to GitHub Publish's supported per-site YAML override; `includeEmptyFiles: false` removes an empty generated tag index from search.
-- GitHub Publish 0.1.37 still selects exactly `Public/site`. Its content update creates a delta Git tree over `base_tree`, retaining repository-owned `theme/` and scripts. No Publish action was invoked.
-- Shared styling/components are in the repository-local plugin, not copied into individual notes. Future curated technical notes inherit them under `notes/`.
-- YAML override contains no credentials. Credential settings were not changed or published.
-- Existing Actions workflow remains main-push/manual only. A draft PR or branch push does not deploy Pages. No workflow dispatch, merge, DNS, or live-site update performed.
+- content/ stays identical to the existing Public/site selection, with no unpublished research.
+- Repository theme, source build script and asset-copy step survive GitHub Publish's base-tree delta.
+- Credential-free per-site supported YAML override is synchronized to quartz.config.yaml.
+- Do not invoke GitHub Publish while this draft is pending: it targets main, not the review branch.
+- PR-only graph-review workflow builds/tests without Pages permissions or deployment.
+  Existing production workflow still runs only on main push or manual dispatch; neither was invoked.
 
-Do not invoke GitHub Publish while this draft is pending: it publishes to the default branch rather than the draft branch.
+Review assets: official-graph-desktop.jpg, official-graph-mobile-local.jpg,
+official-graph-mobile-global.jpg under .github/review-assets/mehridian-v0.6/.

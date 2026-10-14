@@ -33,6 +33,10 @@ http.createServer((req, res) => {
     return writeHead(status, ...args);
   };
   req.url = req.url.slice(prefix.length) || "/";
+  // Local QA fault injection only; not emitted or part of deployment.
+  if (process.env.MEHRIDIAN_GRAPH_FAILURE_FIXTURE === '1' && req.url.startsWith('/static/graph/')) {
+    res.writeHead(404);res.end('Controlled graph asset failure');return;
+  }
   handler(req, res, { public: publicDirectory, cleanUrls: true, directoryListing: false });
 }).listen(port, "127.0.0.1", () => {
   console.log(`Mehridian review preview: http://127.0.0.1:${port}${prefix}/`);

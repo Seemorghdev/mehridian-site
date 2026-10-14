@@ -5,9 +5,10 @@ import { Search } from "../quartz-engine/.quartz/plugins/search/dist/index.js";
 import { CrawlLinks } from "../quartz-engine/.quartz/plugins/crawl-links/dist/index.js";
 import { h, cloneElement } from "../quartz-engine/node_modules/preact/dist/preact.module.js";
 import { installHero } from "./hero.js";
-import { localConnections, graphGeometry, titleLines } from "./garden.js";
+import Graph from "./.graph-build/index.js";
+import { publishedConnections, publishedPages } from "./connections.js";
 
-const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8");
+const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./graph.css", import.meta.url), "utf8");
 const text = (value) => ({ type: "text", value });
 const element = (tagName, properties = {}, children = []) => ({
   type: "element", tagName, properties, children,
@@ -36,7 +37,7 @@ export function MehridianPresentation() {
         const authoredFile = { data: { slug: file.data.slug } };
         CrawlLinks({ markdownLinkResolution: "shortest", externalLinkIcon: false })
           .htmlPlugins(ctx)[0]()(structuredClone(tree), authoredFile);
-        file.data.mehridianLinks = authoredFile.data.links;
+
         const slug = String(file.data.slug ?? "index");
         const base = "../".repeat(Math.max(0, slug.split("/").length - 1)) || "./";
         const home = `${base}index.md`;
@@ -81,6 +82,8 @@ export function MehridianPresentation() {
           element("div", { id: "mehr-content", className: ["mehr-content", `mehr-${mode}`] }, body),
           footer,
         ];
+        CrawlLinks({ markdownLinkResolution:"shortest", externalLinkIcon:false }).htmlPlugins(ctx)[0]()(tree,file);
+        file.data.links = authoredFile.data.links;
       }];
     },
   };
@@ -100,8 +103,8 @@ export function MehridianProjectIndex() {
     return insertSections(article, "start", h("div", { class: "mehr-note-tools" },
       h(search, props), h("span", {}, "Search published pages · Ctrl/Cmd + K")));
   };
-  body.css = [renderNote.css, search.css];
-  body.afterDOMLoaded = [search.afterDOMLoaded, readFileSync(new URL("./search-accessibility.js", import.meta.url), "utf8")];
+  body.css = [renderNote.css, search.css].flat().join('\n');
+  body.afterDOMLoaded = [renderNote.afterDOMLoaded, search.afterDOMLoaded, readFileSync(new URL("./search-accessibility.js", import.meta.url), "utf8")].flat().join('\n');
   return {
     ...page,
     name: "MehridianAuthoredPages",
@@ -116,15 +119,17 @@ export function MehridianProjectIndex() {
 function connectedNoteBody() {
   const page = ContentPage();
   const backlinks = Backlinks();
+  const graph = Graph({localGraph:{depth:1,linkDistance:140,repelForce:1.4,fontSize:1,opacityScale:4,showTags:true},globalGraph:{depth:-1,linkDistance:140,repelForce:1.4,fontSize:1,opacityScale:4,showTags:true}});
   const renderContent = page.body();
   const body = props => {
     const article = renderContent(props);
     return insertSections(article, "end",
-      props.fileData.frontmatter?.graph === false ? null : connectionMap(props),
+      props.fileData.frontmatter?.graph === false ? null : connectionMap(props, graph),
       h("aside", { class: "mehr-note-backlinks", "aria-label": "Backlinks" }, h(backlinks, props)),
     );
   };
-  body.css = backlinks.css;
+  body.css = [backlinks.css,graph.css].join('\n');
+  body.afterDOMLoaded = [graph.afterDOMLoaded, readFileSync(new URL("./graph-controls.js",import.meta.url),"utf8")].join('\n');
   return body;
 }
 
@@ -139,28 +144,23 @@ function insertSections(article, position, ...inserted) {
   return cloneElement(article, {}, cloneElement(wrapper, {}, connected));
 }
 
-function connectionMap(props) {
-  const map = localConnections(props.fileData, props.allFiles);
-  const geometry = graphGeometry(map);
-  const prefix = "../".repeat(Math.max(0, String(props.fileData.slug).split("/").length - 1)) || "./";
-  const href = node => `${prefix}${node.route ?? node.slug}`;
-  return h("details", { class: "mehr-local-graph" },
-    h("summary", {}, "Explore this note’s connections"),
-    h("p", { class: "mehr-graph-caption" }, "Published pages linked to or from this note. Select a node to read it. Navigation links are excluded."),
-    h("svg", { viewBox: `0 0 320 ${geometry.height}`, class: "mehr-graph-map", role: "group", "aria-label": "Local published-page connections" },
-      ...geometry.edges.map(edge => h("path", { d: edge, class: "mehr-graph-edge", "aria-hidden": "true" })),
-      ...geometry.nodes.map(node => h("a", {
-        href: href(node), "aria-label": `Read ${node.title}`, class: `mehr-graph-node${node.current ? " is-current" : ""}`,
-      }, h("title", {}, node.title),
-      h("rect", { x: node.x - node.width / 2, y: node.y - 32, width: node.width, height: 64, rx: 9 }),
-      h("text", { x: node.x, y: node.y, textAnchor: "middle", "aria-hidden": "true" },
-        ...titleLines(node.title, node.current ? 30 : 17).map((line, i, lines) =>
-          h("tspan", { x: node.x, dy: i === 0 ? `${-(lines.length - 1) * 0.6}em` : "1.2em" }, line))))),
-    ),
-    h("p", { class: "mehr-graph-caption" }, map.neighbors.length
-      ? `${map.neighbors.length} connected published ${map.neighbors.length === 1 ? "page" : "pages"}. ${map.neighbors.length > 6 ? "The diagram shows six; all are linked below. " : ""}Lines show a link in either direction, not endorsement or shared evidence.`
-      : "No connections to other published pages yet."),
-    h("ul", { class: "mehr-graph-links", "aria-label": "Connected pages — text alternative" },
-      ...map.neighbors.map(node => h("li", {}, h("a", { href: href(node) }, node.title)))),
-  );
+function connectionMap(props, graph) {
+  const map = publishedConnections(props.fileData, props.allFiles);
+  const pages = publishedPages(props.allFiles);
+  const prefix = "../".repeat(Math.max(0,String(props.fileData.slug).split('/').length-1)) || './';
+  const href = node => prefix + (node.slug === 'index' ? '' : node.slug.replace(/\/index$/, '/'));
+  const widget=graph(props);
+  const modal=widget.props.children[2];
+  const withLinks=cloneElement(modal, {role:'dialog','aria-modal':'true','aria-label':'Published knowledge graph'},
+    ...(Array.isArray(modal.props.children)?modal.props.children:[modal.props.children]),
+    h('button',{type:'button',class:'graph-close'},'Close graph'),
+    h('nav',{class:'global-text-links','aria-label':'All published pages — text alternative'},...pages.map(f=>h('a',{href:href(f)},f.frontmatter.title))));
+  return h('section',{class:'mehr-native-graph','aria-label':'Explore connections'},
+    h('h2',{},'Explore the connections'),
+    h('p',{},'Authored links between published pages. Connections do not imply shared evidence or endorsement.'),
+    h('button',{class:'graph-enable',type:'button','aria-expanded':'false'},'Enable interactive graph'),
+    h('p',{class:'graph-motion-notice'},'Reduced motion is enabled. Explore through the connected-page links and backlinks below.'),
+    h('div',{class:'native-graph-host',hidden:true},cloneElement(widget,{},...widget.props.children.slice(0,2),withLinks)),
+    h('p',{class:'graph-instructions'},'Drag nodes to arrange them; scroll or pinch to zoom; drag empty space to pan. Select a node to read it. Open the full map with the corner button. Escape closes it.'),
+    h('nav',{class:'local-text-links','aria-label':'Connected pages — text alternative'},...map.neighbors.map(f=>h('a',{href:href(f)},f.frontmatter.title))));
 }

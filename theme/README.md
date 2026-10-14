@@ -1,79 +1,59 @@
 # Mehridian presentation
 
-One shared stylesheet and page shell for the existing Quartz v5 engine.
-No added dependencies, hosted services, analytics, or new publishing framework.
-Notes reuse Quartz's native client-side Search and built-time Backlinks. A small
-accessibility adapter adds a close button and modal focus containment.
+One repository-local theme for the pinned Quartz v5 engine. Portfolio content and
+homepage animation are unchanged. Notes reuse native Quartz search and backlinks.
 
-The site config uses `source: ../theme`, relative to the existing workflow's
-`quartz-engine/` working directory. Quartz's supported local-plugin loader
-links the checked-out theme and reads its CSS from this same repository commit.
-The existing build workflow does not need to change.
+## Ownership and future Obsidian publishes
 
-## Publishing ownership
+- Curated public content: Obsidian Public/site only, mirrored to content/.
+- Quartz configuration: GitHub Publish's supported per-site YAML override.
+- Theme, graph source, lockfile and build scripts: reviewed repository code.
 
-- Curated page text, frontmatter, and screenshots: Obsidian `Public/site/` → `content/`.
-- Configuration: GitHub Publish's supported per-site YAML override.
-- Presentation code: this repository's `theme/` folder, reviewed in Git.
+GitHub Publish 0.1.37 applies content/config deltas over the existing Git tree,
+retaining these repository-owned folders. The supported override matches the
+review YAML. No Publish operation was invoked. Do not Publish while this PR is
+pending: the plugin targets main rather than this review branch.
 
-GitHub Publish v0.1.37 updates selected content/config paths in the existing
-Git tree; it does not remove unrelated repository folders. The generated
-workflow, lockfile, and Quartz engine remain unchanged. A plugin/toolchain
-upgrade should receive the usual compatibility review before publishing.
+## Official graph and accessible fallbacks
 
-Do not click Publish changes while a design PR is awaiting review:
-the plugin publishes to the repository's default branch, not a preview branch.
+The homemade SVG graph is removed. The sole graph is the official Quartz Community
+D3/Pixi implementation, vendored at a pinned source revision under graph/ with
+license, source-level fixes and an explicit change inventory. See graph/README.md.
+No installed plugin or generated bundle is patched. Generated source-build output
+is ignored and rebuilt on every CI invocation, including dependency-cache hits.
 
-## Connected notes
+Opt-in local and global graphs inherit the shared theme for technical notes.
+Nodes use authored links, never menu links. The native index, search and backlinks
+share these resolved relationships. Actual tags participate only when authored.
+Normal links, backlinks and the full published-page text list work for keyboard
+readers or graph failures; no private vault is read by the website.
 
-The theme is applied automatically. A newly selected public Markdown note
-can retain native wikilinks, frontmatter, headings, and backlinks in Quartz's
-content index without copying CSS or navigation. No Notes/Research/Journal
-or Journal section is created for this milestone. Properties remain hidden publicly.
-An ordinary note without its own H1 gets its frontmatter title as the heading.
+D3/Pixi assets are minified, npm-lock pinned, licensed and served from the site.
+No runtime CDN or new service. The graph is optional and skipped for reduced motion.
+Canvas-node keyboard focus is not implemented; use the accompanying normal links.
+Frontmatter graph: false can suppress a note's graph.
 
-## Local connection map and search
+Search remains native Quartz/FlexSearch with keyboard shortcuts, result navigation
+and the existing close/focus adapter. The index contains exactly five curated pages.
+No new Notes, Research or Journal content is introduced by this infrastructure revision.
 
-Quartz's pinned graph plugin was inspected: its canvas renderer loads D3 7 and
-PixiJS 8 from jsDelivr and runs a force simulation. For this small garden, the
-theme instead presents Quartz-resolved authored links in an expandable linked
-SVG, with ordinary linked text as an accessible alternative. No graph client
-library, CDN request, simulation, visited tracking, or graph animation is added.
-This is a presentation adapter, not the native force-directed Graph widget.
+## Local rehearsal
 
-Before adding shared navigation, the theme resolves a copy of the authored HAST
-with Quartz's existing CrawlLinks transformer (same `shortest` strategy). Those
-resolved relationships are retained separately from header/footer links. The map
-includes only actual emitted pages with `visibility: public`, in either direction.
-It is local, excludes synthetic tag nodes, and shows at most six neighbors in the
-diagram; the full text list remains available. It never reads the private vault.
-
-All technical pages under `notes/` except the landing page inherit this behavior.
-The map starts collapsed, works without JavaScript, has keyboard-focusable links,
-and never animates. Optional frontmatter `graph: false` omits it for an individual
-note. No map layout or styling needs to be copied into Markdown.
-
-Search uses the standard Quartz public content index and bundled FlexSearch.
-It is exposed on the Notes landing page and technical notes, with previews off
-to avoid extra page fetches. Ctrl/Cmd+K, arrow-key result selection, and Escape
-remain Quartz behavior. Tab/Shift+Tab traverse controls and links inside the
-modal; the adapter provides explicit focus containment. Empty generated pages
-are excluded by the supported `includeEmptyFiles: false` ContentIndex option.
-No content is indexed outside the build's `content/` directory.
-Native wikilinks, backlinks, and tag parsing remain enabled and unchanged.
-No full-site graph is added while there is only one technical note.
-
-## Local checks
+Run after installing the pinned engine and plugins:
 
 ```sh
-node --test theme/index.test.mjs
-# Run from the already-installed, pinned engine directory:
+npm ci --prefix theme/graph
+node scripts/build-graph.mjs
+node --test theme/*.test.mjs
 cd quartz-engine
-node quartz/bootstrap-cli.mjs build -d ../content -o ../preview --concurrency 1
+node quartz/bootstrap-cli.mjs build -d ../content -o ../preview
 cd ..
+node scripts/copy-graph-assets.mjs
+node scripts/check-build.mjs
+node scripts/check-connected-notes.mjs
+node scripts/check-garden.mjs
 node scripts/preview.mjs
 ```
 
-The public gateway screenshot is an actual browser capture from
-https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/
-on 2026-10-13 UTC. It is not a mockup or a new deployment.
+Deployment remains main-only/manual; the PR review workflow builds without deploying.
+See GARDEN-REVIEW.md for observed browser results and remaining limitations.
