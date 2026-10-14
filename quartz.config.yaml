@@ -40,6 +40,11 @@ configuration:
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
 plugins:
+  # Relative to the existing workflow's quartz-engine/ directory.
+  # Versioned in this repository; retained by GitHub Publish's content delta.
+  - source: ../theme
+    enabled: true
+    order: 55
   - source: github:quartz-community/created-modified-date
     enabled: true
     options:
