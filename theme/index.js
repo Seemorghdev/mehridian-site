@@ -1,7 +1,8 @@
 import { readFileSync } from "node:fs";
 import { ContentPage } from "../quartz-engine/.quartz/plugins/content-page/dist/index.js";
+import { installHero } from "./hero.js";
 
-const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8");
 const text = (value) => ({ type: "text", value });
 const element = (tagName, properties = {}, children = []) => ({
   type: "element", tagName, properties, children,
@@ -32,6 +33,8 @@ export function MehridianPresentation() {
         const isHome = slug === "index";
         const isProject = slug.startsWith("projects/");
         const mode = String(file.data.frontmatter?.presentation ?? "note");
+        if (isHome && mode === "home") installHero(tree);
+        // installHero replaces decorative nodes, not authored text or links.
         const body = [...tree.children];
         // Ordinary connected notes need no copied HTML/CSS or page shell.
         if (!body.some(containsHeading)) {
