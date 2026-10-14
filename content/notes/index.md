@@ -7,10 +7,18 @@ status: review-candidate
 
 # Notes
 
-Short explanations of ideas encountered while building systems. Each note connects a concept to a concrete implementation and keeps its limits visible.
+An open notebook for ideas encountered while building systems. Start with a question, follow a connection, and look at the implementation behind it.
 
 ## Systems and AI
 
-[[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]] — an introduction to rules, language models, tool use, and permission to act, grounded in [[projects/edge-evidence|Edge Evidence]].
+### What makes an inspector an agent?
 
-The focus is on working ideas, concrete implementations, and what still needs testing.
+[[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]] separates rules, language models, tool use, and permission to act. It uses the read-only inspector in [[projects/edge-evidence|Edge Evidence]] as a concrete example—not as a claim that an AI agent is running in the demo.
+
+**Connection:** one engineering project → one technical question → the public implementation.
+
+## Follow the connections
+
+Each technical note has backlinks and an optional local map of the published pages connected to it. Search looks only through the curated public site. The map does not include private vault notes or links added by the site's navigation.
+
+This garden is deliberately small. A full-site knowledge map can wait until there are enough notes to make it useful.

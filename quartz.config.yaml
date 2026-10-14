@@ -141,6 +141,7 @@ plugins:
   - source: github:quartz-community/content-index
     enabled: true
     options:
+      includeEmptyFiles: false
       enableSiteMap: true
       enableRSS: true
       rssSlug: feed
