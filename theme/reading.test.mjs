@@ -19,11 +19,11 @@ test('only the authored content has popover-hint; shell stays outside',()=>{
   const article=MehridianProjectIndex().body()({tree,fileData:data,allFiles:[],cfg:{locale:'en-US'}});
   assert.ok(!String(article.props.class).includes('popover-hint'));
 });
-test('preview anchors retain destination page and Pages prefix',()=>{
+test('preview anchors retain destination page at the custom-domain root',()=>{
   for(const [slug,base,expected] of [
-    ['projects/edge-evidence','https://example.com/mehridian-site/projects/edge-evidence','/mehridian-site/projects/edge-evidence#public-code'],
-    ['notes/index','https://example.com/mehridian-site/notes/','/mehridian-site/notes/#public-code'],
-    ['index','https://example.com/mehridian-site/','/mehridian-site/#public-code'],
+    ['projects/edge-evidence','https://mehridian.tech/projects/edge-evidence','/projects/edge-evidence#public-code'],
+    ['notes/index','https://mehridian.tech/notes/','/notes/#public-code'],
+    ['index','https://mehridian.tech/','/#public-code'],
   ]){
     const link={tagName:'a',properties:{href:'#public-code'}};
     rebaseReadingAnchors({children:[link]},slug);
