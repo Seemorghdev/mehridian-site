@@ -28,7 +28,7 @@ document.querySelectorAll('.mehr-native-graph').forEach(section => {
   }).observe(modal,{attributes:true,attributeFilter:['class']});
   modal.addEventListener('keydown',e=>{
     if(e.key!=='Tab') return;
-    const targets=[close,...modal.querySelectorAll('nav a[href]')];
+    const targets=[close,...modal.querySelectorAll('button.graph-node-focus:not([hidden]), nav a[href]')];
     const at=targets.indexOf(document.activeElement);
     e.preventDefault();targets[(at+(e.shiftKey?-1:1)+targets.length)%targets.length].focus();
   });

@@ -6,7 +6,7 @@
 #quartz-root .hero-motion-control {
   position: absolute; top: 14px; right: 15px; display: inline-flex; align-items: center;
   gap: 6px; padding: 4px 6px; color: var(--mehr-muted); font-size: 10px; line-height: 1.4;
-  background: #f8f7f4e8; border-radius: 2px; cursor: pointer;
+  background: var(--mehr-paper); border-radius: 2px; cursor: pointer;
 }
 #quartz-root .hero-motion-control input { width: 12px; height: 12px; margin: 0; accent-color: var(--mehr-accent); }
 #quartz-root .hero-motion-control:focus-within { outline: 2px solid var(--mehr-accent); outline-offset: 3px; }

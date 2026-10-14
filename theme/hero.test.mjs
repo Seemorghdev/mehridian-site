@@ -21,14 +21,15 @@ test("hero replacement preserves authored copy, caption and other images",()=>{
   assert.ok(nodes(tree).some(n=>n.properties?.src==="demo.jpg"));
   assert.equal(nodes(tree).filter(n=>n.tagName==="input").length,1);
 });
-test("pause is native, decorative motion has reduced-motion fallback, no JS is shipped",()=>{
+test("pause is native, decorative motion has reduced-motion fallback, no hero JS is shipped",()=>{
   const css=readFileSync(new URL("hero.css",import.meta.url),"utf8");
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(css, /animation: none/);
   assert.match(css, /animation-play-state: paused/);
   assert.match(css, /64s/);
   assert.match(css, /112s/);
-  assert.equal(MehridianPresentation().externalResources().js,undefined);
+  const scripts=MehridianPresentation().externalResources().js;
+  assert.ok(!scripts.some(r=>/meridian|animation|requestAnimationFrame/.test(r.script)));
 });
 test("only home presentation receives a hero, other page shells remain unchanged",()=>{
   for (const slug of ["projects/index","projects/edge-evidence","notes/example"]) {
