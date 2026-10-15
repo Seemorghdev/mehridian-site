@@ -81,6 +81,8 @@ presentation: case-study
 
 For a plain-English explanation of the inspection boundary, read [[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]]. It separates rules, language models, tool use, and permission to act.
 
+For implementation details, follow the [Edge Evidence technical overview](https://docs.mehridian.tech/edge-evidence/), [local setup guide](https://docs.mehridian.tech/edge-evidence/run-locally/), [API and data contracts](https://docs.mehridian.tech/edge-evidence/api-contracts/), and [boundaries and verification](https://docs.mehridian.tech/edge-evidence/boundaries/). These reviewed guides document the Reference Platform; the Processor + Replication execution proof remains a separate demonstration.
+
 <section class="case-section" id="public-code" aria-labelledby="code-title">
   <div><p class="eyebrow">05 / Follow the implementation</p><h2 id="code-title">Public code.<br>Clear responsibilities.</h2></div>
   <div class="body code-links">
