@@ -1,6 +1,6 @@
 # Mehridian — Site Architecture v1
 
-**Status:** Architecture direction agreed; locally reviewed 2026-10-14; implementation staged.  
+**Status:** Architecture agreed; page-specific reading boundaries implemented on `main` via merged PR #9 (2026-10-14). Docs and Apps destinations remain planned and not yet launched.  
 **Scope:** Public information architecture, domains, page features, navigation, publishing boundaries, and release gates.  
 **Applies to:** The existing Mehridian site and proposed Docs / Apps destinations.  
 **Change rule:** This is the canonical Mehridian website architecture decision. Detailed implementation guides should reference it rather than redefine policy. This document does not itself authorize DNS, hosting, application migration, content publication, or production deployment.
@@ -69,7 +69,7 @@ The user-facing behavior depends on page role, not simply on Quartz's global con
 | Docs (future site) | On when useful for internal references | On | Optional | Not required for v1 |
 | Apps directory | Off | Not required for v1 | Off | Off |
 
-**Current implementation versus target:** The released main-site `quartz.config.yaml` uses `enablePopovers: true` globally, and `theme/index.js` applies `popover-hint` to authored content on Home, Projects and Notes. The Notes-specific search/graph UI is already substantially scoped. Therefore this table is an **implementation target**, not a claim that every row is enforced today. A focused future PR must enforce the policy and add regression coverage.
+**Current implementation (merged PR #9):** The main-site `quartz.config.yaml` retains `enablePopovers: true`, but `theme/page-policy.js`, called by `theme/index.js`, gates **source-link triggers** independently of **destination excerpts**. Home, the Projects index and case studies do not trigger native text previews by default; Notes retain eligible authored-link and backlink previews. Only Notes reading content and the explicitly approved Edge Evidence `problem-title` excerpt are exposed as preview destinations. Search stays on the two Notes pages, backlinks on technical notes, and the graph is opt-in on individual notes. All five approved pages and their authored note↔project relationships remain indexed. PR #9's unit, build/output and documented local-browser checks cover this policy; its mobile observations are viewport-based, not physical-device certification. The policy table describes both the implemented current roles and the gates for any future roles.
 
 ### Three independent feature boundaries
 
@@ -79,7 +79,7 @@ The user-facing behavior depends on page role, not simply on Quartz's global con
 
 **Cross-site limit:** Separate Docs and Apps deployments do not automatically join the main Quartz content index, search, popovers, backlinks, or graph. Cross-site references are ordinary outbound links unless an independently designed and approved integration is introduced.
 
-Preferred implementation: retain Quartz's native renderer, determine page role at the **link source**, and independently scope eligible target excerpts and index membership. Do not disable all popovers globally, rewrite Quartz internals without cause, or rely on ad hoc CSS alone. Tests must cover Home→Note, Projects→Note, Note→Note, Note→Project, navigation/footer exclusions, resolved destination content, ordinary link fallback, and indexed published-page relationships.
+**Implemented approach:** Retain Quartz's native renderer, apply `data-no-popover` according to page role at the **link source**, independently approve destination excerpts, and preserve indexed published-page relationships. Do not disable all popovers globally, rewrite Quartz internals without cause, or rely on ad hoc CSS alone. PR #9 covered Home→Note and Projects→Note using local-only test fixtures (no such authored links on those public pages), plus Notes previews, Note→Project, navigation/footer exclusions, permitted excerpts, ordinary link fallback and published-page relationships. Keep these checks when extending the policy.
 
 ### Accessibility and graceful fallback
 
@@ -95,7 +95,7 @@ Preferred implementation: retain Quartz's native renderer, determine page role a
 
 - **Authoring/publication boundary:** Curated Obsidian `Public/site/` content mirrored into this repository's `content/`; current public manifest is five Markdown pages plus the approved project image.
 - **Repository-owned implementation:** Quartz configuration, theme, graph source, scripts, pinned dependencies, CI and deployment workflows remain reviewed code.
-- **GitHub Publish:** The local-agent review on 2026-10-14 found the **local per-site YAML override still stale**: the old GitHub Pages base URL and two old navigation URLs remain, despite released `baseUrl: mehridian.tech`. Reconcile and verify the local override **before any future Publish operation**; a GitHub PR cannot do this. Publishing while stale could reintroduce the old origin. Publish only when intentionally authorized.
+- **GitHub Publish (operator-reported, not repository-verified):** The initial 2026-10-14 local review reported a stale per-site Obsidian YAML override (the old GitHub Pages base URL and footer Home/Projects links). Merged PR #9 and `theme/STEP4-REVIEW.md` **report** that an operator backed up the local override and reconciled those three values to `mehridian.tech`, `https://mehridian.tech/` and `https://mehridian.tech/projects/`, respectively. This repository documents that report but cannot inspect or independently verify the operator-local file, its current state, or subsequent changes. Before any separately authorized GitHub Publish operation, the operator should confirm that the effective local override still matches the released repository configuration and that the curated `Public/site/` selection has not expanded. A GitHub PR does not update local Obsidian settings; Publish targets `main` and must not be invoked as part of this documentation-only draft.
 - **Commit-level privacy:** `visibility: private`, frontmatter, plugins and rendered-page filters are **not** a universal privacy guarantee. ExplicitPublish is currently disabled. Anything committed to a public Git repository—including excluded pages, source files, history or assets—is potentially disclosed even when it never appears in the rendered site. Before commit/publish, explicitly allowlist public pages **and assets**, exclude secrets/private artifacts, and review public diffs and output. Never rely on a metadata flag to make committed private bytes safe.
 - **Telemetry distinction:** Browser analytics are disabled, but the `main` deployment workflow still sends build/update telemetry to a third-party endpoint. Do not claim that no third-party tracking or telemetry exists; review that workflow separately if policy changes.
 
@@ -126,8 +126,8 @@ Across destinations, share Mehridian identity, naming, typography, color semanti
 
 1. **Complete — v0.6.1:** Native authored previews, accessible reading controls, theme coordination and graph improvements released via PR #6.
 2. **Complete — primary domain:** Quartz root-origin migration released via PR #7; GitHub Pages has the custom domain and HTTPS. Confirm continued browser behavior during subsequent releases.
-3. **Current — architecture decision:** Review/merge this spec as a documentation-only change. A merge to `main` **does trigger the existing GitHub Pages build/deploy workflow** even though the doc is outside `content/`. No DNS, new published content, site runtime or application behavior change is in scope.
-4. **Next — page-feature boundaries:** Separate PR to enforce `Home/Projects minimal; Notes rich` behavior. Tests must distinguish preview **source triggers**, allowed **target excerpts**, and preserved **public index membership**, including note↔project relationships. Preserve authored navigation, anchors, dark/light, search, optional graphs and mobile behavior. No content expansion.
+3. **Complete — architecture decision:** This canonical architecture was merged via PR #8. Documentation-only merges to `main` still trigger the existing GitHub Pages build/deploy workflow; a draft PR does not.
+4. **Complete — page-feature boundaries:** PR #9 enforced `Home/Projects minimal; Notes rich` with separately gated preview **source triggers**, approved **target excerpts**, and preserved **public index membership** and note↔project relationships. Its unit, build/output and documented local-browser checks covered authored navigation, anchors, light/dark appearance, search, optional graphs and mobile viewport behavior without expanding published content.
 5. **Later — Docs MVP:** Select one approved document set; decide builder/repository, public boundary, URLs, build/test/deploy ownership and TLS; provision `docs.mehridian.tech` only when useful content is ready.
 6. **Later — Apps MVP:** Select supported live demonstrations; define entry schema, user-facing disclaimers and deployment model; provision `apps.mehridian.tech` when a useful directory exists. Validate any nested demo hostnames separately.
 
@@ -138,13 +138,13 @@ Keep each phase independently reviewable with checks. A draft PR must not deploy
 - Docs builder (separate Quartz instance or alternative), repository and authoritative documentation source.
 - First Docs collection, its public approval, versioning and whether migration from current references is needed.
 - Apps directory builder, initial entries, operational status convention, and health/availability claims.
-- Exact technical mechanism for source-link trigger eligibility and destination excerpt selection (frontmatter versus explicit page policy, plus Quartz-compatible event handling), subject to a focused code review.
+- Any future expansion of source-link eligibility or approved destination excerpts requires a scoped policy and regression review; the current mechanism is implemented in `theme/page-policy.js` and `theme/index.js`.
 - Launch timing for Research and Journal based on genuine public content, not placeholder routes.
 - Long-term handling of legacy external links to the former `seemorghdev.github.io/mehridian-site/` project path, after actual browser and URL checks.
 
 ### Related documentation maintenance
 
-The local review identified stale statements in `theme/README.md` about graph-node keyboard focus and Obsidian override synchronization, plus older private vault publishing guides that describe a pre-deployment state. Correct the theme README in a separate focused documentation/code-maintenance change; preserve legacy vault guides as historical material, not as current operating instructions.
+This documentation reconciliation updates `theme/README.md` to distinguish graph-canvas nodes from keyboard focus alternatives and to attribute Obsidian override reconciliation to the PR #9 operator report rather than independent repository verification. Older private vault publishing guides may describe a historical pre-deployment state; they are outside this repository review and must not be treated as verified current operating instructions.
 
 ## 9. Non-goals
 

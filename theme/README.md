@@ -10,10 +10,15 @@ homepage animation are unchanged. Notes reuse native Quartz search and backlinks
 - Theme, graph source, lockfile and build scripts: reviewed repository code.
 
 GitHub Publish 0.1.37 applies content/config deltas over the existing Git tree,
-retaining these repository-owned folders. The supported override matches the
-released custom-domain YAML (baseUrl and footer links use mehridian.tech).
-No Publish operation was invoked. Do not Publish while this PR is
-pending: the plugin targets main rather than this review branch.
+retaining these repository-owned folders. Merged PR #9 and `STEP4-REVIEW.md`
+**report** that the operator-local per-site YAML override was backed up and
+reconciled (baseUrl and footer Home/Projects URLs) to the released
+`mehridian.tech` configuration on 2026-10-14. The operator-local file is
+not in this repository, and this documentation review does **not** independently
+verify its current contents. Before any separately authorized Publish action,
+the operator must recheck the effective override and the `Public/site/`
+selection. No GitHub Publish operation is authorized by this documentation PR;
+the plugin targets `main`, not this review branch.
 
 ## Official graph and accessible fallbacks
 
@@ -31,9 +36,11 @@ readers or graph failures; no private vault is read by the website.
 
 D3/Pixi assets are minified, npm-lock pinned, licensed and served from the site.
 No runtime CDN or new service. The graph is optional and skipped for reduced motion.
-Canvas nodes have keyboard focus targets and title/excerpt previews; normal links
-remain the accessible fallback.
-Frontmatter graph: false can suppress a note's graph.
+The canvas nodes themselves are not native keyboard-focusable elements; the
+reviewed adaptation provides separate keyboard focus targets with title/excerpt
+previews. Normal authored links, backlinks and the text-linked page list remain
+accessible fallbacks. This is not physical-device or screen-reader certification.
+Frontmatter `graph: false` can suppress a note's graph.
 
 Search remains native Quartz/FlexSearch with keyboard shortcuts, result navigation
 and the existing close/focus adapter. The index contains exactly five curated pages.
@@ -74,5 +81,10 @@ node scripts/prepare-page-policy-fixtures.mjs # local QA copies; never deploymen
 node scripts/preview.mjs
 ```
 
-Deployment remains main-only/manual; the PR review workflow builds without deploying.
-See GARDEN-REVIEW.md for observed browser results and remaining limitations.
+The PR review workflow (`.github/workflows/graph-review.yml`) builds and checks
+without a deploy job or Pages write permissions. In contrast,
+`.github/workflows/deploy.yml` builds **and deploys** on pushes to `main` or
+manual dispatch: even a documentation-only merge to `main` triggers it.
+This draft PR must not be merged or deployed without explicit authorization.
+See `STEP4-REVIEW.md` for PR #9's local-browser observations and limitations,
+and `GARDEN-REVIEW.md` for earlier graph/search review evidence.
