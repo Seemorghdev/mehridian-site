@@ -3,7 +3,7 @@ title: "Project 03 — The information was there; what could I prove?"
 description: "An evidence-led, first-person map of the frozen Project 03 investigation and its limits."
 type: research
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Project 03 — The information was there; what could I prove?
@@ -49,4 +49,4 @@ This is a **frozen historical research account**, not a monitor of current deplo
 
 The public version can explain findings and their limits without opening private spreadsheets, raw source registers, review screenshots or internal claim-support records. Those remain available for the private editorial trace, not as public web links.
 
-*Publication status: this file is a private candidate for owner review. Frozen numbers refer to the historical schema-v1.1 comparison, not a current audit.*
+*Frozen numbers refer to the historical schema-v1.1 comparison, not a current audit.*

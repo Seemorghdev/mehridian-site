@@ -3,7 +3,7 @@ title: "Publication and runtime reality"
 description: "Separating publication labels, runtime claims, and independent observation."
 type: research
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Publication and runtime reality

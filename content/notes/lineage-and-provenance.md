@@ -3,7 +3,7 @@ title: "Lineage and provenance — evidence binding"
 description: "Why repository relations and partial byte checks differ from exact-candidate lineage."
 type: concept
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Lineage and provenance — evidence binding

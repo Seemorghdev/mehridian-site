@@ -3,7 +3,7 @@ title: "Candidate verification"
 description: "What was checked against a specific candidate, and what mixed evidence means."
 type: concept
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Candidate verification

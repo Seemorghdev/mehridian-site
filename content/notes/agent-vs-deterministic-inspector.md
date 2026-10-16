@@ -3,7 +3,7 @@ title: Agent vs deterministic inspector
 description: Rules, language models, tool use, and action permissions are different responsibilities. Edge Evidence makes the distinction concrete.
 type: concept
 visibility: public
-status: review-candidate
+status: published
 source_checked: 2026-10-14
 ---
 

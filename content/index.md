@@ -2,7 +2,7 @@
 title: Mehridian
 description: Independent engineering and research. Practical systems, open questions, and the work behind them.
 visibility: public
-status: review-candidate
+status: published
 presentation: home
 ---
 
