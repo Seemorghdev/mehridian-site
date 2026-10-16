@@ -51,7 +51,7 @@ export function MehridianPresentation() {
         const notes = `${base}notes/index.md`;
         const isHome = slug === "index";
         const isProject = slug.startsWith("projects/");
-        const isNote = slug.startsWith("notes/");
+        const isNote = slug.startsWith("notes/") || slug.startsWith("research/");
         const mode = String(file.data.frontmatter?.presentation ?? "note");
         if (isHome && mode === "home") installHero(tree);
         // installHero replaces decorative nodes, not authored text or links.
@@ -107,7 +107,7 @@ export function MehridianProjectIndex() {
   const renderNote = connectedNoteBody();
   const body = props => {
     const slug = String(props.fileData?.slug);
-    if (!slug.startsWith("notes/")) return readingOnly(renderContent(props),cloneElement);
+    if (!slug.startsWith("notes/") && !slug.startsWith("research/")) return readingOnly(renderContent(props),cloneElement);
     const article = readingOnly(slug !== "notes/index" ? renderNote(props) : renderContent(props),cloneElement);
     return insertSections(article, "start", h("div", { class: "mehr-note-tools" },
       h(search, props), h("span", {}, "Search published pages · Ctrl/Cmd + K")));
@@ -118,7 +118,7 @@ export function MehridianProjectIndex() {
     ...page,
     name: "MehridianAuthoredPages",
     priority: 20,
-    match: ({ slug }) => slug === 'index' || slug.startsWith('projects/') || slug.startsWith("notes/"),
+    match: ({ slug }) => slug === 'index' || slug.startsWith('projects/') || slug.startsWith("notes/") || slug.startsWith("research/"),
     body: () => body,
   };
 }

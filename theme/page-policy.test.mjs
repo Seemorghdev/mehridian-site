@@ -77,3 +77,22 @@ test('native backlinks share the policy; graph text alternatives do not trigger 
   const alternatives = sections.filter(n => /^(local|global)-text-links$/.test(n.props.class ?? '')).flatMap(nodes).filter(n => n.type === 'a');
   assert.ok(alternatives.length > 0 && alternatives.every(n => n.props['data-no-popover'] === 'true'));
 });
+
+test('research uses the existing readable-note policy without giving Home rich controls',()=>{
+ const slug='research/project03/index';
+ assert.deepEqual(pagePolicy(slug),{role:'note',triggers:true,target:'reading'});
+ assert.equal(eligiblePreviewTarget('../../notes/candidate-verification',slug),true);
+ assert.equal(eligiblePreviewTarget('https://docs.mehridian.tech/edge-evidence/',slug),false);
+ assert.equal(pagePolicy('index').triggers,false);
+ const {tree,data}=render(slug,[el('p',{},[t('Historical research, not current runtime.')])]);
+ const hints=walk(tree).filter(n=>n.properties?.className?.includes('popover-hint'));
+ assert.equal(hints.length,1);
+ assert.equal(hints[0].properties.id,'mehr-content');
+ assert.equal(MehridianProjectIndex().match({slug}),true);
+ const article=MehridianProjectIndex().body()({tree,fileData:data,allFiles:[],cfg:{locale:'en-US'}});
+ const nodes=n=>Array.isArray(n)?n.flatMap(nodes):!n?.props?[]:[n,...nodes(n.props.children)];
+ const sections=nodes(article);
+ assert.ok(sections.some(n=>n.props.class==='mehr-note-tools'));
+ assert.ok(sections.some(n=>n.props.class==='mehr-note-backlinks'));
+ assert.ok(sections.some(n=>n.props.class==='mehr-native-graph'));
+});

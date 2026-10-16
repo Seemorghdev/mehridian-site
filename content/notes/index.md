@@ -17,6 +17,10 @@ An open notebook for ideas encountered while building systems. Start with a ques
 
 **Connection:** one engineering project → one technical question → the public implementation.
 
+## Project 03 — the evidence story
+
+Start with [[research/project03/index|the original Project 03 story and evidence map]], then follow the connected research notes on candidate verification, acceptance, lineage and runtime. The frozen 15-repository findings are historical—not a report on the present state of those repositories.
+
 ## Follow the connections
 
 Each technical note has backlinks and an optional local map of the published pages connected to it. Search looks only through the curated public site. The map does not include private vault notes or links added by the site's navigation.
