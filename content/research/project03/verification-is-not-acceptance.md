@@ -10,11 +10,14 @@ status: published
 
 [[research/project03/index|← Project 03 Story Map]]
 
-There is a number in the frozen dashboard that is difficult not to notice.
+There is a number in the frozen dashboard that is difficult not to notice. Across the **15 confirmed in-scope repositories**, each with an accepted W0–W8 evidence package, the two evidence questions give strikingly different distributions:
 
-Candidate verification: 13 `SUCCESS_OBSERVED`, one `MIXED`, one `NOT_ESTABLISHED`.
+| Frozen evidence question | Recorded states across 15 repositories |
+| --- | --- |
+| **Candidate verification** | `SUCCESS_OBSERVED`: **13** · `MIXED`: **1** · `NOT_ESTABLISHED`: **1** |
+| **Engineering acceptance** | `ESTABLISHED`: **1** · `UNKNOWN`: **1** · `NOT_ESTABLISHED`: **13** |
 
-Then I move to engineering acceptance: one `ESTABLISHED`, one `UNKNOWN`, 13 `NOT_ESTABLISHED`.
+These are **separate distributions, not a cross-tab**. The totals do not identify which repositories overlap. The **11/15 pairing** discussed below is a separately recorded finding, not something deduced by aligning the counts. Acceptance of a W0–W8 evidence package is not engineering acceptance of its software.
 
 At first the story almost writes itself. The checks passed. The engineering was not accepted.
 
