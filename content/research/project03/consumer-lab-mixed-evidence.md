@@ -3,7 +3,7 @@ title: "Consumer Lab — Mixed evidence"
 description: "A scoped mixed-verification result and 27-file provenance example."
 type: research
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Consumer Lab — Mixed evidence
@@ -41,4 +41,4 @@ If I have to describe Consumer Lab in one sentence, it is this: **one repository
 
 Read [[notes/candidate-verification|candidate verification]], [[notes/engineering-acceptance|engineering acceptance]] and [[notes/lineage-and-provenance|lineage and provenance]] separately. Then return to [[research/project03/what-project-03-shows|the synthesis]].
 
-*Research basis: frozen repository comparison and scoped-provenance record. Names and historical numbers require owner review before public release; no raw workbooks or screenshots are included.*
+*Research basis: frozen repository comparison and scoped-provenance record. No raw workbooks or screenshots are included.*

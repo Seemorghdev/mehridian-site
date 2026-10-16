@@ -3,7 +3,7 @@ title: "What Project 03 actually shows"
 description: "What the frozen evidence supports, and what it cannot establish."
 type: research
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # What Project 03 actually shows

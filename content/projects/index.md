@@ -2,7 +2,7 @@
 title: Projects
 description: Selected engineering experiments from Mehridian, starting with Edge Evidence.
 visibility: public
-status: review-candidate
+status: published
 presentation: projects
 ---
 

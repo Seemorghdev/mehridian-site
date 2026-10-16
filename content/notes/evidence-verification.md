@@ -3,7 +3,7 @@ title: "Evidence verification"
 description: "How to connect a bounded technical claim to independently checkable evidence."
 type: concept
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Evidence verification

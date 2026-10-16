@@ -2,7 +2,7 @@
 title: Edge Evidence
 description: An engineering experiment in reliable processing, verified copies, and read-only inspection, demonstrated with synthetic data.
 visibility: public
-status: review-candidate
+status: published
 presentation: case-study
 ---
 
@@ -85,6 +85,7 @@ For the historical research method behind these evidence distinctions, see [[res
 
 For the public implementation reference, read [Edge Evidence Docs](https://docs.mehridian.tech/edge-evidence/), including [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/), [Replication readback](https://docs.mehridian.tech/edge-evidence/replication/verification-readback/) and the [deterministic Edge Agent baseline](https://docs.mehridian.tech/edge-evidence/inspector/baseline/).
 
+For setup and interfaces, see the [local setup guide](https://docs.mehridian.tech/edge-evidence/run-locally/), [API and data contracts](https://docs.mehridian.tech/edge-evidence/api-contracts/), and [boundaries and verification](https://docs.mehridian.tech/edge-evidence/boundaries/). The technical overview above documents the Reference Platform; the Processor + Replication execution proof remains a separate demonstration.
 
 <section class="case-section" id="public-code" aria-labelledby="code-title">
   <div><p class="eyebrow">05 / Follow the implementation</p><h2 id="code-title">Public code.<br>Clear responsibilities.</h2></div>

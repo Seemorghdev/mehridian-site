@@ -3,7 +3,7 @@ title: "Verification is not acceptance"
 description: "Why observed candidate checks do not establish an authorized engineering acceptance."
 type: research
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Verification is not acceptance

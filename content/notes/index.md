@@ -2,7 +2,7 @@
 title: Notes
 description: Connected technical notes from independent engineering and research.
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Notes

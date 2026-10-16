@@ -3,7 +3,7 @@ title: "Engineering acceptance"
 description: "The scope and authority required for a meaningful acceptance disposition."
 type: concept
 visibility: public
-status: review-candidate
+status: published
 ---
 
 # Engineering acceptance
