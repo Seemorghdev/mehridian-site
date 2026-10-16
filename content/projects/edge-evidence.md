@@ -81,6 +81,11 @@ presentation: case-study
 
 For a plain-English explanation of the inspection boundary, read [[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]]. It separates rules, language models, tool use, and permission to act.
 
+For the historical research method behind these evidence distinctions, see [[research/project03/index|Project 03]]. This is a methodological connection, **not** a claim that the current Edge Evidence implementation was part of the frozen result.
+
+For the public implementation reference, read [Edge Evidence Docs](https://docs.mehridian.tech/edge-evidence/), including [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/), [Replication readback](https://docs.mehridian.tech/edge-evidence/replication/verification-readback/) and the [deterministic Edge Agent baseline](https://docs.mehridian.tech/edge-evidence/inspector/baseline/).
+
+
 <section class="case-section" id="public-code" aria-labelledby="code-title">
   <div><p class="eyebrow">05 / Follow the implementation</p><h2 id="code-title">Public code.<br>Clear responsibilities.</h2></div>
   <div class="body code-links">

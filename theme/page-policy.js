@@ -4,7 +4,7 @@ const approvedCaseExcerpts = { 'projects/edge-evidence': 'problem-title' };
 export function pagePolicy(slug) {
   slug = String(slug).replace(/\.html$/, '').replace(/\/$/, '/index');
   if (slug === 'notes' || slug === 'projects') slug += '/index';
-  if (slug.startsWith('notes/')) return { role: 'note', triggers: true, target: 'reading' };
+  if (slug.startsWith('notes/') || slug.startsWith('research/')) return { role: 'note', triggers: true, target: 'reading' };
   if (slug === 'index') return { role: 'home', triggers: false, target: null };
   if (slug === 'projects/index') return { role: 'projects-index', triggers: false, target: null };
   return { role: slug.startsWith('projects/') ? 'case-study' : 'other', triggers: false,
