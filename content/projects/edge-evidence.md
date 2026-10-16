@@ -83,7 +83,7 @@ For a plain-English explanation of the inspection boundary, read [[notes/agent-v
 
 For the historical research method behind these evidence distinctions, see [[research/project03/index|Project 03]]. This is a methodological connection, **not** a claim that the current Edge Evidence implementation was part of the frozen result.
 
-For the public implementation reference, read [Edge Evidence Docs](https://docs.mehridian.tech/edge-evidence/), including [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/), [Replication readback](https://docs.mehridian.tech/edge-evidence/replication/verification-readback/) and the [deterministic Edge Agent baseline](https://docs.mehridian.tech/edge-evidence/inspector/baseline/). These new Docs links must not be exposed until Docs publication is separately approved.
+For the public implementation reference, read [Edge Evidence Docs](https://docs.mehridian.tech/edge-evidence/), including [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/), [Replication readback](https://docs.mehridian.tech/edge-evidence/replication/verification-readback/) and the [deterministic Edge Agent baseline](https://docs.mehridian.tech/edge-evidence/inspector/baseline/).
 
 
 <section class="case-section" id="public-code" aria-labelledby="code-title">

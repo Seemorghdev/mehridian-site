@@ -57,7 +57,7 @@ presentation: home
 </section>
 
 <section class="section" id="approach" aria-labelledby="approach-title">
-  <div class="section-heading"><div><p class="eyebrow">02 / Approach</p><h2 id="approach-title">Build. Observe. Share.</h2></div><p>The implementation matters. So does being clear about what it proves—and what it does not.</p></div>
+  <div class="section-heading"><div><p class="eyebrow">03 / Approach</p><h2 id="approach-title">Build. Observe. Share.</h2></div><p>The implementation matters. So does being clear about what it proves—and what it does not.</p></div>
   <div class="triptych">
     <div><span class="number">01</span><h3>Make the question testable</h3><p>Turn an idea into a small system that can be inspected and exercised.</p></div>
     <div><span class="number">02</span><h3>Keep the limits visible</h3><p>Separate observed behavior from assumptions, synthetic examples, and future experiments.</p></div>
