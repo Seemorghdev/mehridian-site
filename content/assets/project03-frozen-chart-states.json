@@ -1,0 +1,55 @@
+{
+  "baseline": "Frozen Project 03 schema v1.1; descriptive counts, not a score",
+  "repository_count": 15,
+  "projection_observation_count": 25,
+  "verification": [
+    {
+      "state": "SUCCESS_OBSERVED",
+      "count": 13
+    },
+    {
+      "state": "MIXED",
+      "count": 1
+    },
+    {
+      "state": "NOT_ESTABLISHED",
+      "count": 1
+    }
+  ],
+  "engineering_acceptance": [
+    {
+      "state": "ESTABLISHED",
+      "count": 1
+    },
+    {
+      "state": "UNKNOWN",
+      "count": 1
+    },
+    {
+      "state": "NOT_ESTABLISHED",
+      "count": 13
+    }
+  ],
+  "projection_runtime_observation": [
+    {
+      "state": "ESTABLISHED",
+      "count": 0
+    },
+    {
+      "state": "NOT_ESTABLISHED",
+      "count": 18
+    },
+    {
+      "state": "NOT_OBSERVED",
+      "count": 4
+    },
+    {
+      "state": "NOT_COLLECTED",
+      "count": 1
+    },
+    {
+      "state": "UNKNOWN",
+      "count": 2
+    }
+  ]
+}
