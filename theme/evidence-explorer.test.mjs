@@ -63,7 +63,11 @@ test('public Markdown preserves the reviewed cases and never imports the private
   assert.deepEqual(counts(3),{NOT_ESTABLISHED:15});
   assert.match(rows[2][5],/27-file subset/);assert.match(rows[11][5],/runtime observation remains UNKNOWN/);
   assert.match(source,/pseudonyms, not guaranteed anonymity/);
-  assert.doesNotMatch(source,/docs\.google\.com|PLANNING|private-source-and-redaction|\/Users\/|file:\/\/|github_pat_|\.csv\b|\.json\b|<style|<script/);
+  assert.doesNotMatch(source,/docs\.google\.com|PLANNING|private-source-and-redaction|\/Users\/|file:\/\/|github_pat_|<style|<script/);
+  assert.match(source,/\/assets\/project03-selected-evidence-cases\.csv/);
+  assert.match(source,/\/assets\/project03-frozen-chart-states\.json/);
+  assert.match(source,/75 `source_gap_observed` records/);
+  assert.match(source,/cannot independently reconstruct or verify all underlying private/);
   assert.match(source,/\(\.\.\/\.\.\/projects\/edge-evidence\)/);
   assert.doesNotMatch(source,/projects\/edge-evidence\/\)/);
 });
