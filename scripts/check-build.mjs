@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const root = new URL("../", import.meta.url);
-const pages = ["index", "projects/index", "projects/edge-evidence", "notes/index", "notes/agent-vs-deterministic-inspector", "research/project03/index", "research/project03/verification-is-not-acceptance", "research/project03/consumer-lab-mixed-evidence", "research/project03/publication-and-runtime-reality", "research/project03/what-project-03-shows", "notes/candidate-verification", "notes/engineering-acceptance", "notes/evidence-verification", "notes/lineage-and-provenance"];
+const pages = ["research/project03/evidence-explorer", "index", "projects/index", "projects/edge-evidence", "notes/index", "notes/agent-vs-deterministic-inspector", "research/project03/index", "research/project03/verification-is-not-acceptance", "research/project03/consumer-lab-mixed-evidence", "research/project03/publication-and-runtime-reality", "research/project03/what-project-03-shows", "notes/candidate-verification", "notes/engineering-acceptance", "notes/evidence-verification", "notes/lineage-and-provenance"];
 const generated = pages.map((page) => {
   const source = readFileSync(new URL(`content/${page}.md`, root), "utf8");
   assert.ok(!source.includes("<style>"), `${page}: duplicated page CSS`);
@@ -37,3 +37,6 @@ console.log(`built_pages=${pages.length}`);
 console.log("headings_navigation_links_assets=pass");
 console.log("shared_styles=pass");
 console.log("public_output_boundary=pass");
+
+// Also exercised by the existing PR workflow; no deployment changes.
+await import('./check-evidence-explorer.mjs');

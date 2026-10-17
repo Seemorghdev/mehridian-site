@@ -1,0 +1,40 @@
+/* Only the approved explorer. Reuse Mehridian's palette, typography and shell. */
+#quartz-root .mehr-note.mehr-evidence-explorer { max-width: none; }
+#quartz-root .mehr-evidence-explorer > :is(h1,h2,p,ul,blockquote) { max-width: 790px; }
+#quartz-root .mehr-evidence-charts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin:34px 0 45px; }
+#quartz-root .mehr-evidence-card { min-width:0; padding:24px; border:1px solid var(--mehr-line); border-radius:4px; background:var(--mehr-white); }
+#quartz-root .mehr-evidence-card:last-child { grid-column:1 / -1; }
+#quartz-root .mehr-evidence-card h2 { margin:0 0 20px; font-size:1.5rem; }
+#quartz-root .mehr-evidence-card p { font-size:14px; }
+#quartz-root .mehr-evidence-card > p:last-child { margin-bottom:0; }
+#quartz-root .mehr-evidence-card .table-container { margin:20px 0; }
+#quartz-root .mehr-evidence-distribution { width:100%; margin:0; table-layout:fixed; font-size:13px; border-collapse:collapse; }
+#quartz-root .mehr-evidence-distribution :is(th,td) { text-align:left; padding:12px 5px; border:0; border-bottom:1px solid var(--mehr-line); vertical-align:middle; }
+#quartz-root .mehr-evidence-distribution th { width:48%; font-weight:500; }
+#quartz-root .mehr-evidence-distribution code { padding:0; background:none; font:inherit; overflow-wrap:anywhere; }
+#quartz-root .mehr-evidence-count { display:flex; align-items:center; gap:12px; }
+#quartz-root .mehr-evidence-count strong { min-width:24px; text-align:right; font-variant-numeric:tabular-nums; }
+#quartz-root .mehr-evidence-track { display:block; flex:1; height:12px; background:var(--mehr-soft); border:1px solid var(--mehr-line); border-radius:3px; overflow:hidden; }
+#quartz-root .mehr-evidence-fill { display:block; height:100%; background:var(--mehr-blue); }
+#quartz-root .mehr-evidence-table-region { overflow-x:auto; width:100%; overscroll-behavior-x:contain; margin:24px 0; border:1px solid var(--mehr-line); border-radius:4px; }
+/* Quartz adds this wrapper after our transformer; keep one keyboard scroll owner. */
+#quartz-root .mehr-evidence-table-region > .table-container { overflow:visible; margin:0; }
+#quartz-root .mehr-evidence-table-region:focus-visible { outline:3px solid var(--mehr-accent); outline-offset:4px; }
+#quartz-root .mehr-evidence-comparison { width:100%; min-width:1120px; table-layout:fixed; margin:0; border-collapse:separate; border-spacing:0; font-size:13px; line-height:1.6; }
+#quartz-root .mehr-evidence-comparison :is(th,td) { padding:14px 12px; text-align:left; vertical-align:top; border:0; border-bottom:1px solid var(--mehr-line); overflow-wrap:anywhere; }
+#quartz-root .mehr-evidence-comparison thead th { background:var(--mehr-soft); }
+#quartz-root .mehr-evidence-comparison :is(th,td):first-child { width:90px; }
+#quartz-root .mehr-evidence-comparison :is(th,td):last-child { width:32%; }
+#quartz-root .mehr-evidence-comparison tbody tr:nth-child(even) { background:var(--mehr-highlight); }
+#quartz-root .mehr-evidence-comparison code { background:none; padding:0; font:inherit; }
+#quartz-root .mehr-evidence-case-label { display:none; }
+/* Popovers retain reading text but not a full-width chart/table layout. */
+.popover .mehr-evidence-charts { display:block; }
+.popover .mehr-evidence-card { margin-bottom:20px; }
+@media(max-width:700px) {
+  #quartz-root .mehr-evidence-charts { grid-template-columns:1fr; gap:18px; }
+  #quartz-root .mehr-evidence-card { padding:18px 14px; }
+  #quartz-root .mehr-evidence-distribution { font-size:12px; }
+  #quartz-root .mehr-evidence-count { gap:6px; }
+  #quartz-root .mehr-evidence-case-label { display:block; font-weight:600; color:var(--mehr-blue); margin-bottom:6px; }
+}

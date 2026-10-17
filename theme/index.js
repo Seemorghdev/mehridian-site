@@ -9,8 +9,9 @@ import Graph from "./.graph-build/index.js";
 import { publishedConnections, publishedPages } from "./connections.js";
 import { readingExcerpt, readingOnly, rebaseReadingAnchors } from './reading.js';
 import { applyPagePolicy, gateBacklinkPreviews } from './page-policy.js';
+import { decorateEvidenceExplorer, EXPLORER_SLUG } from './evidence-explorer.js';
 
-const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./graph.css", import.meta.url), "utf8") + '\n' + readFileSync(new URL('./reading.css',import.meta.url),'utf8');
+const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./hero.css", import.meta.url), "utf8") + "\n" + readFileSync(new URL("./graph.css", import.meta.url), "utf8") + '\n' + readFileSync(new URL('./reading.css',import.meta.url),'utf8') + '\n' + readFileSync(new URL('./evidence-explorer.css',import.meta.url),'utf8');
 const text = (value) => ({ type: "text", value });
 const element = (tagName, properties = {}, children = []) => ({
   type: "element", tagName, properties, children,
@@ -53,6 +54,7 @@ export function MehridianPresentation() {
         const isProject = slug.startsWith("projects/");
         const isNote = slug.startsWith("notes/") || slug.startsWith("research/");
         const mode = String(file.data.frontmatter?.presentation ?? "note");
+        decorateEvidenceExplorer(tree, slug);
         if (isHome && mode === "home") installHero(tree);
         // installHero replaces decorative nodes, not authored text or links.
         const body = [...tree.children];
@@ -86,7 +88,7 @@ export function MehridianPresentation() {
         tree.children = [
           link("Skip to content", "#mehr-content", { className: ["mehr-skip"] }),
           nav,
-          element("div", { id: "mehr-content", className: ["mehr-content", `mehr-${mode}`, 'popover-hint'] }, body),
+          element("div", { id: "mehr-content", className: ["mehr-content", `mehr-${mode}`, 'popover-hint', ...(slug === EXPLORER_SLUG ? ['mehr-evidence-explorer'] : [])] }, body),
           footer,
         ];
         CrawlLinks({ markdownLinkResolution:"shortest", externalLinkIcon:false }).htmlPlugins(ctx)[0]()(tree,file);
