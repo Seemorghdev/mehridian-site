@@ -20,6 +20,16 @@ The historical question is straightforward: **after a period of engineering work
 
 The frozen analytical comparison covers **15 confirmed in-scope repositories**, each with an accepted W0–W8 evidence package. The package's acceptance means the evidence collection was accepted for this analysis; it does **not** mean the software was accepted for engineering or production use.
 
+### How the comparisons fit together
+
+The comparison began with three contrasting repository types and later expanded to fifteen. The original three-case **Cohort 1** conclusions concerned a private control, a multi-projection platform, and a generated, history-light public projection. The final fifteen-repository estate offers a broader **descriptive comparison**; it does not extend every Cohort 1 conclusion to all fifteen. And fifteen accepted evidence packages are not fifteen engineering acceptances.
+
+The generated, history-light projection recorded zero commits, pull requests and issues in its bounded visible activity window. That says what was visible **in that projection**, not how much engineering work occurred upstream. Activity windows and cutoffs were not fully aligned, so adding raw counts would not produce a trustworthy portfolio throughput or productivity measure.
+
+Some **projection observations** lack a source-recorded `projection_id`. They remain unkeyed observations; I cannot invent an identity or infer an independently verified deployment. A **direct-public technical surface** is different: it is public but is **not a projection instance**, so it does not add another projection to the count. Incomplete observation windows and unresolved historical visibility or source conflicts remain qualified; none of these historical records reports what is live today.
+
+The detailed evidence already has its own places: [verification versus acceptance](https://mehridian.tech/research/project03/verification-is-not-acceptance), [Consumer Lab's mixed evidence](https://mehridian.tech/research/project03/consumer-lab-mixed-evidence), and [publication versus runtime](https://mehridian.tech/research/project03/publication-and-runtime-reality). The point here is how to read the existing findings, not to create another result.
+
 Follow a branch when you need it:
 
 - **What was actually checked?** [[notes/candidate-verification|Candidate verification]] examines the check results associated with an exact candidate, not a vague judgment about a repository.
