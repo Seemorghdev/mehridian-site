@@ -1,0 +1,16 @@
+case_id,candidate_verification,engineering_acceptance,whole_exact_candidate_lineage,accepted_w0_w8_package,reading_qualification
+Case 01,SUCCESS_OBSERVED,ESTABLISHED,NOT_ESTABLISHED,ACCEPTED,Explicit candidate-specific engineering acceptance; public projection relation is not whole-candidate lineage.
+Case 02,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED,Successful exact-head checks do not establish acceptance; one public projection observation has no recorded stable ID.
+Case 03,MIXED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATIONS,MIXED: two successful checks and one failed check. Positive provenance is limited to a declared 27-file subset.
+Case 04,SUCCESS_OBSERVED,UNKNOWN,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATION,Engineering acceptance UNKNOWN remains unresolved; absent runtime observation is not proof of service failure.
+Case 05,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED,Seven separately keyed projections; one different direct-public technical surface is not an additional projection. Historical visibility drift remains.
+Case 06,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATIONS,Four successful checks; public surface lacks a source-recorded projection ID; no whole-candidate lineage established.
+Case 07,NOT_ESTABLISHED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATIONS,Qualifying exact-head verification NOT_ESTABLISHED; formal activity collection gap must not be called a failed check.
+Case 08,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATIONS,Three keyed projection observations; independent runtime observation not positively established.
+Case 09,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATION,One public surface without a stable recorded projection ID; exact-candidate relation not established.
+Case 10,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATIONS,Final W0–W8 reviewer lock retains qualifications; publication review is not engineering acceptance.
+Case 11,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED,"Successful checks are bounded to offline/mock/backend-disabled conditions, not actual cloud runtime."
+Case 12,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATION,Two keyed projected candidates; historical visibility conflict persists and runtime observation remains UNKNOWN.
+Case 13,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATIONS,Three distinct projection candidates; a live claim is not a positive independent runtime observation.
+Case 14,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED,"Generated, history-light visible projection; recorded zero public activity does not establish upstream inactivity."
+Case 15,SUCCESS_OBSERVED,NOT_ESTABLISHED,NOT_ESTABLISHED,ACCEPTED_WITH_QUALIFICATIONS,Private generated export; bounded zero activity not upstream inactivity; repository-level W4 without a projection instance.

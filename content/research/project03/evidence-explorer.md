@@ -90,9 +90,36 @@ Wide table: swipe or scroll sideways to read every field. Keyboard users can Tab
 
 ## What is deliberately withheld
 
-Repository names and mappings, private source coordinates, receipts, selectors, raw activity windows and screenshots are omitted by editorial choice. **Withheld information is not the same as missing or unestablished evidence.** No CSV/JSON downloads or private workbook links are supplied.
+Repository names and mappings, private source coordinates, receipts, selectors, raw activity windows and screenshots are omitted by editorial choice. **Withheld information is not the same as missing or unestablished evidence.** Private workbook links are not supplied.
 
 Activity windows were not fully aligned and historical conflicts remain unresolved. This extract does not total them, create productivity or readiness scores, or extend the original three-case conclusions to all fifteen.
+
+## Download the selected frozen extract
+
+These are the **unchanged values already displayed in this Explorer**, offered in machine-readable form—not full source workbooks or newly collected records.
+
+- [Download the selected 15-case CSV](/assets/project03-selected-evidence-cases.csv) — 15 repository evidence cases, six columns, exact state tokens, original qualifications, and stable `Case 01`–`Case 15` **editorial pseudonyms**. Published examples can make a case recognizable; pseudonyms **do not guarantee anonymity**.
+- [Download the three frozen distributions as JSON](/assets/project03-frozen-chart-states.json) — **n=15 repositories** for verification, a **separate n=15** for engineering acceptance, and **n=25 projection observations** for independent runtime observation. The two repository distributions are **not** a cross-tab.
+
+The downloads are a **selected frozen schema-v1.1 extract, not the complete underlying dataset**. Raw activity windows are omitted because their intervals/cutoffs differed and some were incomplete. Historical source and visibility conflicts remain unresolved. The downloads provide no private source mappings, original identities, provenance receipts, service endpoints or current deployment status.
+
+## Field guide: what is recorded, what is withheld
+
+The CSV's `candidate_verification` records candidate-bound checks, not engineering acceptance. The distinct `engineering_acceptance` field records whether the required candidate-specific authority was established. `whole_exact_candidate_lineage` asks about a *complete* candidate binding, even when a narrower declared subset has positive provenance. `accepted_w0_w8_package` is an **evidence-package review state**, not software acceptance. Each `reading_qualification` is a bounded explanation accompanying the original case.
+
+The recorded categories `MIXED`, `UNKNOWN`, `NOT_ESTABLISHED`, `NOT_OBSERVED`, and `NOT_COLLECTED` retain their different meanings. A historical runtime `EXPLICITLY_NOT_CLAIMED` state refers to what a surface **claimed**, not an independent finding of downtime. **Deliberately withheld** is a disclosure choice about a field excluded from the public extract; it is *not* another recorded evidence state and does not mean the field was never collected.
+
+A projection observation lacking its original recorded identifier remains an **unkeyed projection observation**. A **direct-public technical surface that is not a projection instance** is a different category and is not added to the 25-observation count. Visible zero activity in a generated, history-light public projection also does not establish zero upstream work. None of these values is a productivity, quality, readiness, deployment-health or overall CI score.
+
+## Sources, method and reproducibility
+
+The original three-case **Cohort 1** explored contrasting repository profiles; the final estate describes **15 accepted repository evidence packages**, without automatically generalizing every original three-case conclusion.
+
+The retained study separated **W0** source identity and scope; **W1** bounded activity/history windows; **W2** exact-candidate verification; **W3** acceptance authority; and **W4** publication, projection relationships, runtime claims and runtime observations. **W5** normalized reviewed observations while retaining their source states and limits; **W6/W7** formed bounded outcomes and analysis; and **W8** selected publishable or qualified public claims. Collector material and reviewer dispositions were distinct, and the frozen Master and final comparison are *downstream views of the accepted evidence*, not independent repeated measurements.
+
+The underlying source packages, workbook identities and original collection receipts remain private. Readers **can reproduce the published presentation from these selected CSV/JSON values**, including the displayed states and chart distributions; they **cannot independently reconstruct or verify all underlying private repository, provider, screenshot or acceptance evidence** from this public extract. This account reports *reviewed historical records*, not freshly repeated tests, provider reads or current uptime.
+
+For a concrete research example, see [Consumer Lab's mixed checks and 27-file scoped provenance](https://mehridian.tech/research/project03/consumer-lab-mixed-evidence): that positive subset does not establish whole-candidate lineage. The separate [Edge Evidence development and operational account](https://docs.mehridian.tech/edge-evidence/development-and-operations/) reports historical engineering exercises, including a completed longer run with **75 `source_gap_observed` records** and a retained limitation classification. Those exercises belong to the **later engineering history**, *not* the frozen Project 03 repository or projection denominators.
 
 The [Edge Evidence case study](../../projects/edge-evidence) describes separate engineering demonstrations; it is not a current deployment attestation supplied by this frozen comparison.
 
