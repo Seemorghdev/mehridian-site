@@ -30,6 +30,8 @@ Some **projection observations** lack a source-recorded `projection_id`. They re
 
 The detailed evidence already has its own places: [verification versus acceptance](https://mehridian.tech/research/project03/verification-is-not-acceptance), [Consumer Lab's mixed evidence](https://mehridian.tech/research/project03/consumer-lab-mixed-evidence), and [publication versus runtime](https://mehridian.tech/research/project03/publication-and-runtime-reality). The point here is how to read the existing findings, not to create another result.
 
+For the numbers side by side, open the [[research/project03/evidence-explorer|Evidence Explorer]]: three frozen distributions and a selected fifteen-case comparison, with their qualifications—not a score or live-status dashboard.
+
 Follow a branch when you need it:
 
 - **What was actually checked?** [[notes/candidate-verification|Candidate verification]] examines the check results associated with an exact candidate, not a vague judgment about a repository.

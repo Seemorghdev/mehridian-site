@@ -63,6 +63,28 @@ Search stays on both Notes pages, backlinks on technical notes, graphs opt-in.
 
 ## Local rehearsal
 
+### Frozen Evidence Explorer
+
+The Project 03 companion is authored once in
+`content/research/project03/evidence-explorer.md`, mirrored from the curated
+Obsidian source. Its ordinary Markdown tables retain the reviewed state/count
+values and fifteen editorial case IDs. `evidence-explorer.js` decorates those
+tables at build time on that exact route only; it supplies no data fetches,
+browser chart library, new palette, or duplicate page shell. The existing
+theme supplies navigation, light/dark controls, search, reading previews and
+backlinks. The dense comparison opts out of its optional graph.
+
+The fifteen-case table is a named, focusable horizontal-scroll region. Its
+inner Quartz table wrapper must not own a competing scroll container.
+The normal Markdown tables remain a text alternative, including in Obsidian
+or without website CSS. No private field/source register, identity mapping,
+CSV/JSON download, or raw workbook is part of the published content.
+
+Repository-owned theme code survives normal content/config delta publishes;
+the publication source must remain exactly `Public/site/`. This PR does not
+invoke the plugin or change its configuration. Do not invoke Publish while
+the review branch is pending: the plugin targets main, not this branch.
+
 Run after installing the pinned engine and plugins:
 
 ```sh
