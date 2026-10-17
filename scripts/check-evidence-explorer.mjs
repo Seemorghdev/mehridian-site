@@ -59,4 +59,4 @@ assert.match(html,/cannot independently reconstruct or verify all underlying pri
 console.log('frozen_csv_json=approved_bytes_15_cases_15_15_25_states_privacy_pass');
 
 console.log('evidence_explorer=three_charts_15_cases_keyboard_region_shared_theme_pass');
-console.log('private_register_and_data_downloads=absent');
+console.log('private_register_and_unapproved_downloads=absent');

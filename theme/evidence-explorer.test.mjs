@@ -44,6 +44,8 @@ test('comparison keeps fifteen rows and a named keyboard-scrollable region',()=>
   assert.equal(rows.length,15);assert.equal(text(rows[14]),'Case 15');
   const css=readFileSync(new URL('./evidence-explorer.css',import.meta.url),'utf8');
   assert.match(css,/\.mehr-evidence-table-region > \.table-container\s*\{\s*overflow:visible/,'Quartz must not nest a competing scroll owner inside the focusable region');
+  assert.match(css,/@media\(max-width:700px\)/,'Mobile viewport must use the reviewed single-column chart layout');
+  assert.match(css,/\.mehr-evidence-table-region\s*\{\s*overflow-x:auto/,'Wide table must remain scrollable at desktop and mobile widths');
 });
 test('malformed and denominator-drifting chart inputs fail rather than silently render',()=>{
   const missing=fixture();missing.children.pop();assert.throws(()=>decorateEvidenceExplorer(missing,EXPLORER_SLUG));
