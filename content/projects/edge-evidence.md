@@ -73,7 +73,7 @@ presentation: case-study
     <div class="limits">
       <p><strong>Implemented:</strong> the public Web UI, synthetic Evidence API, deterministic inspector, and the separate Processor + Replication demonstration.</p>
       <p><strong>Limited:</strong> synthetic inputs, a single-runtime visual gateway, and no claim of production availability or persistent hosted evidence storage.</p>
-      <p><strong>Proposed:</strong> LLM-powered inspection experiments such as ADK + Ollama. They are not running in this hosted inspector; no results are claimed.</p>
+      <p><strong>Local Llama (not hosted):</strong> A bounded read-only Llama 8B explanation workbench has been implemented and exercised on a Mac. Its public-safe source export and owner-approved short recording are release gates, not currently available hosted features. Optional model text may be wrong or withheld; the model cannot execute workers, authorize changes, or verify stored copies.</p>
     </div>
     <details><summary>Why does the inspector explain rather than act?</summary><p>Classification and authorization are different responsibilities. A state can be described by predefined rules without granting permission to mutate evidence or restart a worker. The hosted gateway keeps that boundary explicit.</p></details>
   </div>
