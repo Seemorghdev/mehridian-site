@@ -11,6 +11,7 @@ presentation: home
     <p class="eyebrow">Independent engineering &amp; research</p>
     <h1 id="home-title">Curiosity,<br><em>made concrete.</em></h1>
     <p class="intro">A space for building systems, investigating ideas, and making technical work understandable.</p>
+    <p class="quiet">Independent engineering and research by <a href="https://github.com/Seemorghdev">Mehrdad Touraji</a>, a Python systems and platform engineer.</p>
     <p class="quiet">Starting with software. Making room for AI, autonomous systems, and the next good question.</p>
     <div class="actions"><a class="button" href="./projects/index.md">Explore projects <span aria-hidden="true">&nbsp;→</span></a><a href="#approach">How the work is approached ↓</a></div>
   </div>
