@@ -19,10 +19,6 @@
 #quartz-root .mehr-home .work-primary-links a:not(.button) {font-weight:600;}
 #quartz-root .mehr-home .work-opening-boundary {font-size:12px;max-width:32rem;color:var(--mehr-muted);margin:0;}
 #quartz-root .mehr-home .work-opening-art {min-width:0;align-self:stretch;display:flex;align-items:center;position:relative;}
-#quartz-root .mehr-home .work-opening-art::before {
-  content:""; position:absolute; width:72%; aspect-ratio:1; border:1px solid var(--mehr-line);
-  border-radius:50%; right:8%; top:8%; pointer-events:none; opacity:.65;
-}
 #quartz-root .mehr-home .work-opening .hero-visual {width:100%;isolation:isolate;}
 #quartz-root .mehr-home .work-opening .field {
   min-height:0; aspect-ratio:1 / 1; max-height:520px;
@@ -35,7 +31,7 @@
 }
 #quartz-root .mehr-home .work-opening .field-caption {bottom:8px;left:15px;right:15px;font-size:10px;}
 #quartz-root .mehr-home .work-opening .hero-motion-control {
-  top:auto;right:10px;bottom:34px;border:1px solid var(--mehr-line);
+  position:static;display:flex;width:max-content;margin:8px 0 0 auto;border:1px solid var(--mehr-line);
   background:var(--mehr-paper); font-size:12px; padding:8px 11px; z-index:3;
 }
 #quartz-root .mehr-home .work-opening .hero-motion-control input {width:16px;height:16px;}
@@ -93,10 +89,8 @@
   #quartz-root .mehr-home .work-opening-lede {font-size:17px;}
   #quartz-root .mehr-home .work-opening-art {max-width:390px;width:100%;margin:0 auto;}
   #quartz-root .mehr-home .work-opening .field {aspect-ratio:1.5 / 1;overflow:hidden;max-height:255px;}
-  #quartz-root .mehr-home .work-opening .field svg {width:min(100%,310px);max-width:310px;}
-  #quartz-root .mehr-home .work-opening-art::before {width:60%;top:8%;}
+  #quartz-root .mehr-home .work-opening .field svg {width:65%;max-width:255px;}
   #quartz-root .mehr-home .work-opening .field-caption {font-size:9px;bottom:7px;}
-  #quartz-root .mehr-home .work-opening .hero-motion-control {bottom:28px;right:0;}
   #quartz-root .mehr-home :is(.work-surface,.work-research,.work-notebook) {padding:36px 0 42px;}
   #quartz-root .mehr-home .work-section-head {display:block;margin-bottom:24px;}
   #quartz-root .mehr-home .work-section-head > p {margin-top:14px;}

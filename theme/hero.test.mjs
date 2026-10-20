@@ -27,9 +27,22 @@ test("pause is native, decorative motion has reduced-motion fallback, no hero JS
   assert.match(css, /animation: none/);
   assert.match(css, /animation-play-state: paused/);
   assert.match(css, /72s/);
-  assert.match(css, /120s/);
+  assert.doesNotMatch(css, /meridian-companion/);
   const scripts=MehridianPresentation().externalResources().js;
   assert.ok(!scripts.some(r=>/meridian|animation|requestAnimationFrame/.test(r.script)));
+});
+test("meridian has one orbit and one moving marker without the competing frame",()=>{
+  const svg=createHero("meridian");
+  const all=nodes(svg);
+  assert.equal(all.filter(n=>n.properties?.className?.includes("meridian-traveller")).length,1);
+  assert.equal(all.filter(n=>n.properties?.className?.includes("meridian-orbit-track")).length,1);
+  assert.equal(all.filter(n=>n.properties?.className?.includes("meridian-companion")).length,0);
+  assert.equal(all.filter(n=>n.tagName==="ellipse").length,4);
+  assert.equal(all.filter(n=>n.tagName==="line").length,4);
+  const composition=readFileSync(new URL("workfront.css",import.meta.url),"utf8");
+  assert.doesNotMatch(composition,/\.work-opening-art::before/);
+  assert.match(composition,/\.hero-motion-control\s*\{\s*position:static/);
+  assert.match(composition,/\.field svg \{width:65%;max-width:255px;/);
 });
 test("only home presentation receives a hero, other page shells remain unchanged",()=>{
   for (const slug of ["projects/index","projects/edge-evidence","notes/example"]) {

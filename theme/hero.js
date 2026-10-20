@@ -13,27 +13,24 @@ function surveyFrame() {
 }
 
 function meridian() {
-  const ticks = Array.from({ length: 36 }, (_, i) => {
-    const a = i * Math.PI / 18;
-    const outer = i % 3 === 0 ? 152 : 148;
+  const ticks = Array.from({ length: 4 }, (_, i) => {
+    const a = i * Math.PI / 2;
     return line(210 + Math.cos(a) * 144, 195 + Math.sin(a) * 144,
-      210 + Math.cos(a) * outer, 195 + Math.sin(a) * outer);
+      210 + Math.cos(a) * 151, 195 + Math.sin(a) * 151);
   });
-  return [surveyFrame(),
-    group(ticks, { stroke: "#637a76", "stroke-width": .8, opacity: .57 }),
+  return [
+    group(ticks, { stroke: "#637a76", "stroke-width": .8, opacity: .45 }),
     group([
-      el("ellipse", { cx: 0, cy: 0, rx: 113, ry: 113 }),
-      ...[26, 59, 89].map(rx => el("ellipse", { cx: 0, cy: 0, rx, ry: 113 })),
-      ...[-73, -38, 0, 38, 73].map(y => el("ellipse", { cx: 0, cy: y, rx: Math.sqrt(113 ** 2 - y ** 2), ry: 12 })),
-    ], { transform: "translate(210 195) rotate(-24)", stroke: "#637a76", "stroke-width": .85, opacity: .66 }),
+      circle(0, 0, 113),
+      ...[43, 82].map(rx => el("ellipse", { cx: 0, cy: 0, rx, ry: 113 })),
+      el("ellipse", { cx: 0, cy: 0, rx: 113, ry: 28 }),
+      path("M -98 -56 Q 0 -24 98 -56"),
+      path("M -98 56 Q 0 88 98 56"),
+    ], { transform: "translate(210 195) rotate(-24)", stroke: "#637a76", "stroke-width": .9, opacity: .62 }),
     group([
-      el("ellipse", { cx: 0, cy: 0, rx: 136, ry: 53, stroke: "#995037", "stroke-width": 1.15, opacity: .68 }),
-      el("ellipse", { cx: 0, cy: 0, rx: 152, ry: 66, stroke: "#637a76", "stroke-width": .7, opacity: .43 }),
-    ], { transform: "translate(210 195) rotate(-24)" }),
-    line(77, 254, 344, 136, { stroke: "#995037", "stroke-width": 1.15, opacity: .74 }),
-    circle(210, 195, 4.4, { fill: "#995037" }),
-    group([group([circle(136, 0, 5, { fill: "#995037" }), circle(136, 0, 9, { stroke: "#995037", "stroke-width": .7, opacity: .3 })], { className: ["meridian-traveller"] })], { transform: "translate(210 195) rotate(-24) scale(1 .39)" }),
-    group([group([circle(152, 0, 3, { fill: "#637a76", opacity: .8 })], { className: ["meridian-companion"] })], { transform: "translate(210 195) rotate(-24) scale(1 .434)" }),
+      el("ellipse", { cx: 0, cy: 0, rx: 142, ry: 48, stroke: "#995037", "stroke-width": 1, opacity: .7 }),
+    ], { transform: "translate(210 195) rotate(-24)", className: ["meridian-orbit-track"] }),
+    group([group([circle(142, 0, 3.5, { fill: "#995037" })], { className: ["meridian-traveller"] })], { transform: "translate(210 195) rotate(-24) scale(1 .3380281690140845)" }),
     label("N", 207, 28), label("S", 207, 373), label("W", 31, 198), label("E", 382, 198),
   ];
 }
