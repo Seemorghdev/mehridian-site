@@ -80,12 +80,17 @@ jobs:
           npm ci --prefix theme/graph
           node scripts/build-graph.mjs
 
+      - name: Install reviewed Mehridian favicon
+        run: node scripts/install-favicon.mjs
       - name: Build site
         working-directory: quartz-engine
         run: npx quartz build -d "$GITHUB_WORKSPACE/content"
 
       - name: Copy pinned graph assets
         run: node scripts/copy-graph-assets.mjs quartz-engine/public
+
+      - name: Verify emitted Mehridian favicon
+        run: node scripts/check-favicon.mjs quartz-engine/public
 
       - uses: actions/upload-pages-artifact@v5
         with:
