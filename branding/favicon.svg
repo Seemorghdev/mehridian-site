@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">Mehridian</title>
+  <desc id="desc">Two warm copper meridian lines on a warm white rounded square.</desc>
+  <rect width="200" height="200" rx="36" fill="#f8f7f4"/>
+  <path d="M77 45V155M123 45V155" fill="none" stroke="#995037" stroke-width="10"/>
+</svg>

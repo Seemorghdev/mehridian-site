@@ -27,6 +27,8 @@ jobs:
           npm ci --prefix theme/graph
           node scripts/build-graph.mjs
           node --test theme/*.test.mjs
+      - name: Install reviewed Mehridian favicon
+        run: node scripts/install-favicon.mjs
       - name: Rehearse production build without deploying
         working-directory: quartz-engine
         run: npx quartz build -d "$GITHUB_WORKSPACE/content" -o "$GITHUB_WORKSPACE/preview"
@@ -34,6 +36,7 @@ jobs:
         run: |
           node scripts/copy-graph-assets.mjs
           node scripts/check-build.mjs
+          node scripts/check-favicon.mjs preview
           node scripts/check-connected-notes.mjs
           node scripts/check-garden.mjs
           node scripts/check-reading.mjs
