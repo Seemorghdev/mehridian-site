@@ -32,3 +32,9 @@ test('visual styles are scoped to home and Notes index, with a phone-sized fallb
   assert.match(css,/grid-template-columns:1fr/);
   assert.doesNotMatch(css,/@import|https?:\/\/|animation:\s*[^;]*infinite|100vw\s*\+/);
 });
+test('Notes shelves target the same element that owns both theme classes',()=>{
+  const theme=source('theme/index.js');
+  assert.match(theme,/mehr-notes-index/);
+  assert.match(css,/#quartz-root \.mehr-notes-index\.mehr-note h2 \+ ul \{[^}]*display:grid/);
+  assert.doesNotMatch(css,/\.mehr-notes-index\s+\.mehr-note/);
+});

@@ -73,14 +73,14 @@
 #quartz-root .mehr-home .work-note-list p:not(.work-marginal) {font-size:14px;line-height:1.6;}
 #quartz-root .mehr-home .work-notebook-all {display:inline-block;margin-top:12px;font-weight:650;font-size:14px;}
 /* Notes index: topic shelves, not an additional library or taxonomy system. */
-#quartz-root .mehr-notes-index .mehr-note {max-width:1080px;}
-#quartz-root .mehr-notes-index .mehr-note h1 {font-size:clamp(3rem,6vw,5rem);margin-bottom:18px;}
-#quartz-root .mehr-notes-index .mehr-note > p:first-of-type {font-size:18px;max-width:720px;}
-#quartz-root .mehr-notes-index .mehr-note h2 {margin-top:54px;padding-top:18px;border-top:1px solid var(--mehr-line);font-size:clamp(1.65rem,2.65vw,2.3rem);}
-#quartz-root .mehr-notes-index .mehr-note h2 + ul {list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 34px;margin:20px 0 30px;}
-#quartz-root .mehr-notes-index .mehr-note h2 + ul li {margin:0;padding:18px 0;border-top:2px solid var(--mehr-line);min-width:0;line-height:1.65;font-size:15px;}
-#quartz-root .mehr-notes-index .mehr-note h2 + ul li a {font-weight:650;color:var(--mehr-ink);}
-#quartz-root .mehr-notes-index .mehr-note h2 + ul li a:hover {color:var(--mehr-accent);}
+#quartz-root .mehr-notes-index.mehr-note {max-width:1080px;}
+#quartz-root .mehr-notes-index.mehr-note h1 {font-size:clamp(3rem,6vw,5rem);margin-bottom:18px;}
+#quartz-root .mehr-notes-index.mehr-note > p:first-of-type {font-size:18px;max-width:720px;}
+#quartz-root .mehr-notes-index.mehr-note h2 {margin-top:54px;padding-top:18px;border-top:1px solid var(--mehr-line);font-size:clamp(1.65rem,2.65vw,2.3rem);}
+#quartz-root .mehr-notes-index.mehr-note h2 + ul {list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 34px;margin:20px 0 30px;}
+#quartz-root .mehr-notes-index.mehr-note h2 + ul li {margin:0;padding:18px 0;border-top:2px solid var(--mehr-line);min-width:0;line-height:1.65;font-size:15px;}
+#quartz-root .mehr-notes-index.mehr-note h2 + ul li a {font-weight:650;color:var(--mehr-ink);}
+#quartz-root .mehr-notes-index.mehr-note h2 + ul li a:hover {color:var(--mehr-accent);}
 @media(max-width:900px) {
   #quartz-root .mehr-home .work-opening {grid-template-columns:1fr .85fr;gap:16px;min-height:0;}
   #quartz-root .mehr-home .work-opening h1 {font-size:clamp(2.9rem,5.8vw,4.3rem);}
@@ -106,7 +106,7 @@
   #quartz-root .mehr-home .work-measure strong {font-size:3.1rem;}
   #quartz-root .mehr-home .work-note-list {grid-template-columns:1fr;gap:10px;}
   #quartz-root .mehr-home .work-note-list > div {padding-top:16px;}
-  #quartz-root .mehr-notes-index .mehr-note h2 + ul {grid-template-columns:1fr;gap:10px;}
+  #quartz-root .mehr-notes-index.mehr-note h2 + ul {grid-template-columns:1fr;gap:10px;}
 }
 @media(prefers-reduced-motion:reduce) {
   #quartz-root .mehr-home .work-screen {scroll-behavior:auto;}

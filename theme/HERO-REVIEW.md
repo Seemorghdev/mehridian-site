@@ -66,3 +66,23 @@ The older v0.4 measurements and browser observations above describe the previous
 candidate, **not** this one. Recheck exact new SVG/CSS byte and gzip counts and
 real browser light/dark, desktop/mobile, pause/resume, reduced-motion and ordinary
 reading surfaces before approval. No new runtime animation JavaScript.
+
+### Exact candidate browser acceptance — 20 October
+
+The Notes index owns both `mehr-note` and `mehr-notes-index` on the same
+element. Corrected its compound CSS selectors and added a regression test;
+the intended two-column desktop shelves and one-column phone shelves now render.
+
+- Production build: 15 Markdown pages; all 43 presentation tests pass.
+- Real browser: homepage and Notes reviewed in light/dark at measured 1440px
+  and 390px viewport widths; homepage also checked at 1280px and 768px.
+  No horizontal page overflow, broken homepage images, or browser errors observed.
+- Native pause checkbox: pointer pause and keyboard Space resume work;
+  animation transforms advance while running and stay fixed while paused.
+- Notes search returns published content; theme selection survives navigation
+  and reload.
+- Reduced-motion static fixture: both animations are `none`, control hidden,
+  layout intact. This is a declaration-level browser rehearsal, not OS media
+  preference emulation. Physical-device performance remains unmeasured.
+- Build, asset, link, curated-content/privacy, Explorer download-integrity,
+  reading-preview, graph and branded-favicon checks pass.
