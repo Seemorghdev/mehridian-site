@@ -48,7 +48,7 @@ presentation: home
       <div class="actions"><a class="button" href="./projects/edge-evidence.md">Explore the case study →</a><a href="https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/">Open visual demo ↗</a></div>
       <div class="project-meta"><span>Python / FastAPI</span><span>Processing + replication</span><span>Public code</span></div>
     </div>
-    <a class="project-media" href="./projects/edge-evidence.md" aria-label="Read the Edge Evidence case study"><img src="./assets/edge-evidence-gateway.jpg" alt="Real public Edge Evidence interface showing its three synthetic examples" width="1440" height="1648" loading="lazy" /></a>
+    <a class="project-media" href="./projects/edge-evidence.md" aria-label="Read the Edge Evidence case study"><img src="./assets/edge-evidence-gateway-inspect-2026-10-20.jpg" alt="Hosted Edge Evidence Inspect view showing three independent synthetic records and the read-only classification for the selected recorded-complete example" width="1440" height="1100" loading="lazy" /></a>
   </div>
 </section>
 

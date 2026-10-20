@@ -23,7 +23,7 @@ presentation: projects
       <div class="actions"><a class="button" href="./edge-evidence.md">Read the case study →</a><a href="https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/">Try the visual demo ↗</a></div>
       <div class="project-meta"><span>Python / FastAPI</span><span>Read-only inspection</span><span>Public repositories</span></div>
     </div>
-    <a class="project-media" href="./edge-evidence.md" aria-label="Read the Edge Evidence case study"><img src="../assets/edge-evidence-gateway.jpg" alt="Screenshot of the public Visual Gateway, with completed, deferred, and prepared synthetic examples" width="1440" height="1648" /></a>
+    <a class="project-media" href="./edge-evidence.md" aria-label="Read the Edge Evidence case study"><img src="../assets/edge-evidence-gateway-inspect-2026-10-20.jpg" alt="Hosted Edge Evidence Inspect view showing three independent synthetic records and the read-only classification for the selected recorded-complete example" width="1440" height="1100" /></a>
   </div>
   <p class="project-notice">This collection starts with one real project. Future work may explore other kinds of software, AI, and autonomous systems; nothing is listed here before there is something concrete to show.</p>
 </section>
