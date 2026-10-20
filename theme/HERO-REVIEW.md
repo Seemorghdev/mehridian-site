@@ -86,3 +86,20 @@ the intended two-column desktop shelves and one-column phone shelves now render.
   preference emulation. Physical-device performance remains unmeasured.
 - Build, asset, link, curated-content/privacy, Explorer download-integrity,
   reading-preview, graph and branded-favicon checks pass.
+
+## 20 October — bounded animation simplification
+
+Supersedes the integrated candidate artwork above, not the homepage composition:
+remove the extra CSS background circle, survey grid, dense bearing ticks,
+second orbit/marker and diagonal line. Keep one globe with sparse meridians,
+one 72-second orbit and one moving marker. Place the native pause control in
+normal flow below the artwork. The phone SVG now fits inside its field instead
+of being vertically clipped.
+
+No authored content, links, homepage sections, dependencies or workflows changed.
+All 44 presentation tests and production build/asset/link/privacy/reading/graph/
+favicon checks pass. Browser review: 1440px desktop and 390px phone, light/dark;
+320px phone also has no overflow or artwork clipping. Pointer pause freezes the
+transform; keyboard Space resumes it. The static reduced-motion fixture has no
+animation and hides the control. OS preference emulation and physical-device
+performance remain untested; no claim of those tests is made.
