@@ -52,3 +52,17 @@ These are not added to `content/` or published by the deployment workflow.
 Publishing compatibility: implementation stays in retained repository-local
 `theme/`; the existing plugin config is unchanged. The private Obsidian homepage
 keeps its original static SVG. No Publish operation has been invoked.
+
+## 20 October — integrated work-first candidate
+
+The chosen meridian remains the **only** live decorative direction. The homepage
+now gives it a wider visual role beside a specific Edge Evidence opening and its
+genuine Inspect image, not a standalone hero study. Grid and globe strokes have
+been strengthened slightly; the two orbital motions slow to 72s and 120s. A
+visible native pause checkbox and CSS-only reduced-motion static state remain.
+The research and notebook material are authored content, not simulation labels.
+
+The older v0.4 measurements and browser observations above describe the previous
+candidate, **not** this one. Recheck exact new SVG/CSS byte and gzip counts and
+real browser light/dark, desktop/mobile, pause/resume, reduced-motion and ordinary
+reading surfaces before approval. No new runtime animation JavaScript.
