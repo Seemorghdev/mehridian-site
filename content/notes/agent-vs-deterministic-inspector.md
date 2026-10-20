@@ -56,9 +56,11 @@ The [gateway route selection](https://github.com/Seemorghdev/edge-evidence-refer
 
 ## Proposed experiment: ADK + Ollama
 
+**Current status (20 October 2026):** The pinned implementation references in this section document the earlier deterministic baseline and a proposed comparison. A separate [optional local Llama workbench](https://github.com/Seemorghdev/edge-evidence-reference-platform-public/tree/736c02c7dd59a7334677a56b3ca4fd01e8682151/examples/local-llama-workbench) is now available; see the [local-workbench guide](https://docs.mehridian.tech/edge-evidence/local-workbench/) for setup and qualifications. It uses bounded read-only inspection, keeping fallible or provisional model explanations separate from deterministic inspector facts. Availability does **not** establish completion of the originally proposed comparative study, general model accuracy or reliability, or adversarial safety. Llama is local only; neither a model answer nor the hosted Gateway can run workers or authorize mutations.
+
 An optional [ADK adapter](https://github.com/Seemorghdev/edge-evidence-reference-platform-public/blob/37e8a8f9a34ff04eea621d146fea078632ed9125/services/edge-agent/src/edge_evidence_edge_agent/adk_adapter.py#L13) already wraps the same deterministic function as a read-only tool. It requires explicit enablement and a model setting. The [gateway Dockerfile](https://github.com/Seemorghdev/edge-evidence-reference-platform-public/blob/37e8a8f9a34ff04eea621d146fea078632ed9125/services/web-ui/Dockerfile.gateway#L2) sets ADK to disabled, and the inspection HTTP handler remains a direct deterministic call.
 
-ADK + Ollama would be a future experiment: use ADK to coordinate tool use and Ollama to serve a language model, then compare model-assisted explanations against the deterministic baseline. The existing adapter does not establish a working Ollama integration. No accuracy, latency, safety, or experiment results are claimed here.
+At the time of the pinned baseline, ADK + Ollama was proposed as a future experiment: use ADK to coordinate tool use and Ollama to serve a language model, then compare model-assisted explanations against the deterministic baseline. The pinned adapter alone did not establish a working Ollama integration. No accuracy, latency, safety, or comparative-study results are claimed for that earlier source.
 
 Adding a model would not grant permission to process evidence, replicate it, or change a provider resource. Reasoning, tool access, and action authorization would still need separate boundaries.
 
