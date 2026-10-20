@@ -15,8 +15,8 @@ presentation: case-study
 </section>
 
 <figure class="case-figure">
-  <img src="../assets/edge-evidence-gateway.jpg" alt="The real public Visual Gateway displaying three synthetic states, each with an Explain button" width="1440" height="1648" />
-  <figcaption>Earlier public <a href="https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/">Visual Gateway</a>, captured 13 October 2026 (UTC). A read-only demonstration—not a production monitoring console.</figcaption>
+  <img src="../assets/edge-evidence-gateway-inspect-2026-10-20.jpg" alt="Hosted Edge Evidence Inspect view showing three independent synthetic records and the read-only classification for the selected recorded-complete example" width="1440" height="1100" />
+  <figcaption>Public <a href="https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/">Edge Evidence Gateway</a> Inspect view, captured 20 October 2026 (UTC). Deterministic read-only inspection of independent synthetic records, not a live pipeline; Proof is a separate retained result, and optional Llama inference remains local.</figcaption>
 </figure>
 
 <section class="case-section" aria-labelledby="problem-title">

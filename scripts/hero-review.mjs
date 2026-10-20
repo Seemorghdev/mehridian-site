@@ -26,8 +26,8 @@ offline=offline.replace(/<link\b[^>]*>/g,tag=>{
   if (!href || !href.startsWith("./")) throw new Error("Unexpected non-local review stylesheet");
   return `<style>${readFileSync(new URL(`preview/${href.slice(2)}`,root),"utf8")}</style>`;
 });
-const photo=readFileSync(new URL("content/assets/edge-evidence-gateway.jpg",root)).toString("base64");
-offline=offline.replaceAll('src="./assets/edge-evidence-gateway.jpg"',`src="data:image/jpeg;base64,${photo}"`);
+const photo=readFileSync(new URL("content/assets/edge-evidence-gateway-inspect-2026-10-20.jpg",root)).toString("base64");
+offline=offline.replaceAll('src="./assets/edge-evidence-gateway-inspect-2026-10-20.jpg"',`src="data:image/jpeg;base64,${photo}"`);
 offline=offline.replaceAll('href="./','href="https://mehridian.tech/');
 writeFileSync(new URL("preview/review/prototype.html",root),offline);
 console.log("local review directions and static fallback prepared");
