@@ -26,8 +26,8 @@ test("pause is native, decorative motion has reduced-motion fallback, no hero JS
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(css, /animation: none/);
   assert.match(css, /animation-play-state: paused/);
-  assert.match(css, /64s/);
-  assert.match(css, /112s/);
+  assert.match(css, /72s/);
+  assert.match(css, /120s/);
   const scripts=MehridianPresentation().externalResources().js;
   assert.ok(!scripts.some(r=>/meridian|animation|requestAnimationFrame/.test(r.script)));
 });

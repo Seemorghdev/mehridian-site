@@ -1,7 +1,7 @@
 /* Only decorative SVG transforms move. No frame loop, filters, media or requests. */
 #quartz-root .hero-visual { position: relative; min-width: 0; }
-#quartz-root .meridian-traveller { transform-origin: 0 0; animation: meridian-orbit 64s linear infinite; }
-#quartz-root .meridian-companion { transform-origin: 0 0; animation: meridian-orbit 112s linear infinite reverse; }
+#quartz-root .meridian-traveller { transform-origin: 0 0; animation: meridian-orbit 72s linear infinite; }
+#quartz-root .meridian-companion { transform-origin: 0 0; animation: meridian-orbit 120s linear infinite reverse; }
 @keyframes meridian-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 #quartz-root .hero-motion-control {
   position: absolute; top: 14px; right: 15px; display: inline-flex; align-items: center;

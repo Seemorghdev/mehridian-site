@@ -9,7 +9,7 @@ const group = (children, properties = {}) => el("g", properties, children);
 function surveyFrame() {
   return group([
     ...[76, 143, 210, 277, 344].flatMap(p => [line(p, 48, p, 354), line(48, p, 372, p)]),
-  ], { stroke: "#637a76", "stroke-width": .45, opacity: .16 });
+  ], { stroke: "#637a76", "stroke-width": .45, opacity: .27 });
 }
 
 function meridian() {
@@ -20,19 +20,19 @@ function meridian() {
       210 + Math.cos(a) * outer, 195 + Math.sin(a) * outer);
   });
   return [surveyFrame(),
-    group(ticks, { stroke: "#637a76", "stroke-width": .7, opacity: .42 }),
+    group(ticks, { stroke: "#637a76", "stroke-width": .8, opacity: .57 }),
     group([
       el("ellipse", { cx: 0, cy: 0, rx: 113, ry: 113 }),
       ...[26, 59, 89].map(rx => el("ellipse", { cx: 0, cy: 0, rx, ry: 113 })),
       ...[-73, -38, 0, 38, 73].map(y => el("ellipse", { cx: 0, cy: y, rx: Math.sqrt(113 ** 2 - y ** 2), ry: 12 })),
-    ], { transform: "translate(210 195) rotate(-24)", stroke: "#637a76", "stroke-width": .7, opacity: .44 }),
+    ], { transform: "translate(210 195) rotate(-24)", stroke: "#637a76", "stroke-width": .85, opacity: .66 }),
     group([
-      el("ellipse", { cx: 0, cy: 0, rx: 136, ry: 53, stroke: "#995037", "stroke-width": .85, opacity: .48 }),
-      el("ellipse", { cx: 0, cy: 0, rx: 152, ry: 66, stroke: "#637a76", "stroke-width": .55, opacity: .25 }),
+      el("ellipse", { cx: 0, cy: 0, rx: 136, ry: 53, stroke: "#995037", "stroke-width": 1.15, opacity: .68 }),
+      el("ellipse", { cx: 0, cy: 0, rx: 152, ry: 66, stroke: "#637a76", "stroke-width": .7, opacity: .43 }),
     ], { transform: "translate(210 195) rotate(-24)" }),
-    line(77, 254, 344, 136, { stroke: "#995037", "stroke-width": .65, opacity: .55 }),
-    circle(210, 195, 3.4, { fill: "#995037" }),
-    group([group([circle(136, 0, 4, { fill: "#995037" }), circle(136, 0, 9, { stroke: "#995037", "stroke-width": .7, opacity: .3 })], { className: ["meridian-traveller"] })], { transform: "translate(210 195) rotate(-24) scale(1 .39)" }),
+    line(77, 254, 344, 136, { stroke: "#995037", "stroke-width": 1.15, opacity: .74 }),
+    circle(210, 195, 4.4, { fill: "#995037" }),
+    group([group([circle(136, 0, 5, { fill: "#995037" }), circle(136, 0, 9, { stroke: "#995037", "stroke-width": .7, opacity: .3 })], { className: ["meridian-traveller"] })], { transform: "translate(210 195) rotate(-24) scale(1 .39)" }),
     group([group([circle(152, 0, 3, { fill: "#637a76", opacity: .8 })], { className: ["meridian-companion"] })], { transform: "translate(210 195) rotate(-24) scale(1 .434)" }),
     label("N", 207, 28), label("S", 207, 373), label("W", 31, 198), label("E", 382, 198),
   ];
