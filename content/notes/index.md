@@ -1,17 +1,19 @@
 ---
 title: Notes
-description: Five published technical concept notes organized by inspection, provenance, verification and acceptance, with Project 03 applications.
+description: Six published technical notes organized by inspection, provenance, verification and acceptance, with Project 03 applications.
 visibility: public
 status: published
 ---
 
 # Notes
 
-Five technical notes about a recurring engineering problem: **what exactly did a result establish?** Start with a question below. These are concepts and reading paths, not an automated status or audit feed.
+Six technical notes about a recurring engineering problem: **what exactly did a result establish?** Start with a question below. These are concepts and reading paths, not an automated status or audit feed.
 
 ## Inspection and model boundaries
 
 - **[[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]]** — Is a rule-based explanation an AI agent? Separate deterministic classification, optional language-model explanation, tool calls and permission to act. [See the read-only Edge Evidence interface](https://mehridian.tech/projects/edge-evidence).
+
+- **[[notes/local-language-task-boundaries|Task boundaries before model size]]** — A bounded English/German local comparison, showing why parser contracts, narrow translation tasks and careful latency labels matter more than a model leaderboard.
 
 ## Verification and provenance
 
