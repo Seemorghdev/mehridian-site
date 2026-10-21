@@ -5,7 +5,7 @@ const root=new URL('../',import.meta.url);
 const walk=n=>[n,...(n.childNodes??[]).flatMap(walk)];
 const attr=(n,key)=>n.attrs?.find(a=>a.name===key)?.value;
 const text=n=>n.nodeName==='#text'?n.value:(n.childNodes??[]).map(text).join('');
-const pages=['research/project03/evidence-explorer','index','projects/index','projects/edge-evidence','notes/index','notes/agent-vs-deterministic-inspector', 'research/project03/index', 'research/project03/verification-is-not-acceptance', 'research/project03/consumer-lab-mixed-evidence', 'research/project03/publication-and-runtime-reality', 'research/project03/what-project-03-shows', 'notes/candidate-verification', 'notes/engineering-acceptance', 'notes/evidence-verification', 'notes/lineage-and-provenance'];
+const pages=['research/project03/evidence-explorer','index','projects/index','projects/edge-evidence','notes/index','notes/agent-vs-deterministic-inspector', 'notes/local-language-task-boundaries', 'research/project03/index', 'research/project03/verification-is-not-acceptance', 'research/project03/consumer-lab-mixed-evidence', 'research/project03/publication-and-runtime-reality', 'research/project03/what-project-03-shows', 'notes/candidate-verification', 'notes/engineering-acceptance', 'notes/evidence-verification', 'notes/lineage-and-provenance'];
 for(const page of pages){
  const html=readFileSync(new URL('preview/'+page+'.html',root),'utf8');
  const nodes=walk(parse(html));
