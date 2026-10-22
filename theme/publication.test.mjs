@@ -9,7 +9,7 @@ const markdown = directory => readdirSync(directory, { withFileTypes: true }).fl
 
 test('approved published pages do not retain private-review status or instructions', () => {
   const pages = markdown(new URL('content/', root));
-  assert.equal(pages.length, 16);
+  assert.equal(pages.length, 17);
   for (const page of pages) {
     const text = readFileSync(page, 'utf8');
     assert.match(text, /^visibility: public$/m, page.pathname);

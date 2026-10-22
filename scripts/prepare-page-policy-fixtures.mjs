@@ -11,7 +11,7 @@ import { MehridianPresentation } from '../theme/index.js';
 const root = new URL('../', import.meta.url);
 const out = new URL('preview/review-fixtures/', root);
 mkdirSync(out, {recursive:true});
-const slugs = ['research/project03/evidence-explorer','index','projects/index','projects/edge-evidence','notes/index','notes/agent-vs-deterministic-inspector','notes/local-language-task-boundaries',"research/project03/index","research/project03/verification-is-not-acceptance","research/project03/consumer-lab-mixed-evidence","research/project03/publication-and-runtime-reality","research/project03/what-project-03-shows","notes/candidate-verification","notes/engineering-acceptance","notes/evidence-verification","notes/lineage-and-provenance"];
+const slugs = ['research/project03/evidence-explorer','index','projects/index','projects/edge-evidence','projects/small-object-detection','notes/index','notes/agent-vs-deterministic-inspector','notes/local-language-task-boundaries',"research/project03/index","research/project03/verification-is-not-acceptance","research/project03/consumer-lab-mixed-evidence","research/project03/publication-and-runtime-reality","research/project03/what-project-03-shows","notes/candidate-verification","notes/engineering-acceptance","notes/evidence-verification","notes/lineage-and-provenance"];
 for (const slug of ['index','projects/index','notes/index']) {
   const link = { type:'element', tagName:'a', properties:{ href:(slug==='index'?'':'../')+'notes/agent-vs-deterministic-inspector.md#proposed-experiment-adk--ollama' }, children:[{type:'text',value:'QA authored note link'}] };
   const tree = {type:'root',children:[{type:'element',tagName:'p',properties:{},children:[link]}]};
