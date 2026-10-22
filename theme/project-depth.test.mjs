@@ -13,10 +13,12 @@ test('both showcases link their real technical references and the connected note
 });
 test('public references do not invent source access or runtime acceptance',()=>{
  assert.match(read('content/projects/small-object-reference.md'),/Public implementation:\*\* not released/);
- assert.match(read('content/projects/common-observation-reference.md'),/showcase repository remain private/);
- assert.match(read('content/projects/common-observation-view.md'),/documentation showcase repository remain private/);
+ assert.match(read('content/projects/common-observation-reference.md'),/application source remains private/);
+ assert.match(read('content/projects/common-observation-view.md'),/underlying application source remains private/);
  for(const p of ['small-object-reference','common-observation-reference','common-observation-view']){
-  assert.doesNotMatch(read('content/projects/'+p+'.md'),/github\.com\/|\/Users\/|file:\/\/|local review desk/i);
+  const source=read('content/projects/'+p+'.md');
+  assert.doesNotMatch(source,/\/Users\/|file:\/\/|local review desk/i);
+  for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase'].includes(url),url);
  }
 });
 test('approved visuals retain artifact labels without leaking review-only dependencies',()=>{

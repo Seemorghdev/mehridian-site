@@ -66,5 +66,5 @@ presentation: case-study
 
 <section class="case-section" aria-labelledby="source-access">
   <div><p class="eyebrow">05 / Inspect the work</p><h2 id="source-access">Source and<br>reproduction.</h2></div>
-  <div class="body"><p>The implementation and model weights remain private. There is no public runnable package linked here, and this page does not run inference.</p><p>The <a href="./small-object-reference.md">technical reference</a> separates the retained results from missing reproduction prerequisites. The inspectable material here is the documentation and original output imagery—not an application-source or model release.</p></div>
+  <div class="body"><p>The implementation and model weights remain private. There is no public runnable package linked here, and this page does not run inference.</p><p><a href="https://github.com/Seemorghdev/drone-detection-showcase">Open the public study repository ↗</a> for the screened original images, technical reference and retained-observation table. It is a documentation and artifact repository—not the detector source or a model release.</p><p>The <a href="./small-object-reference.md">technical reference</a> separates the retained results from missing reproduction prerequisites.</p></div>
 </section>

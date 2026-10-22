@@ -51,6 +51,7 @@ A reproducible release would need a specifically reviewed source snapshot, permi
 ## Current access
 
 - **Public implementation:** not released.
+- **Public study artifacts:** [documentation and screened original images](https://github.com/Seemorghdev/drone-detection-showcase), not executable detector code.
 - **Implementation and model weights:** retained privately; not distributed through this website.
 - **Hosted model endpoint:** none offered here.
 - **Visuals in the overview:** screened input still and two unmodified annotated evaluation outputs, available full-size; not a fresh runtime demonstration.

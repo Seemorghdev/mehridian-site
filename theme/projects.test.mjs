@@ -45,7 +45,8 @@ test('new content preserves retained-result, visual and private-source boundarie
   assert.match(index, /checks were not reproduced/);
   assert.match(index, /presentation is not a runtime screenshot/);
   for (const source of [index, drone]) {
-    assert.doesNotMatch(source, /(?:https?:\/\/)?github\.com\/|\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY|private-review|field coordinates/i);
+    assert.doesNotMatch(source, /\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY|private-review|field coordinates/i);
+    for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase'].includes(url),url);
   }
   assert.match(drone, /drone-capture-context\.jpg/);
   assert.match(drone, /not detector output/);

@@ -38,7 +38,7 @@ No verified original application-runtime screenshot is supplied. The explanatory
 
 ## Repository and execution status
 
-The application source and the separate documentation-only showcase repository remain private. This website supplies the project account, technical references and screened visual, not a public application-source link. No private repository button is presented as though a visitor could inspect its code.
+The application source remains private. The [public documentation-only showcase repository](https://github.com/Seemorghdev/hackathon-observation-showcase) supplies the project account, technical references, screened excerpt and documentary screenshots. It is not a public application-source release or a working-app demo.
 
 The underlying operational source is excluded from this documentation package. No cloud endpoint, dependency installation, sensor input or model service is launched here. A public documentation account and a runnable application are separate deliverables.
 

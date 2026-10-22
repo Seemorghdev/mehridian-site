@@ -32,7 +32,7 @@ presentation: projects
       <p>What happens to a tiny object when a large camera frame is reduced for detection?</p>
       <p>Overlapping image crops helped surface candidates in a small, manually referenced field evaluation. Choosing the correct candidate remained a separate challenge—not a field-accuracy claim.</p>
       <dl class="project-record"><div><dt>Selected-frame record</dt><dd>8 frames, manually referenced</dd></div><div><dt>Separate selection check</dt><dd>2 of 4 paired observations</dd></div></dl>
-      <div class="actions"><a class="button" href="./small-object-detection.md#retained-outputs">Inspect the real outputs →</a><a href="./small-object-reference.md">Technical reference →</a></div>
+      <div class="actions"><a class="button" href="./small-object-detection.md#retained-outputs">Inspect the real outputs →</a><a href="./small-object-reference.md">Technical reference →</a><a href="https://github.com/Seemorghdev/drone-detection-showcase">Study repository ↗</a></div>
       <div class="project-meta"><span>Python / YOLO</span><span>Tiled inference</span><span>Offline evaluation</span></div>
     </div>
     <figure class="project-media project-artifact"><a href="./small-object-detection.md" aria-label="Open the small-object project and retained results"><img src="../assets/drone-capture-context.jpg" alt="Screened field-capture input showing a small aerial object against cloudy sky above trees" width="540" loading="lazy" /></a><figcaption>Actual capture input. The case study separately shows the original annotated outputs—not a live inference demo.</figcaption></figure>
@@ -45,11 +45,11 @@ presentation: projects
       <p>The presentation is not a runtime screenshot. Historical checks were not reproduced for this entry; field performance and live sensor deployment are not established.</p>
       <dl class="project-record"><div><dt>Retained explanation</dt><dd>7-section presentation</dd></div><div><dt>Available here</dt><dd>Docs + screened excerpt</dd></div></dl>
       <div class="project-meta"><span>Solo hackathon work</span><span>Synthetic scenarios</span><span>Presentation, not live UI</span></div>
-      <div class="actions"><a href="./common-observation-view.md">Explore the project →</a><a href="./common-observation-reference.md">Technical reference →</a></div>
+      <div class="actions"><a href="./common-observation-view.md">Explore the project →</a><a href="./common-observation-reference.md">Technical reference →</a><a href="https://github.com/Seemorghdev/hackathon-observation-showcase">Showcase repository ↗</a></div>
     </div>
     <figure class="project-media project-artifact"><a href="./common-observation-view.md#presentation-artifact" aria-label="Open the screened explanatory artifact, not application UI"><img src="../assets/hackathon-presentation-excerpt.png" alt="Screened presentation-text excerpt visibly labeled not a runtime screenshot" width="1910" height="1075" loading="lazy" /></a><figcaption>Genuine capture of a screened text excerpt. This is explanatory material, not the original application interface.</figcaption></figure>
   </section>
-  <p class="project-notice">Edge Evidence is the linked hosted synthetic demonstration. The other two entries describe offline or synthetic prototype work; neither offers a public runnable application or source release.</p>
+  <p class="project-notice">Edge Evidence is the linked hosted synthetic demonstration. The other two entries now have public documentary repositories, but neither offers a public runnable application, model weights or application-source release.</p>
 </section>
 
 <section class="project-availability" aria-labelledby="availability-title"><p class="eyebrow">Access at a glance</p><h2 id="availability-title">What you can inspect.</h2><table><caption>Different projects, different evidence and access boundaries</caption><thead><tr><th scope="col">Project</th><th scope="col">Open now</th><th scope="col">Source and runtime</th></tr></thead><tbody><tr><th scope="row">Edge Evidence</th><td>Hosted synthetic inspector, retained Proof, technical Docs</td><td>Public source; optional Llama stays local</td></tr><tr><th scope="row">Small Objects</th><td>Original output images, retained observations, technical reference</td><td>Source and weights private; no live inference</td></tr><tr><th scope="row">Solo hackathon</th><td>Artifact inventory, historical-testing limits, screened excerpt</td><td>Source private; no working-app demo supplied</td></tr></tbody></table></section>
