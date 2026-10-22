@@ -16,6 +16,8 @@ test('homepage leads with working evidence rather than a personal pitch',()=>{
 });
 test('six approved notes are visible and the homepage count agrees',()=>{
   assert.match(home,/Browse all six notes and their connections/);
+  assert.match(home,/SIX PUBLISHED TECHNICAL NOTES/);
+  assert.doesNotMatch(home,/five (?:published|notes)/i);
   assert.match(notes,/Six technical notes/);
   for(const slug of ['agent-vs-deterministic-inspector','local-language-task-boundaries','evidence-verification','lineage-and-provenance','candidate-verification','engineering-acceptance']){
     const target='[[notes/'+slug;

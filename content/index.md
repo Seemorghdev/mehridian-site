@@ -67,7 +67,7 @@ presentation: home
 
 <section class="work-notebook" aria-labelledby="notebook-title">
   <div class="work-section-head">
-    <div><p class="eyebrow">THE NOTEBOOK / FIVE PUBLISHED CONCEPT NOTES</p><h2 id="notebook-title">Questions behind the work.</h2></div>
+    <div><p class="eyebrow">THE NOTEBOOK / SIX PUBLISHED TECHNICAL NOTES</p><h2 id="notebook-title">Questions behind the work.</h2></div>
     <p>Short explanations of the distinctions that matter when a result looks complete, verified or authoritative.</p>
   </div>
   <div class="work-note-list">
