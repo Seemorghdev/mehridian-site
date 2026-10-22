@@ -41,7 +41,7 @@ Later checks on a revised Qwen learner workflow exposed other limits: a lesson e
 
 The local default is Qwen3 4B, with Llama 3.1 8B still an installed alternative. The engineering takeaway is to make each task inspectable; this small comparison does not isolate the effect of task boundaries or prove that one model generally wins.
 
-The revised learner path is Words → Understand → optional Translate, with Style available separately. An optional question concerns the current sentence; turns have no conversation memory. Translation uses the original source, not the model's lesson as an authoritative intermediate. Persian input and translation are experimental: segmentation is available, but there is no trained Persian grammar parser in this configuration.
+The revised learner path is Words → Understand → optional Translate, with Style available separately. An optional question concerns the current sentence; turns have no conversation memory. Translation uses the original source, not the model's lesson as an authoritative intermediate. Persian was tested only in separate local experiments and is not a supported public learner feature; this configuration has no trained Persian grammar parser.
 
 The interface distinguishes parser observations, rule-based style hints, fallible model interpretation and translation. It can preload a local model for a finite interval, cancel or retry a request, and stream **completed stages**. It does not stream individual generation tokens. Browser cancellation does not verify that the external model server stopped immediately.
 
