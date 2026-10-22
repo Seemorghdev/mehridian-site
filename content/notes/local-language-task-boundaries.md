@@ -4,7 +4,7 @@ description: A small local English/German translation experiment, and why parser
 type: concept
 visibility: public
 status: published
-source_checked: 2026-10-21
+source_checked: 2026-10-22
 ---
 
 # Task boundaries before model size
@@ -35,9 +35,13 @@ Both models translated “Guten Morgen.” as “Good morning.” Both added a d
 
 The matched pass did not assess optional free-form teaching notes. Earlier inaccurate explanations belonged to other configurations and cannot be treated as errors newly measured here.
 
+Later checks on a revised Qwen learner workflow exposed other limits: a lesson explained the rain idiom correctly, but its separate German translation still rendered “cats and dogs” literally. A German bicycle translation had an agreement error. A Persian politeness expression was misread as a statement about hand pain rather than thanks. These are separate qualitative observations, not additions to the six timing measurements or a matched comparison with Llama.
+
 ## The practical decision
 
-The local default is Qwen3 4B, with Llama 3.1 8B still an installed alternative. A smaller, inspectable task boundary mattered more than a claim that one model generally wins.
+The local default is Qwen3 4B, with Llama 3.1 8B still an installed alternative. The engineering takeaway is to make each task inspectable; this small comparison does not isolate the effect of task boundaries or prove that one model generally wins.
+
+The revised learner path is Words → Understand → optional Translate, with Style available separately. An optional question concerns the current sentence; turns have no conversation memory. Translation uses the original source, not the model's lesson as an authoritative intermediate. Persian input and translation are experimental: segmentation is available, but there is no trained Persian grammar parser in this configuration.
 
 The interface distinguishes parser observations, rule-based style hints, fallible model interpretation and translation. It can preload a local model for a finite interval, cancel or retry a request, and stream **completed stages**. It does not stream individual generation tokens. Browser cancellation does not verify that the external model server stopped immediately.
 
