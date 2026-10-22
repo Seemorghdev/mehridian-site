@@ -18,7 +18,7 @@ test('public references do not invent source access or runtime acceptance',()=>{
  for(const p of ['small-object-reference','common-observation-reference','common-observation-view']){
   const source=read('content/projects/'+p+'.md');
   assert.doesNotMatch(source,/\/Users\/|file:\/\/|local review desk/i);
-  for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase'].includes(url),url);
+  for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase','https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md'].includes(url),url);
  }
 });
 test('approved visuals retain artifact labels without leaking review-only dependencies',()=>{
@@ -47,4 +47,26 @@ test('hackathon visual is an existing screened excerpt, not application UI',()=>
  assert.match(page,/no application-runtime evidence is implied/);
  assert.match(page,/aria-label="Hackathon project reading path"/);
  assert.ok(existsSync(new URL('content/assets/hackathon-presentation-excerpt.png',root)));
+});
+
+test('recovered training results stay distinct from field observations and model availability',()=>{
+ const overview=read('content/projects/small-object-detection.md');
+ const reference=read('content/projects/small-object-reference.md');
+ assert.match(overview,/href="#training-results"/);
+ assert.match(overview,/small-object-reference\.md#recorded-training-results/);
+ assert.match(overview,/not drone-specific accuracy/);
+ assert.match(reference,/## Recorded training results/);
+ assert.match(reference,/all \*\*200 comparisons\*\*/);
+ assert.match(reference,/within rounding precision/);
+ assert.match(reference,/original checksum receipt[\s\S]*not located/);
+ assert.match(reference,/\| Precision \| 0\.94164 \| 0\.941, printed/);
+ assert.match(reference,/\| mAP50 \| 0\.96511 \| 0\.9651819355211275 \|/);
+ assert.match(reference,/\| mAP50–95 \| 0\.66650 \| 0\.66663031065507 \|/);
+ assert.match(reference,/four classes: airplane, bird, drone and helicopter/);
+ assert.match(reference,/not drone-specific accuracy, field reliability, or held-out test results/);
+ assert.match(reference,/CC BY 4\.0/);
+ assert.match(reference,/AGPL-3\.0/);
+ assert.match(reference,/No separate Enterprise agreement or permission to relicense the weights as Apache-2\.0 was established/);
+ assert.match(reference,/No new training, inference or evaluation was performed/);
+ assert.doesNotMatch(reference,/api_key\s*=|PENDING_HUGGINGFACE_PUBLISH|\/__modal\/|vo-[A-Za-z0-9]+/);
 });

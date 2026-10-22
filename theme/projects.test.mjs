@@ -14,7 +14,7 @@ test('drone case study is selected for review builds under normal public page po
   assert.match(drone, /^presentation: case-study$/m);
   assert.match(drone, /<h1 id="case-title">Small Objects in Big Frames<\/h1>/);
   const sections = [...drone.matchAll(/<section class="case-section" aria-labelledby="([^"]+)">/g)].map(m => m[1]);
-  assert.deepEqual(sections, ['problem-title', 'approach-title', 'finding-title', 'recovered-model', 'source-access']);
+  assert.deepEqual(sections, ['problem-title', 'approach-title', 'finding-title', 'recovered-model', 'training-results', 'source-access']);
   for (const id of sections) assert.ok(drone.includes('id="' + id + '"'), id + ': heading target exists');
   assert.equal(pagePolicy('projects/small-object-detection').role, 'case-study');
   assert.equal(pagePolicy('projects/small-object-detection').triggers, false);
