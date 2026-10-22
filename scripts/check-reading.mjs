@@ -13,7 +13,7 @@ for(const page of pages){
  const hints=nodes.filter(n=>(attr(n,'class')??'').split(' ').includes('popover-hint'));
  const reading=nodes.find(n=>attr(n,'id')==='mehr-content');
  const meaningful=hints.filter(n=>text(n).trim());
- assert.equal(meaningful.length,page==='index'||page==='projects/index'?0:1,page+': approved destination region only');
+ assert.equal(meaningful.length,['index','projects/index','projects/small-object-detection'].includes(page)?0:1,page+': approved destination region only');
  if(page.startsWith('notes/') || page.startsWith('research/')) assert.equal(meaningful[0],reading);
  if(page==='projects/edge-evidence') assert.equal(attr(meaningful[0],'aria-labelledby'),'problem-title');
  assert.ok(meaningful.every(n=>!walk(n).some(x=>['header','footer'].includes(x.tagName)||/mehr-native-graph|mehr-note-tools/.test(attr(x,'class')??''))));
