@@ -14,8 +14,10 @@ test('homepage leads with working evidence rather than a personal pitch',()=>{
   assert.match(home,/frozen schema-v1\.1/);
   assert.match(home,/Proof shows a separate retained synthetic execution result/);
 });
-test('five approved notes are visible by meaningful subject, not placeholder pages',()=>{
-  for(const slug of ['agent-vs-deterministic-inspector','evidence-verification','lineage-and-provenance','candidate-verification','engineering-acceptance']){
+test('six approved notes are visible and the homepage count agrees',()=>{
+  assert.match(home,/Browse all six notes and their connections/);
+  assert.match(notes,/Six technical notes/);
+  for(const slug of ['agent-vs-deterministic-inspector','local-language-task-boundaries','evidence-verification','lineage-and-provenance','candidate-verification','engineering-acceptance']){
     const target='[[notes/'+slug;
     assert.ok(notes.includes(target),target);
   }
