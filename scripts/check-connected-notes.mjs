@@ -7,7 +7,7 @@ const files = directory => readdirSync(directory, { withFileTypes: true }).flatM
   entry.isDirectory() ? files(new URL(`${entry.name}/`, directory)).map(p => `${entry.name}/${p}`) : [entry.name]);
 assert.deepEqual(files(new URL("content/", root)).sort(), [
   "research/project03/evidence-explorer.md", "assets/edge-evidence-gateway-inspect-2026-10-20.jpg", "assets/edge-evidence-gateway.jpg", "assets/project03-selected-evidence-cases.csv", "assets/project03-frozen-chart-states.json", "index.md", "notes/agent-vs-deterministic-inspector.md",
-  "notes/index.md", "notes/local-language-task-boundaries.md", "projects/edge-evidence.md", "projects/index.md", "projects/small-object-detection.md",
+  "notes/index.md", "notes/local-language-task-boundaries.md", "projects/edge-evidence.md", "projects/index.md", "projects/small-object-detection.md", "projects/small-object-reference.md", "projects/common-observation-view.md", "projects/common-observation-reference.md", "notes/small-evaluations.md", "assets/drone-capture-context.jpg", "assets/drone-retained-output-a.png", "assets/drone-retained-output-b.png", "assets/hackathon-presentation-excerpt.png",
   "research/project03/index.md", "research/project03/verification-is-not-acceptance.md", "research/project03/consumer-lab-mixed-evidence.md", "research/project03/publication-and-runtime-reality.md", "research/project03/what-project-03-shows.md", "notes/candidate-verification.md", "notes/engineering-acceptance.md", "notes/evidence-verification.md", "notes/lineage-and-provenance.md",
 ].sort(), "Only the curated content manifest is allowed");
 
@@ -32,7 +32,7 @@ for (const file of files(new URL("content/", root)).filter(p => p.endsWith(".md"
   assert.ok(!/<style|mehr-header|mehr-footer/.test(source), "Notes/content must inherit the shared shell");
   assert.ok(!/\[\[(?:Journal|Public\/Start Here|Notes\/Evidence verification)|\/(?:Users|private|home)\/|github_pat_|BEGIN.*PRIVATE KEY/.test(source), "No private source dependencies");
 }
-console.log("curated_manifest=21_files_17_markdown_2_approved_downloads_2_reviewed_images");
+console.log("curated_manifest=29_files_21_markdown_2_approved_downloads_6_reviewed_images");
 console.log("native_wikilinks=pass");
 console.log("quartz_backlinks=pass");
 console.log("note_presentation_and_privacy=pass");

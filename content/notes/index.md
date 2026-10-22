@@ -1,13 +1,17 @@
 ---
 title: Notes
-description: Six published technical notes organized by inspection, provenance, verification and acceptance, with Project 03 applications.
+description: Seven technical notes spanning project evaluations, inspection, provenance, verification and acceptance.
 visibility: public
 status: published
 ---
 
 # Notes
 
-Six technical notes about a recurring engineering problem: **what exactly did a result establish?** Start with a question below. These are concepts and reading paths, not an automated status or audit feed.
+Seven technical notes about implementation and evaluation. Start with a concrete project observation or explore the engineering distinctions below.
+
+## From the projects
+
+- **[[notes/small-evaluations|A small evaluation is not a deployment]]** — The drone experiment's selected-frame observations and the hackathon's synthetic records: what each tested, what was retained, and why neither is a deployment claim.
 
 ## Inspection and model boundaries
 
