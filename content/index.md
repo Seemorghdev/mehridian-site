@@ -67,7 +67,7 @@ presentation: home
 
 <section class="work-notebook" aria-labelledby="notebook-title">
   <div class="work-section-head">
-    <div><p class="eyebrow">THE NOTEBOOK / SIX PUBLISHED TECHNICAL NOTES</p><h2 id="notebook-title">Questions behind the work.</h2></div>
+    <div><p class="eyebrow">THE NOTEBOOK / SEVEN PUBLISHED TECHNICAL NOTES</p><h2 id="notebook-title">Questions behind the work.</h2></div>
     <p>Short explanations of the distinctions that matter when a result looks complete, verified or authoritative.</p>
   </div>
   <div class="work-note-list">
@@ -75,5 +75,5 @@ presentation: home
     <div><p class="work-marginal">EVIDENCE</p><h3><a href="./notes/lineage-and-provenance.md">Lineage and provenance</a></h3><p>Does a checked subset prove the identity of a whole candidate?</p></div>
     <div><p class="work-marginal">DECISIONS</p><h3><a href="./notes/engineering-acceptance.md">Engineering acceptance</a></h3><p>Which record would actually establish that a candidate was accepted?</p></div>
   </div>
-  <a class="work-notebook-all" href="./notes/index.md">Browse all six notes and their connections →</a>
+  <a class="work-notebook-all" href="./notes/index.md">Browse all seven notes and their connections →</a>
 </section>

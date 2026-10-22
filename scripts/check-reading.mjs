@@ -5,7 +5,7 @@ const root=new URL('../',import.meta.url);
 const walk=n=>[n,...(n.childNodes??[]).flatMap(walk)];
 const attr=(n,key)=>n.attrs?.find(a=>a.name===key)?.value;
 const text=n=>n.nodeName==='#text'?n.value:(n.childNodes??[]).map(text).join('');
-const pages=['research/project03/evidence-explorer','index','projects/index','projects/edge-evidence','projects/small-object-detection','notes/index','notes/agent-vs-deterministic-inspector', 'notes/local-language-task-boundaries', 'research/project03/index', 'research/project03/verification-is-not-acceptance', 'research/project03/consumer-lab-mixed-evidence', 'research/project03/publication-and-runtime-reality', 'research/project03/what-project-03-shows', 'notes/candidate-verification', 'notes/engineering-acceptance', 'notes/evidence-verification', 'notes/lineage-and-provenance'];
+const pages=['research/project03/evidence-explorer','index','projects/index','projects/edge-evidence','projects/small-object-detection',"projects/small-object-reference","projects/common-observation-view","projects/common-observation-reference","notes/small-evaluations",'notes/index','notes/agent-vs-deterministic-inspector', 'notes/local-language-task-boundaries', 'research/project03/index', 'research/project03/verification-is-not-acceptance', 'research/project03/consumer-lab-mixed-evidence', 'research/project03/publication-and-runtime-reality', 'research/project03/what-project-03-shows', 'notes/candidate-verification', 'notes/engineering-acceptance', 'notes/evidence-verification', 'notes/lineage-and-provenance'];
 for(const page of pages){
  const html=readFileSync(new URL('preview/'+page+'.html',root),'utf8');
  const nodes=walk(parse(html));
@@ -13,7 +13,7 @@ for(const page of pages){
  const hints=nodes.filter(n=>(attr(n,'class')??'').split(' ').includes('popover-hint'));
  const reading=nodes.find(n=>attr(n,'id')==='mehr-content');
  const meaningful=hints.filter(n=>text(n).trim());
- assert.equal(meaningful.length,['index','projects/index','projects/small-object-detection'].includes(page)?0:1,page+': approved destination region only');
+ assert.equal(meaningful.length,['index','projects/index','projects/small-object-detection','projects/small-object-reference','projects/common-observation-view','projects/common-observation-reference'].includes(page)?0:1,page+': approved destination region only');
  if(page.startsWith('notes/') || page.startsWith('research/')) assert.equal(meaningful[0],reading);
  if(page==='projects/edge-evidence') assert.equal(attr(meaningful[0],'aria-labelledby'),'problem-title');
  assert.ok(meaningful.every(n=>!walk(n).some(x=>['header','footer'].includes(x.tagName)||/mehr-native-graph|mehr-note-tools/.test(attr(x,'class')??''))));
@@ -41,6 +41,6 @@ for(const page of pages){
 const note=readFileSync(new URL('preview/notes/agent-vs-deterministic-inspector.html',root),'utf8');
 assert.match(note,/data-preview-index=/);assert.ok(note.includes('An interface can explain'));
 const config=readFileSync(new URL('quartz.config.yaml',root),'utf8');assert.match(config,/enablePopovers: true/);assert.match(config,/baseUrl: mehridian\.tech/);
-const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root)));assert.equal(Object.keys(index).length,17);
-console.log('native_reading_preview_boundary=pass');console.log('early_theme_init=pass');console.log('published_content_index=17');
+const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root)));assert.equal(Object.keys(index).length,21);
+console.log('native_reading_preview_boundary=pass');console.log('early_theme_init=pass');console.log('published_content_index=21');
 console.log('generated_heading_permalink_targets=pass');

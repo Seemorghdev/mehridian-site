@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const root = new URL("../", import.meta.url);
-const pages = ["research/project03/evidence-explorer", "index", "projects/index", "projects/edge-evidence", "projects/small-object-detection", "notes/index", "notes/agent-vs-deterministic-inspector", "notes/local-language-task-boundaries", "research/project03/index", "research/project03/verification-is-not-acceptance", "research/project03/consumer-lab-mixed-evidence", "research/project03/publication-and-runtime-reality", "research/project03/what-project-03-shows", "notes/candidate-verification", "notes/engineering-acceptance", "notes/evidence-verification", "notes/lineage-and-provenance"];
+const pages = ["research/project03/evidence-explorer", "index", "projects/index", "projects/edge-evidence", "projects/small-object-detection","projects/small-object-reference","projects/common-observation-view","projects/common-observation-reference","notes/small-evaluations", "notes/index", "notes/agent-vs-deterministic-inspector", "notes/local-language-task-boundaries", "research/project03/index", "research/project03/verification-is-not-acceptance", "research/project03/consumer-lab-mixed-evidence", "research/project03/publication-and-runtime-reality", "research/project03/what-project-03-shows", "notes/candidate-verification", "notes/engineering-acceptance", "notes/evidence-verification", "notes/lineage-and-provenance"];
 const generated = pages.map((page) => {
   const source = readFileSync(new URL(`content/${page}.md`, root), "utf8");
   assert.ok(!source.includes("<style>"), `${page}: duplicated page CSS`);
