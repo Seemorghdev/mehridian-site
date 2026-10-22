@@ -19,7 +19,7 @@ presentation: case-study
   <figcaption>Screened field-capture input. This is not detector output. No bounding boxes, scores or positions have been added.</figcaption>
 </figure>
 
-<nav class="showcase-jump" aria-label="Project reading path"><a href="#problem-title">Problem</a><a href="#approach-title">Implementation</a><a href="#finding-title">Results</a><a href="#retained-outputs">Annotated outputs</a><a href="#recovered-model">Saved model</a><a href="#source-access">Source access</a></nav>
+<nav class="showcase-jump" aria-label="Project reading path"><a href="#problem-title">Problem</a><a href="#approach-title">Implementation</a><a href="#finding-title">Field observations</a><a href="#retained-outputs">Annotated outputs</a><a href="#recovered-model">Saved model</a><a href="#training-results">Training record</a><a href="#source-access">Source access</a></nav>
 
 <section class="case-section" aria-labelledby="problem-title">
   <div><p class="eyebrow">01 / The problem</p><h2 id="problem-title">The pixels<br>matter.</h2></div>
@@ -64,7 +64,16 @@ presentation: case-study
   <div class="body"><p>A retained <code>best.pt</code> checkpoint was recovered. Its SHA-256 exactly matches a retained model-reference record identifying it as YOLO11n. This confirms matching artifact bytes, not a fresh training result or inference acceptance.</p><p>A second <code>last.pt</code> file has a different digest. Its relationship to the training run has not been established. Neither model was loaded, converted, executed or redistributed for this showcase.</p><details><summary>What else was retained?</summary><p>The training/export notebook contains saved text outputs. Field-result tables and separate geometry reports also exist, including later work. They are not presented here as a validated integrated system. No embedded training chart or rendered detection video was located in the inspected project folders.</p></details><p>Read the <a href="./small-object-reference.md">technical reference</a> for artifact classes, evaluation units and reproduction limits.</p></div>
 </section>
 
+<section class="case-section" aria-labelledby="training-results">
+  <div><p class="eyebrow">05 / Recorded validation</p><h2 id="training-results">A training record.<br>Not a field score.</h2></div>
+  <div class="body">
+    <p>The retained Modal notebook reports <strong>mAP50 0.96518</strong> and <strong>mAP50–95 0.66663</strong> on <strong>4,514 validation images</strong>. These are aggregate box-detection metrics across airplane, bird, drone and helicopter classes—not drone-specific accuracy, held-out test results or field reliability.</p>
+    <p>A static comparison found that all 200 stored metric-history values in the recovered checkpoint agree with the notebook's 50 training epochs within printed rounding precision. That strongly supports the same-run origin; an original byte-for-byte transfer receipt was not located.</p>
+    <p>The <a href="./small-object-reference.md#recorded-training-results">training results and license findings</a> keep the checkpoint's stored metrics separate from the notebook's subsequent validation scores. They also explain the dataset's CC BY 4.0 declaration and the checkpoint's AGPL-3.0 notice. No fresh evaluation or downloadable model release is implied.</p>
+  </div>
+</section>
+
 <section class="case-section" aria-labelledby="source-access">
-  <div><p class="eyebrow">05 / Inspect the work</p><h2 id="source-access">Source and<br>reproduction.</h2></div>
+  <div><p class="eyebrow">06 / Inspect the work</p><h2 id="source-access">Source and<br>reproduction.</h2></div>
   <div class="body"><p>The implementation and model weights remain private. There is no public runnable package linked here, and this page does not run inference.</p><p><a href="https://github.com/Seemorghdev/drone-detection-showcase">Open the public study repository ↗</a> for the screened original images, technical reference and retained-observation table. It is a documentation and artifact repository—not the detector source or a model release.</p><p>The <a href="./small-object-reference.md">technical reference</a> separates the retained results from missing reproduction prerequisites.</p></div>
 </section>
