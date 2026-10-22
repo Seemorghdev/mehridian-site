@@ -25,7 +25,7 @@ The standalone Python project contains an offline inference implementation, eval
 | Retained field summaries | Selected, manually referenced candidate observations | Blind precision/recall or general accuracy |
 | Capture still | Actual appearance of an input scene | A detection, a correct selection or model quality |
 | Two annotated output images | Original retained evaluation markers, including competing candidates | Autonomous identification or a new inference result |
-| Recovered checkpoint | Bytes matching a retained model-reference digest | Training quality, fresh acceptance or a distributable model |
+| Recovered checkpoint | Bytes matching a retained model-reference digest | Training quality, fresh acceptance or redistribution clearance |
 | Recovered training record | Notebook and checkpoint metric-history agreement; recorded four-class validation scores | Independently reproduced metrics, drone-only accuracy or proven transfer provenance |
 | Decision documents | Implementation choices and unresolved limitations | Independent validation of those choices |
 
@@ -68,19 +68,35 @@ The notebook's dataset configuration and the [public AOD4 version-6 page](https:
 
 The checkpoint contains an **AGPL-3.0** notice, consistent with the [Ultralytics 8.4.87 source license](https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.87/LICENSE). Ultralytics describes its AGPL and Enterprise arrangements in its [licensing statement](https://www.ultralytics.com/license). No separate Enterprise agreement or permission to relicense the weights as Apache-2.0 was established in the inspected records. Dataset and model licenses are separate; this account documents notices, not legal clearance for distribution.
 
-Read the [complete sanitized training report](https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md) for the recorded results, provenance method and remaining limitations. The link pins the reviewed report revision. The report excludes keys, raw logs and private source references; neither the notebook nor weights are distributed here. No new training, inference or evaluation was performed for this update.
+Read the [complete sanitized training report](https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md) for the recorded results, provenance method and remaining limitations. The link pins the reviewed report revision. The report excludes keys, raw logs and private source references. A separate Hugging Face release now supplies the recovered weights and reviewed notebook derivatives, as linked below; the pinned report predates that release. No new training, inference or evaluation was performed for this update.
+
+## Public model and reviewed notebooks
+
+Published 22 October 2026 on [Hugging Face](https://huggingface.co/Seemorgh/yolo11n-aod4-v6):
+
+- [Recovered YOLO11n checkpoint and model card](https://huggingface.co/Seemorgh/yolo11n-aod4-v6); [release files](https://huggingface.co/Seemorgh/yolo11n-aod4-v6/tree/692377dc55f682cbe5fe17fc5944514574ca9b08).
+- [Sanitized training and Core ML export notebook](https://huggingface.co/Seemorgh/yolo11n-aod4-v6/blob/692377dc55f682cbe5fe17fc5944514574ca9b08/notebooks/01_train_export.ipynb): edited code with a labeled historical-results summary; original raw outputs and the credential literal are excluded.
+- [Exploratory evaluation notebook](https://huggingface.co/Seemorgh/yolo11n-aod4-v6/blob/692377dc55f682cbe5fe17fc5944514574ca9b08/notebooks/02_eval_tiling_range.ipynb): an **unexecuted draft in the retained record**, with unsupported validation claims corrected.
+- [Notebook review and sanitization notes](https://huggingface.co/Seemorgh/yolo11n-aod4-v6/blob/692377dc55f682cbe5fe17fc5944514574ca9b08/NOTEBOOK_REVIEW.md), including method limitations and publication edits.
+
+The notebook links pin the reviewed release revision. Publication-file checksums identify the released bytes; they do not supply the missing original cloud-to-local transfer receipt or independently authenticate the old training run. No new training, inference, conversion or evaluation was performed for publication. Exact checkpoint-to-Core-ML equivalence and successful device inference remain unverified.
+
+The evaluation draft implements two exploratory steps despite its original three-step title. It counts aerial predictions without matching boxes to ground truth; bird predictions are class counts, not measured false positives. Increased prediction frequency does not validate tiling, recall, a detection floor or physical range. Neither notebook establishes field reliability or on-device performance.
+
+The model release preserves the checkpoint's AGPL-3.0 designation; dataset CC BY 4.0 attribution is separate. The links do not establish an Enterprise agreement, Apache-2.0 relicensing permission or redistribution compliance. The original application, unsanitized notebooks, raw media and operational components are not released here.
 
 ## Reproduction prerequisites
 
-The source repository and model weights remain private. An archive inspection located a saved checkpoint whose SHA-256 matches a retained model-reference record. This establishes an artifact identity link, not a fresh model run. Inputs and third-party datasets have separate distribution considerations. A visitor cannot reproduce the reported result merely by copying a command from this page.
+The original application source remains private. The recovered checkpoint and sanitized notebook copies are now public on Hugging Face. An archive inspection located a saved checkpoint whose SHA-256 matches a retained model-reference record. This establishes an artifact identity link, not a fresh model run. Inputs and third-party datasets have separate distribution considerations. A visitor cannot reproduce the reported result merely by copying a command from this page.
 
-A reproducible release would need a specifically reviewed source snapshot, permitted inputs, a permitted model artifact, environment information and a clear evaluation protocol. Those are missing public-release components, not something this website silently supplies. No weights or datasets are downloaded by the preview.
+The public checkpoint and edited notebooks provide inspectable artifacts, but do not establish a complete reproducible benchmark. The environment is not locked, dataset rights and split independence require separate review, and the exploratory evaluation lacks ground-truth matching. This page does not automatically download weights or datasets.
 
 ## Current access
 
 - **Public implementation:** not released.
 - **Public study artifacts:** [documentation and screened original images](https://github.com/Seemorghdev/drone-detection-showcase), not executable detector code.
-- **Implementation and model weights:** retained privately; not distributed through this website.
+- **Original application implementation:** private.
+- **Recovered model and sanitized notebooks:** public on Hugging Face, as linked above; original unsanitized notebooks remain private.
 - **Hosted model endpoint:** none offered here.
 - **Visuals in the overview:** screened input still and two unmodified annotated evaluation outputs, available full-size; not a fresh runtime demonstration.
 - **Later monorepo:** separately inventoried, not treated as acceptance of an integrated system.
