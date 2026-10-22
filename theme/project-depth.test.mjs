@@ -18,7 +18,7 @@ test('public references do not invent source access or runtime acceptance',()=>{
  for(const p of ['small-object-reference','common-observation-reference','common-observation-view']){
   const source=read('content/projects/'+p+'.md');
   assert.doesNotMatch(source,/\/Users\/|file:\/\/|local review desk/i);
-  for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase','https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md'].includes(url),url);
+  for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase','https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md','https://github.com/Seemorghdev/hackathon-observation-showcase/blob/main/docs/interface-review.md'].includes(url),url);
  }
 });
 test('approved visuals retain artifact labels without leaking review-only dependencies',()=>{
@@ -69,4 +69,21 @@ test('recovered training results stay distinct from field observations and model
  assert.match(reference,/No separate Enterprise agreement or permission to relicense the weights as Apache-2\.0 was established/);
  assert.match(reference,/No new training, inference or evaluation was performed/);
  assert.doesNotMatch(reference,/api_key\s*=|PENDING_HUGGINGFACE_PUBLISH|\/__modal\/|vo-[A-Za-z0-9]+/);
+});
+
+test('later console visual is a disclosed static shell, not a hackathon runtime claim',()=>{
+ const page=read('content/projects/common-observation-view.md');
+ const reference=read('content/projects/common-observation-reference.md');
+ assert.match(page,/id="interface-preview"/);
+ assert.match(page,/hackathon-console-static-2026-10-22\.png/);
+ assert.match(page,/application scripts removed and controls disabled/);
+ assert.match(page,/Blank panes are intentional/);
+ assert.match(page,/not an unmodified historical screenshot/);
+ assert.match(page,/not a screen demonstrated during the original hackathon/);
+ assert.match(reference,/## Interface review/);
+ assert.match(reference,/Historical declarations/);
+ assert.match(reference,/Separate synthetic scenario record/);
+ assert.match(reference,/Static interface inspection/);
+ assert.doesNotMatch(page+reference,/<iframe|app\.js|localhost:|127\.0\.0\.1:/);
+ assert.ok(existsSync(new URL('content/assets/hackathon-console-static-2026-10-22.png',root)));
 });

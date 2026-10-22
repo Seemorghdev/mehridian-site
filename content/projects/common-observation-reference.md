@@ -36,6 +36,24 @@ The retained HTML explains the work. The project overview includes a genuine bro
 
 No verified original application-runtime screenshot is supplied. The explanatory excerpt is not a substitute for runtime evidence.
 
+## Interface review
+
+The existing later console is separate from both the original seven-section hackathon presentation and its screened text wrapper. Its retained layout uses a dark palette with a left list area, central canvas and right detail panel.
+
+The [project page's interface preview](./common-observation-view.md#interface-preview) shows a real browser capture of a sanitized source-shell rendering. Application scripts were removed, all controls disabled, and no fixtures, services or model outputs loaded. The original LIVE/frame-status labels were replaced and a disclosure banner/watermark added. It is not an unmodified historical screenshot or an accepted application run. The blank panes are intentional, not missing results replaced with invented content.
+
+| Material | Category | Boundary |
+| --- | --- | --- |
+| Original test summaries | Historical declarations | Different recorded versions; not rerun for this review |
+| Original HTML presentation | Explanatory artifact | Not application runtime |
+| Later synthetic vision bridge | Separate synthetic scenario record | Not field-camera performance or a live connection |
+| New later-console shell capture | Static interface inspection | No application script, fixture playback or service execution |
+| Drone study observations | Separate project evidence | Not a performance score for this console |
+
+Reusable presentation patterns are the palette, readable hierarchy and separation of navigation, visual material and supporting details. They can inform a non-operational artifact reader; this review does not export the console application or processing logic. The empty shell is supporting documentation, not the primary proof or a working demo.
+
+The [public interface-review document](https://github.com/Seemorghdev/hackathon-observation-showcase/blob/main/docs/interface-review.md) records the capture transformations and evidence limits. No operational source, private references or location data are included in the published image.
+
 ## Repository and execution status
 
 The application source remains private. The [public documentation-only showcase repository](https://github.com/Seemorghdev/hackathon-observation-showcase) supplies the project account, technical references, screened excerpt and documentary screenshots. It is not a public application-source release or a working-app demo.
