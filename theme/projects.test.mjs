@@ -43,7 +43,7 @@ test('new content preserves retained-result, visual and private-source boundarie
   assert.match(index, /checks were not reproduced/);
   assert.match(index, /presentation is not a runtime screenshot/);
   for (const source of [index, drone]) {
-    assert.doesNotMatch(source, /Seemorghdev\/PLANNING|\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY|private-review|field coordinates/i);
+    assert.doesNotMatch(source, /(?:https?:\/\/)?github\.com\/|\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY|private-review|field coordinates/i);
   }
   assert.doesNotMatch(drone, /<img\s|\.mp4|\.jpg|public code|live demo/i);
 });
