@@ -18,7 +18,7 @@ test('public references do not invent source access or runtime acceptance',()=>{
  for(const p of ['small-object-reference','common-observation-reference','common-observation-view']){
   const source=read('content/projects/'+p+'.md');
   assert.doesNotMatch(source,/\/Users\/|file:\/\/|local review desk/i);
-  for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase','https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md','https://github.com/Seemorghdev/hackathon-observation-showcase/blob/main/docs/interface-review.md'].includes(url),url);
+  for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase','https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md','https://github.com/Seemorghdev/hackathon-observation-showcase/blob/main/docs/interface-review.md','https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-summary.md','https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-counts.json'].includes(url),url);
  }
 });
 test('approved visuals retain artifact labels without leaking review-only dependencies',()=>{
@@ -86,4 +86,15 @@ test('later console visual is a disclosed static shell, not a hackathon runtime 
  assert.match(reference,/Static interface inspection/);
  assert.doesNotMatch(page+reference,/<iframe|app\.js|localhost:|127\.0\.0\.1:/);
  assert.ok(existsSync(new URL('content/assets/hackathon-console-static-2026-10-22.png',root)));
+});
+
+test('saved evaluation links preserve the historical counter boundaries',()=>{
+ const reference=read('content/projects/small-object-reference.md');
+ const section=reference.split('## Recorded exploratory evaluation\n')[1]?.split('\n## ')[0];
+ assert.ok(section);
+ for(const file of ['recorded-evaluation-summary.md','recorded-evaluation-counts.json']){
+  assert.ok(section.includes('https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/'+file));
+ }
+ for(const boundary of ['prediction-presence counters without ground-truth matching','not accuracy, recall or a measured false-positive rate','predicted boxes, not images with birds','do not reproduce the separate historical 7% → 22% table','raw execution records and evidence references remain private','No new experiment or inference']) assert.ok(section.includes(boundary),boundary);
+ assert.doesNotMatch(section,/\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY/);
 });
