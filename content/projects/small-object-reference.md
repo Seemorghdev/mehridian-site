@@ -89,6 +89,12 @@ The evaluation draft implements two exploratory steps despite its original three
 
 The model release preserves the checkpoint's AGPL-3.0 designation; dataset CC BY 4.0 attribution is separate. The links do not establish an Enterprise agreement, Apache-2.0 relicensing permission or redistribution compliance. The original application, unsanitized notebooks, raw media and operational components are not released here.
 
+## Recorded exploratory evaluation
+
+The [saved evaluation summary](https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-summary.md) and [structured counts](https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-counts.json) describe historical outputs from a separate executed companion, not the identical public evaluation draft. These are prediction-presence counters without ground-truth matching, not accuracy, recall or a measured false-positive rate. The bird count is predicted boxes, not images with birds.
+
+These records do not reproduce the separate historical 7% → 22% table and must not be pooled with the selected field observations or training-validation metrics above. The links pin the reviewed public summary and counts; raw execution records and evidence references remain private. No new experiment or inference was performed for this account.
+
 ## Reproduction prerequisites
 
 The original application source remains private. The recovered checkpoint and sanitized notebook copies are now public on Hugging Face. An archive inspection located a saved checkpoint whose SHA-256 matches a retained model-reference record. This establishes an artifact identity link, not a fresh model run. Inputs and third-party datasets have separate distribution considerations. A visitor cannot reproduce the reported result merely by copying a command from this page.

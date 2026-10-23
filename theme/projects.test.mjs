@@ -64,7 +64,8 @@ test('Projects uses real visual previews and explicit access instead of fake sou
  assert.match(index,/Actual capture input/);
  assert.match(index,/8 frames, manually referenced/);
  assert.match(index,/2 of 4 paired observations/);
- assert.match(index,/Source and weights private; no live inference/);
+ assert.match(index,/Application source private;/);
+ assert.match(index,/href="https:\/\/huggingface\.co\/Seemorgh\/yolo11n-aod4-v6">checkpoint and reviewed notebooks public<\/a>; no live inference/);
  assert.match(index,/no working-app demo supplied/);
  assert.equal((index.match(/<figure class="project-media project-artifact"/g)??[]).length,2);
  const css=read('theme/styles.css');
