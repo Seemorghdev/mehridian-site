@@ -40,13 +40,14 @@ test('drone page itself exposes original outputs and bounded checkpoint findings
  assert.match(page,/Neither model was loaded/);
  assert.match(page,/preserve both the manually referenced match and the competing candidates/);
 });
-test('hackathon visual is an existing screened excerpt, not application UI',()=>{
+test('hackathon shows genuine later runtime recording with explicit synthetic boundaries',()=>{
  const page=read('content/projects/common-observation-view.md');
- assert.match(page,/hackathon-presentation-excerpt\.png/);
- assert.match(page,/not the original seven-section layout or an application executing/);
- assert.match(page,/no application-runtime evidence is implied/);
+ assert.match(page,/<video controls/);
+ assert.match(page,/hackathon-synthetic-timeline-2026-10-24\.mp4/);
+ assert.match(page,/approximately once per second/);
+ assert.match(page,/not a screen demonstrated during the original hackathon/);
  assert.match(page,/aria-label="Hackathon project reading path"/);
- assert.ok(existsSync(new URL('content/assets/hackathon-presentation-excerpt.png',root)));
+ assert.ok(existsSync(new URL('content/assets/hackathon-runtime-desktop-2026-10-24.jpg',root)));
 });
 
 test('recovered training results stay distinct from field observations and model availability',()=>{
@@ -71,21 +72,18 @@ test('recovered training results stay distinct from field observations and model
  assert.doesNotMatch(reference,/api_key\s*=|PENDING_HUGGINGFACE_PUBLISH|\/__modal\/|vo-[A-Za-z0-9]+/);
 });
 
-test('later console visual is a disclosed static shell, not a hackathon runtime claim',()=>{
+test('runtime, model and access claims stay bounded',()=>{
  const page=read('content/projects/common-observation-view.md');
  const reference=read('content/projects/common-observation-reference.md');
  assert.match(page,/id="interface-preview"/);
- assert.match(page,/hackathon-console-static-2026-10-22\.png/);
- assert.match(page,/application scripts removed and controls disabled/);
- assert.match(page,/Blank panes are intentional/);
- assert.match(page,/not an unmodified historical screenshot/);
- assert.match(page,/not a screen demonstrated during the original hackathon/);
- assert.match(reference,/## Interface review/);
- assert.match(reference,/Historical declarations/);
- assert.match(reference,/Separate synthetic scenario record/);
- assert.match(reference,/Static interface inspection/);
+ for(const stem of ['runtime-desktop','copilot-desktop','runtime-mobile','copilot-mobile']){
+  assert.ok(page.includes('hackathon-'+stem+'-2026-10-24.jpg'));
+  assert.ok(existsSync(new URL('content/assets/hackathon-'+stem+'-2026-10-24.jpg',root)));
+ }
+ assert.match(reference,/## Current acceptance/);
+ assert.match(reference,/Schema-valid model output establishes structural compliance, not verified judgment/);
+ assert.match(page,/Docker image build, cloud deployment and physical mobile testing remain unverified/);
  assert.doesNotMatch(page+reference,/<iframe|app\.js|localhost:|127\.0\.0\.1:/);
- assert.ok(existsSync(new URL('content/assets/hackathon-console-static-2026-10-22.png',root)));
 });
 
 test('saved evaluation links preserve the historical counter boundaries',()=>{

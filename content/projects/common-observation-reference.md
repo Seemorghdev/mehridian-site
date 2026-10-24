@@ -1,6 +1,6 @@
 ---
 title: Observation-view prototype — technical reference
-description: Existing artifact inventory, test-version boundaries and access status for the solo hackathon prototype.
+description: Current synthetic-runtime acceptance, bounded local-model architecture, historical provenance and public access limits.
 visibility: public
 status: published
 presentation: case-study
@@ -8,58 +8,50 @@ presentation: case-study
 
 # Observation-view prototype: technical reference
 
-[Project overview](./common-observation-view.md) · [Engineering note](../notes/small-evaluations.md)
+[Watch the application](./common-observation-view.md#runtime-walkthrough) · [Public evidence showcase](https://github.com/Seemorghdev/hackathon-observation-showcase) · [Engineering note](../notes/small-evaluations.md)
 
 ## Purpose and boundary
 
-The existing prototype explored heterogeneous observation formats in a defence hackathon. This reference is a non-operational documentation account. It does not publish fusion, tracking, prioritisation, calibration, scenario geometry or deployment instructions.
+The original solo hackathon explored heterogeneous observation formats. The later application has a map-led synthetic-scenario console, AI Watch and a separate bounded Scenario Copilot. The application source remains private. Public captures are actual later-runtime evidence, not original-event screens, field-performance measurements or an interactive hosted system.
 
-## What exists
+## Architecture
 
-| Material | Retained status | Reviewer interpretation |
-| --- | --- | --- |
-| Application source | Present in the local project | Existence of code, not a publicly accepted application |
-| Solution write-up | Retained | Author's description, not independent runtime evidence |
-| Synthetic-scenario test summaries | Historical declarations from different versions | Scoped testing records, not field performance |
-| HTML presentation | Seven-section explanatory artifact | Presentation material, not a runtime capture |
-| Later synthetic bridge record | Separate follow-on artifact | Not a live field or Edge Evidence integration |
+The real FUSE implementation supplies deterministic synthetic frames to the map and selected-track panel. A loopback-only analyst service independently loads the chosen frame, matches a versioned scenario catalog, and sends a bounded packet to local Qwen 3 4B. Model output contains approved slot IDs, evidence/uncertainty keys and an approved review-question ID, bound to the scenario and selected track.
 
-## Why there is no combined test score
+The server validates those IDs. Approved templates and current fetched-frame values supply visible text. Watch and Copilot share the same explanation contract; stale responses are discarded. Pending requests are serialized and superseded queued requests are discarded. Copilot offers button-only approved questions and no free-text input. It cannot decide a review question, recommend a response or control playback.
 
-The retained documentation uses different units: supplied challenge tests, regression tests and scenario time steps. A later packaged record also reports suite outcomes. They refer to different versions and cannot be summed or silently treated as one freshly reproduced test run.
+Model input excludes map tiles, exact coordinates, raw reports/media, field evidence and browser-authored prompts. RF remains bearing-only. Munich is a grayscale reference map with OpenStreetMap attribution; the synthetic sensor overlays identify no real installation. Llama 3.1 8B is an explicit manual evaluation option, never an automatic fallback.
 
-This showcase therefore describes the testing classes rather than advertising a total passed-test number. No application test or experiment was rerun to create these pages. The website's own layout/link tests do not validate the underlying prototype.
+Schema-valid model output establishes structural compliance, not verified judgment, calibrated probability or field performance. The separate SENSE service serves retained evidence records; it does not run detector inference on incoming camera frames in this demo. Python REASON remains deterministic; local Qwen is a separate analyst layer.
 
-## Visuals
+## Current acceptance
 
-The retained HTML explains the work. The project overview includes a genuine browser screenshot of a screened presentation-text excerpt. Its wrapper was prepared for editorial review; it is neither a screenshot of the original seven-section layout nor a capture of the application executing. The screenshot preserves that explicit label and can be opened full-size.
+The 24 October 2026 acceptance pass covers the later console and its scenario-bound Watch/Copilot. Earlier acceptance of a documentation assistant does not validate this workflow.
 
-No verified original application-runtime screenshot is supplied. The explanatory excerpt is not a substitute for runtime evidence.
+| Status | Scope |
+| --- | --- |
+| Works | Full real-engine synthetic timeline t=0–90; recorded browser playback reached t=90 in about 51 seconds. Positions are discrete fetched frames, not interpolated. |
+| Works | Watch pause/resume, repeated playback toggles, track-context clearing and stale-result rejection; live Qwen validated slot selection shown on the desktop console. |
+| Works | 152 Python tests and five JavaScript runtime regression checks, including current-frame slot values, serialized requests and stale-response protection. These are separate units, not a combined performance score. |
+| Known behavior | Playback loops after t=90. Model responses may arrive after a short scenario interval has passed; deterministic content stays visible while waiting. |
+| Not tested | Docker image build (daemon unavailable), cloud deployment, physical mobile devices, field reliability and operational decision quality. |
 
-## Interface review
+The public capture record and detailed acceptance note are in the showcase repository. The video samples browser frames approximately once per second; it is not a continuous high-frame-rate recording or a latency benchmark. Empty export margins were cropped; no UI facts or geometry were fabricated.
 
-The existing later console is separate from both the original seven-section hackathon presentation and its screened text wrapper. Its retained layout uses a dark palette with a left list area, central canvas and right detail panel.
+## Historical record
 
-The [project page's interface preview](./common-observation-view.md#interface-preview) shows a real browser capture of a sanitized source-shell rendering. Application scripts were removed, all controls disabled, and no fixtures, services or model outputs loaded. The original LIVE/frame-status labels were replaced and a disclosure banner/watermark added. It is not an unmodified historical screenshot or an accepted application run. The blank panes are intentional, not missing results replaced with invented content.
+Historical declarations use different units: supplied challenge tests, regression suites and scenario timesteps. They refer to different versions and cannot be added together or treated as current acceptance receipts.
 
-| Material | Category | Boundary |
-| --- | --- | --- |
-| Original test summaries | Historical declarations | Different recorded versions; not rerun for this review |
-| Original HTML presentation | Explanatory artifact | Not application runtime |
-| Later synthetic vision bridge | Separate synthetic scenario record | Not field-camera performance or a live connection |
-| New later-console shell capture | Static interface inspection | No application script, fixture playback or service execution |
-| Drone study observations | Separate project evidence | Not a performance score for this console |
+The original seven-section presentation and its screened text excerpt explain the approach. The earlier 22 October source-shell capture had scripts removed and controls disabled; it is retained as a historical static interface inspection. Those materials are not substitutes for the new runtime capture and are no longer the case study's primary visual.
 
-Reusable presentation patterns are the palette, readable hierarchy and separation of navigation, visual material and supporting details. They can inform a non-operational artifact reader; this review does not export the console application or processing logic. The empty shell is supporting documentation, not the primary proof or a working demo.
+The synthetic vision bridge is separate follow-on work, not evidence of a live field-camera or Edge Evidence integration. Detector-training and field-study results belong to the separate small-object project and are not scores for this console.
 
-The [public interface-review document](https://github.com/Seemorghdev/hackathon-observation-showcase/blob/main/docs/interface-review.md) records the capture transformations and evidence limits. No operational source, private references or location data are included in the published image.
+## Access and reproduction
 
-## Repository and execution status
+The [public showcase repository](https://github.com/Seemorghdev/hackathon-observation-showcase) is documentation-only and not an installable application. It contains the recording, genuine screenshots, architecture, acceptance scope and checksums. GitHub may display the MP4 file page instead of a player; use View raw / Download raw file. The [case study](./common-observation-view.md#runtime-walkthrough) has an inline player and download link.
 
-The application source remains private. The [public documentation-only showcase repository](https://github.com/Seemorghdev/hackathon-observation-showcase) supplies the project account, technical references, screened excerpt and documentary screenshots. It is not a public application-source release or a working-app demo.
-
-The underlying operational source is excluded from this documentation package. No cloud endpoint, dependency installation, sensor input or model service is launched here. A public documentation account and a runnable application are separate deliverables.
+The application source remains private. No public interactive endpoint, model API, raw media, weights, dataset, private field-location information or deployment configuration is supplied. A live walkthrough or source review can be discussed with the owner.
 
 ## Attribution
 
-The owner confirms that the prototype and showcase were solo work. The later synthetic-bridge work is described as follow-on work, not something demonstrated during the original event. No team, award or independently verified field result is inferred.
+The prototype and showcase were solo work. The current console and local-model additions are later follow-on work. No award, independently verified field result, or original-event demonstration of the later interface is inferred.

@@ -28,8 +28,8 @@ test('Projects keeps Edge featured, has a real drone link and a self-contained s
   assert.match(index, /id="hackathon-entry" aria-labelledby="hackathon-project-title"/);
   assert.match(index, /Solo hackathon prototype/);
   const hackathon = index.slice(index.indexOf('id="hackathon-entry"'));
-  assert.match(hackathon, /hackathon-presentation-excerpt\.png/);
-  assert.match(hackathon, /not the original application interface/);
+  assert.match(hackathon, /hackathon-runtime-desktop-2026-10-24\.jpg/);
+  assert.match(hackathon, /Actual later application/);
   assert.match(hackathon, /common-observation-view\.md/);
   assert.match(index, /Working synthetic demonstration/);
   assert.match(index, /Try the visual demo/);
@@ -43,7 +43,7 @@ test('new content preserves retained-result, visual and private-source boundarie
   assert.match(drone, /manually marked/);
   assert.match(drone, /does not establish general accuracy/);
   assert.match(index, /checks were not reproduced/);
-  assert.match(index, /presentation is not a runtime screenshot/);
+  assert.match(index, /genuine runtime captures/);
   for (const source of [index, drone]) {
     assert.doesNotMatch(source, /\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY|private-review|field coordinates/i);
     for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase'].includes(url),url);
@@ -66,7 +66,7 @@ test('Projects uses real visual previews and explicit access instead of fake sou
  assert.match(index,/2 of 4 paired observations/);
  assert.match(index,/Application source private;/);
  assert.match(index,/href="https:\/\/huggingface\.co\/Seemorgh\/yolo11n-aod4-v6">checkpoint and reviewed notebooks public<\/a>; no live inference/);
- assert.match(index,/no working-app demo supplied/);
+ assert.match(index,/recorded walkthrough public; no interactive public endpoint/);
  assert.equal((index.match(/<figure class="project-media project-artifact"/g)??[]).length,2);
  const css=read('theme/styles.css');
  assert.match(css,/\.project-availability table \{ table-layout:fixed; width:100%/);
