@@ -21,20 +21,14 @@ test('drone case study is selected for review builds under normal public page po
   assert.equal(pagePolicy('projects/small-object-detection').target, null);
 });
 
-test('Projects keeps Edge featured, has a real drone link and a self-contained solo entry', () => {
-  assert.equal((index.match(/class="project-card(?: project-card--text)?"/g) ?? []).length, 3);
+test('Projects keeps approved Edge and drone entries while hackathon is withheld', () => {
+  assert.equal((index.match(/class="project-card(?: project-card--text)?"/g) ?? []).length, 2);
   assert.equal((index.match(/class="project-card project-card--text"/g) ?? []).length, 0);
   assert.equal((index.match(/href="\.\/small-object-detection\.md"/g) ?? []).length, 2);
-  assert.match(index, /id="hackathon-entry" aria-labelledby="hackathon-project-title"/);
-  assert.match(index, /Solo hackathon prototype/);
-  const hackathon = index.slice(index.indexOf('id="hackathon-entry"'));
-  assert.match(hackathon, /hackathon-runtime-desktop-2026-10-24\.jpg/);
-  assert.match(hackathon, /Actual later application/);
-  assert.match(hackathon, /common-observation-view\.md/);
+  assert.doesNotMatch(index, /hackathon|common-observation/i);
   assert.match(index, /Working synthetic demonstration/);
   assert.match(index, /Try the visual demo/);
   assert.ok(index.indexOf('Edge Evidence') < index.indexOf('Small Objects in Big Frames'));
-  assert.ok(index.indexOf('Small Objects in Big Frames') < index.indexOf('A common view for mismatched observations'));
 });
 
 test('new content preserves retained-result, visual and private-source boundaries', () => {
@@ -42,8 +36,6 @@ test('new content preserves retained-result, visual and private-source boundarie
   assert.match(drone, /two of four paired observations/);
   assert.match(drone, /manually marked/);
   assert.match(drone, /does not establish general accuracy/);
-  assert.match(index, /checks were not reproduced/);
-  assert.match(index, /genuine runtime captures/);
   for (const source of [index, drone]) {
     assert.doesNotMatch(source, /\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY|private-review|field coordinates/i);
     for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase'].includes(url),url);
@@ -66,8 +58,8 @@ test('Projects uses real visual previews and explicit access instead of fake sou
  assert.match(index,/2 of 4 paired observations/);
  assert.match(index,/Application source private;/);
  assert.match(index,/href="https:\/\/huggingface\.co\/Seemorgh\/yolo11n-aod4-v6">checkpoint and reviewed notebooks public<\/a>; no live inference/);
- assert.match(index,/recorded walkthrough public; no interactive public endpoint/);
- assert.equal((index.match(/<figure class="project-media project-artifact"/g)??[]).length,2);
+ assert.doesNotMatch(index,/recorded walkthrough public|common-observation|hackathon/i);
+ assert.equal((index.match(/<figure class="project-media project-artifact"/g)??[]).length,1);
  const css=read('theme/styles.css');
  assert.match(css,/\.project-availability table \{ table-layout:fixed; width:100%/);
  assert.match(css,/\.project-record \{ grid-template-columns:1fr/);

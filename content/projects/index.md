@@ -9,11 +9,11 @@ presentation: projects
 <section class="page-intro" aria-labelledby="projects-title">
   <p class="eyebrow">Selected engineering experiments</p>
   <h1 id="projects-title">Projects</h1>
-  <p class="intro">A hosted synthetic demonstration, an offline vision experiment, and a solo hackathon prototype—different kinds of engineering work, with different limits on what the evidence shows.</p>
+  <p class="intro">A hosted synthetic demonstration and an offline vision experiment—different kinds of engineering work, with different limits on what the evidence shows.</p>
 </section>
 
 <section class="project-list" aria-label="Project collection">
-  <div class="list-label"><span>Selected engineering work</span><span>Three distinct project types</span></div>
+  <div class="list-label"><span>Selected engineering work</span><span>Two distinct project types</span></div>
   <div class="project-card">
     <div class="project-copy">
       <span class="badge">Working synthetic demonstration</span>
@@ -37,19 +37,7 @@ presentation: projects
     </div>
     <figure class="project-media project-artifact"><a href="./small-object-detection.md" aria-label="Open the small-object project and retained results"><img src="../assets/drone-capture-context.jpg" alt="Screened field-capture input showing a small aerial object against cloudy sky above trees" width="540" loading="lazy" /></a><figcaption>Actual capture input. The case study separately shows the original annotated outputs—not a live inference demo.</figcaption></figure>
   </section>
-  <section class="project-card" id="hackathon-entry" aria-labelledby="hackathon-project-title">
-    <div class="project-copy">
-      <span class="badge">Solo hackathon prototype</span>
-      <h2 id="hackathon-project-title"><a href="./common-observation-view.md">A common view for mismatched observations</a></h2>
-      <p>A solo prototype explored observations with different units, timestamps and identifiers. The later application now has a map-led synthetic timeline, AI Watch and a separate bounded local-Qwen Copilot.</p>
-      <p>Watch genuine runtime captures of the synthetic scenario. Original-event checks were not reproduced for this entry; current acceptance is separately documented. Field performance and live sensor deployment are not established.</p>
-      <dl class="project-record"><div><dt>Working timeline</dt><dd>91 synthetic timesteps</dd></div><div><dt>Available here</dt><dd>Recording + runtime captures</dd></div></dl>
-      <div class="project-meta"><span>Solo hackathon work</span><span>Synthetic scenarios</span><span>Bounded local-model explanations</span></div>
-      <div class="actions"><a href="./common-observation-view.md">Explore the project →</a><a href="./common-observation-reference.md">Technical reference →</a><a href="https://github.com/Seemorghdev/hackathon-observation-showcase">Showcase repository ↗</a></div>
-    </div>
-    <figure class="project-media project-artifact"><a href="./common-observation-view.md#runtime-walkthrough" aria-label="Watch the later synthetic-scenario application"><img src="../assets/hackathon-runtime-desktop-2026-10-24.jpg" alt="Genuine later-console runtime with synthetic crossing tracks and bounded AI Watch" width="1028" height="714" loading="lazy" /></a><figcaption>Actual later application, 24 October 2026. Synthetic scenario; original hackathon screens and field performance are separate.</figcaption></figure>
-  </section>
-  <p class="project-notice">Edge Evidence is the hosted synthetic inspector. Small Objects supplies historical outputs and a separate public checkpoint. The solo hackathon entry offers a recorded synthetic application walkthrough; its source and interactive runtime remain private.</p>
+  <p class="project-notice">Edge Evidence is the hosted synthetic inspector. Small Objects supplies historical outputs and a separate public checkpoint.</p>
 </section>
 
-<section class="project-availability" aria-labelledby="availability-title"><p class="eyebrow">Access at a glance</p><h2 id="availability-title">What you can inspect.</h2><table><caption>Different projects, different evidence and access boundaries</caption><thead><tr><th scope="col">Project</th><th scope="col">Open now</th><th scope="col">Source and runtime</th></tr></thead><tbody><tr><th scope="row">Edge Evidence</th><td>Hosted synthetic inspector, retained Proof, technical Docs</td><td>Public source; optional Llama stays local</td></tr><tr><th scope="row">Small Objects</th><td>Original output images, retained observations, technical reference</td><td>Application source private; <a href="https://huggingface.co/Seemorgh/yolo11n-aod4-v6">checkpoint and reviewed notebooks public</a>; no live inference</td></tr><tr><th scope="row">Solo hackathon</th><td>Recorded synthetic timeline, runtime screenshots, architecture and acceptance limits</td><td>Source private; recorded walkthrough public; no interactive public endpoint</td></tr></tbody></table></section>
+<section class="project-availability" aria-labelledby="availability-title"><p class="eyebrow">Access at a glance</p><h2 id="availability-title">What you can inspect.</h2><table><caption>Different projects, different evidence and access boundaries</caption><thead><tr><th scope="col">Project</th><th scope="col">Open now</th><th scope="col">Source and runtime</th></tr></thead><tbody><tr><th scope="row">Edge Evidence</th><td>Hosted synthetic inspector, retained Proof, technical Docs</td><td>Public source; optional Llama stays local</td></tr><tr><th scope="row">Small Objects</th><td>Original output images, retained observations, technical reference</td><td>Application source private; <a href="https://huggingface.co/Seemorgh/yolo11n-aod4-v6">checkpoint and reviewed notebooks public</a>; no live inference</td></tr></tbody></table></section>

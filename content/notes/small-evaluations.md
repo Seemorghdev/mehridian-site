@@ -7,7 +7,7 @@ status: published
 
 # A small evaluation is not a deployment
 
-Two projects made the distinction concrete in different ways: an [[projects/small-object-detection|offline vision experiment]] and a [[projects/common-observation-view|solo hackathon integration prototype]]. Both produced useful artifacts. Neither becomes a deployed system because a portfolio page exists.
+Two projects made the distinction concrete in different ways: an [[projects/small-object-detection|offline vision experiment]] and a solo hackathon integration prototype. Both produced useful artifacts. Neither becomes a deployed system because a portfolio page exists.
 
 ## Finding and choosing are different checks
 
@@ -21,7 +21,7 @@ The [technical reference](../projects/small-object-reference.md) records those d
 
 The hackathon's synthetic scenarios were useful for exercising an implementation under supplied conditions. They do not establish performance on live inputs, and different historical counts should not be combined without reconciling their version and unit.
 
-A presentation can make the design understandable. A test summary can document a reported execution. Source can reveal an implementation. None of those substitutes for the others. The [hackathon reference](../projects/common-observation-reference.md) lists which artifacts are actually retained and which public reproduction pieces are absent.
+A presentation can make the design understandable. A test summary can document a reported execution. Source can reveal an implementation. None of those substitutes for the others. The hackathon case study and recording are currently withheld pending editorial review.
 
 ## What changed in the portfolio
 
