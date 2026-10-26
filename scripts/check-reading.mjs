@@ -39,8 +39,8 @@ for(const page of pages){
  }
 }
 const note=readFileSync(new URL('preview/notes/agent-vs-deterministic-inspector.html',root),'utf8');
-assert.match(note,/data-preview-index=/);assert.ok(note.includes('An interface can explain'));
+assert.match(note,/data-preview-index=/);assert.ok(note.includes('if your system shows a model'));
 const config=readFileSync(new URL('quartz.config.yaml',root),'utf8');assert.match(config,/enablePopovers: true/);assert.match(config,/baseUrl: mehridian\.tech/);
-const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root)));assert.equal(Object.keys(index).length,19);
-console.log('native_reading_preview_boundary=pass');console.log('early_theme_init=pass');console.log('published_content_index=19');
+const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root)));assert.equal(Object.keys(index).length,21);
+console.log('native_reading_preview_boundary=pass');console.log('early_theme_init=pass');console.log('published_content_index=21');
 console.log('generated_heading_permalink_targets=pass');
