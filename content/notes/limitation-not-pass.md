@@ -2,9 +2,9 @@
 title: A two-hour run that ended as a limitation
 description: One long test run held two different problems. One was the project's own bug and got fixed; the other was a property of the input and stayed in the result.
 type: note
-visibility: public-candidate
-publication_approved: false
-owner_approval_required: true
+visibility: public
+status: published
+publication_approved: true
 source_checked: 2026-10-25
 ---
 

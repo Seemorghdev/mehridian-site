@@ -60,4 +60,4 @@ Each question was collected separately: source identity, candidate checks, accep
 
 [[projects/edge-evidence|Edge Evidence]] is a separate engineering project; this frozen study did not evaluate it. It is where I build the evidence this study kept finding missing (exact identities, readback before a copy counts, recorded refusals) into the system itself.
 
-*Counts are copied from the locked final aggregate of the frozen schema-v1.1 comparison, not recomputed.*
+*This is a historical schema-v1.1 comparison, not a current audit. Counts are copied from its locked final aggregate, not recomputed.*

@@ -63,6 +63,8 @@ Air Canada's chatbot failed on a question of authority as much as accuracy: its 
 
 The workbench answers them in code, not in the model's prompt. A prompt is a request. A missing tool is a guarantee.
 
+More in [[notes/index|Notes]].
+
 ---
 
 *Inspector code references: public baseline [`37e8a8f`][5], checked 14 October 2026. An [optional ADK adapter][9] exists in that baseline, but the HTTP handler calls the deterministic function directly and the [baseline Gateway disables ADK][10]; that is not a completed model comparison. Workbench requirements, limits and test counts are from the [local workbench guide][13]. See also the [Edge Evidence project][11].*

@@ -2,9 +2,9 @@
 title: Split out a worker after operation shows why
 description: A lock conflict seen in a lab run, not a diagram, decided which part of Edge Evidence became its own process, and which parts didn't.
 type: note
-visibility: public-candidate
-publication_approved: false
-owner_approval_required: true
+visibility: public
+status: published
+publication_approved: true
 source_checked: 2026-10-25
 ---
 
