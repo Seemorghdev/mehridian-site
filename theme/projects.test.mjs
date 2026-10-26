@@ -38,7 +38,7 @@ test('new content preserves retained-result, visual and private-source boundarie
   assert.match(drone, /does not establish general accuracy/);
   for (const source of [index, drone]) {
     assert.doesNotMatch(source, /\/Users\/|file:\/\/|github_pat_|BEGIN PRIVATE KEY|private-review|field coordinates/i);
-    for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase'].includes(url),url);
+    for(const url of source.match(/https:\/\/github\.com\/[^\s"<)]+/g)??[]) assert.ok(['https://github.com/Seemorghdev/drone-detection-showcase','https://github.com/Seemorghdev/hackathon-observation-showcase','https://github.com/Seemorghdev/edge-evidence-reference-platform-public'].includes(url),url);
   }
   assert.match(drone, /drone-capture-context\.jpg/);
   assert.match(drone, /not detector output/);

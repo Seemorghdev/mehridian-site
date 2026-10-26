@@ -1,64 +1,63 @@
 ---
-title: "Project 03 — The information was there; what could I prove?"
-description: "An evidence-led, first-person map of the frozen Project 03 investigation and its limits."
+title: "What the records establish across 15 repositories"
+description: "Project 03: I audited my own repositories. Green checks were nearly universal; acceptance, traceability and observed runtime were almost absent."
 type: research
 visibility: public
 status: published
+source_checked: 2026-10-25
 ---
 
-# Project 03 — The information was there; what could I prove?
+# What the records establish across 15 repositories
 
-The information was there. The language was not mine.
+A lot of my code from this period was written quickly, with heavy AI assistance, and most of it had green checks. I wanted to know what I could actually show for it. So I audited my own fifteen repositories the way I would audit someone else's, asking four questions of each, each harder than the last:
 
-I had records, checks, repositories, review notes, and terms like *candidate*, *acceptance*, *lineage* and *runtime*. But I could read an apparently precise sentence and still be unsure what it entitled me to conclude. Sometimes I understood the work; sometimes I understood only the shape of the terminology.
+1. Did the checks pass on the exact version?
+2. Was that version accepted by someone with the authority to accept it?
+3. Can the published copy be traced, as a whole, to the source it came from?
+4. Did anyone other than me see it running?
 
-When I later reorganized my Project 03 notes, I chose a simpler way to read them: a plain question, then a concept, then the supporting evidence. Not a giant graph where every note links to everything. A trunk, a few branches, and smaller branches only where an explanation genuinely needs one. That describes how I chose to explain the investigation, not why the investigation originally began.
+## What made a single verdict unhelpful
 
-The historical question is straightforward: **after a period of engineering work, what evidence remained that another person could inspect, and what could it actually say about “done”?** I remember the period as AI-heavy. That is *my retrospective description*, not a fact or causal productivity result measured by the repository records.
+The answers fell away after the first question.
 
-## Begin with the questions
+![Bar chart: 13 of 15 repositories passed checks on the exact candidate, 1 of 15 had recorded acceptance, 0 of 15 had whole-candidate lineage, and 0 of 25 published surfaces were independently observed running](../../assets/project03-drop-off-2026-10-25.svg)
 
-The frozen analytical comparison covers **15 confirmed in-scope repositories**, each with an accepted W0–W8 evidence package. The package's acceptance means the evidence collection was accepted for this analysis; it does **not** mean the software was accepted for engineering or production use.
+| Question | Yes | Out of |
+| --- | ---: | --- |
+| The checks on the exact candidate passed | 13 | 15 repositories |
+| …and acceptance of that candidate was recorded | 1 | 15 repositories |
+| The whole candidate was traced to its exact source | 0 | 15 repositories |
+| A deployed surface was independently observed running | 0 | 25 published surfaces |
 
-### How the comparisons fit together
+Thirteen green results would have read as a healthy estate. The checks were the easy part. The evidence that lets someone else trust the software (a recorded acceptance, an exact link from published copy to source, an independent sighting of it running) only exists if someone produces it on purpose, and mostly I hadn't.
 
-The comparison began with three contrasting repository types and later expanded to fifteen. The original three-case **Cohort 1** conclusions concerned a private control, a multi-projection platform, and a generated, history-light public projection. The final fifteen-repository estate offers a broader **descriptive comparison**; it does not extend every Cohort 1 conclusion to all fifteen. And fifteen accepted evidence packages are not fifteen engineering acceptances.
+Read per repository, the drop is real rather than an artefact of separate totals. Operations, the one accepted repository, is one of the thirteen that passed:
 
-The generated, history-light projection recorded zero commits, pull requests and issues in its bounded visible activity window. That says what was visible **in that projection**, not how much engineering work occurred upstream. Activity windows and cutoffs were not fully aligned, so adding raw counts would not produce a trustworthy portfolio throughput or productivity measure.
+![Grid of the 15 repository cases. The checks column shows 13 passed, Case 03 mixed and Case 07 not established. The acceptance column shows Case 01 established, Case 04 unknown and the rest not established. The whole-candidate lineage column is not established for all 15.](../../assets/project03-state-grid-2026-10-25.svg)
 
-Some **projection observations** lack a source-recorded `projection_id`. They remain unkeyed observations; I cannot invent an identity or infer an independently verified deployment. A **direct-public technical surface** is different: it is public but is **not a projection instance**, so it does not add another projection to the count. Incomplete observation windows and unresolved historical visibility or source conflicts remain qualified; none of these historical records reports what is live today.
+The chapters take one question each:
 
-The detailed evidence already has its own places: [verification versus acceptance](https://mehridian.tech/research/project03/verification-is-not-acceptance), [Consumer Lab's mixed evidence](https://mehridian.tech/research/project03/consumer-lab-mixed-evidence), and [publication versus runtime](https://mehridian.tech/research/project03/publication-and-runtime-reality). The point here is how to read the existing findings, not to create another result.
+- [[research/project03/verification-is-not-acceptance|Passing checks and software acceptance are different findings]]: why 13 passes became 1 acceptance, and what Operations had that the others didn't.
+- [[research/project03/consumer-lab-mixed-evidence|One failed check and a 27-file provenance match]]: the one repository that shows the method catching both a failure and a positive result.
+- [[research/project03/publication-and-runtime-reality|Published code is not observed runtime]]: what an independent runtime observation would have taken.
+- [[research/project03/what-project-03-shows|Findings and unanswered questions]]: the findings, and ten tempting claims the records rule out.
 
-For the numbers side by side, open the [[research/project03/evidence-explorer|Evidence Explorer]]: three frozen distributions and a selected fifteen-case comparison, with their qualifications—not a score or live-status dashboard.
+Four short notes define the terms the chapters rely on: [[notes/candidate-verification|candidate verification]], [[notes/engineering-acceptance|engineering acceptance]], [[notes/evidence-verification|evidence verification]] and [[notes/lineage-and-provenance|lineage and provenance]].
 
-Follow a branch when you need it:
+## How the comparison was assembled
 
-- **What was actually checked?** [[notes/candidate-verification|Candidate verification]] examines the check results associated with an exact candidate, not a vague judgment about a repository.
-- **What was explicitly accepted?** [[notes/engineering-acceptance|Engineering acceptance]] asks whether the retained authority recorded acceptance for that candidate. A passing check does not provide it.
-- **What was copied, related, or proved identical?** [[notes/lineage-and-provenance|Lineage and provenance]] separates a repository relationship from a verified subset and from whole-candidate lineage.
-- **What was visible, described as running, or independently observed?** [[research/project03/publication-and-runtime-reality|Publication and runtime reality]] keeps those as separate states.
+I started with three deliberately different repositories (Cohort 1): a private control, a multi-projection platform and a generated public projection with almost no history. The method was tested on those three, then applied to all 15 in-scope repositories, each with its own reviewed evidence package. An accepted evidence package means its collection was reviewed for this study. It does not mean the software was accepted or deployed.
 
-If the terms feel too abstract, [[research/project03/consumer-lab-mixed-evidence|Consumer Lab]] is a concrete case: a mixed verification result coexists with a positive **27-file** provenance check, without establishing whole-candidate lineage. These are not contradictions. They answer different questions.
+Each question was collected separately: source identity, candidate checks, acceptance authority, publication relationships and runtime observations. Where the evidence was missing or contradictory, the record says so instead of filling the gap. The comparison and final tables are downstream views of that accepted evidence, not independent repeated measurements. Some projection observations have no stable identifier and stay unkeyed; the [[research/project03/evidence-explorer#sources-method-and-reproducibility|method reference]] covers those counting rules and the W0–W8 stages, and the [[research/project03/evidence-explorer|tables page]] has the frozen values and a downloadable extract.
 
-## What the frozen comparison found
+## What this study can and cannot support
 
-Candidate verification was recorded as **13 `SUCCESS_OBSERVED`, 1 `MIXED`, and 1 `NOT_ESTABLISHED`**. Engineering acceptance was **1 `ESTABLISHED`, 1 `UNKNOWN`, and 13 `NOT_ESTABLISHED`**. That difference prompted [[research/project03/verification-is-not-acceptance|Verification is not acceptance]]. Those 13 repository-level `NOT_ESTABLISHED` acceptance states do not show that the work was rejected.
+- **Scope.** The method was developed on the three Cohort 1 repositories. The fifteen-repository comparison is broader and descriptive; it does not extend every Cohort 1 conclusion to all fifteen.
+- **Zeros are gaps, not failures.** `NOT_ESTABLISHED` means the evidence wasn't in the frozen collection. It does not mean a system broke or never ran.
+- **No activity metrics.** Commit and issue counts are left out: their windows weren't aligned, and they measure activity, not quality.
+- **AI is the motivation, not a finding.** The comparison can't say whether AI assistance caused any of these gaps; there's no comparison period.
+- **Reproducible tables, private sources.** You can reproduce the tables from the public extract, not the private repositories behind them.
 
-Whole exact candidate lineage remained **`NOT_ESTABLISHED` for 15 of 15**. At a narrower scope, the evidence still records relationships and positive provenance for a declared subset. “Not established” is a limit of the retained proof, not a finding that the relationship never existed.
+[[projects/edge-evidence|Edge Evidence]] is a separate engineering project; this frozen study did not evaluate it. It is where I build the evidence this study kept finding missing (exact identities, readback before a copy counts, recorded refusals) into the system itself.
 
-Across **25 accepted projection observations**, no positive *independent runtime observation* was established. This does not show that every historical system was offline, nor does it describe what is live today. There are separate `NOT_ESTABLISHED`, `NOT_OBSERVED`, `NOT_COLLECTED`, and `UNKNOWN` cases. Their distinctions are the finding, not noise to tidy away.
-
-## A result can be true without being the answer to every question
-
-Eleven repositories combined observed verification success with engineering acceptance `NOT_ESTABLISHED`. I can describe that recurrence. I cannot determine from the frozen estate why it happened. The sources do not settle whether the difference reflects evidence retention, process, authority, or something else.
-
-That's why I use [[notes/evidence-verification|Evidence verification]] as a habit: decide exactly what a claim asserts, check the matching evidence, and stop at its scope. [[research/project03/what-project-03-shows|What Project 03 actually shows]] brings the branches back together, including what this investigation cannot answer.
-
-## Two connected bodies of work, not one blended result
-
-This is a **frozen historical research account**, not a monitor of current deployments or proof of AI productivity. The live engineering story belongs to [[projects/edge-evidence|Edge Evidence]] and its [implementation documentation](https://docs.mehridian.tech/edge-evidence/). An existing [[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]] note explains why deterministic inspection, model explanation and authorization to act are separate even in present-day engineering.
-
-The public version can explain findings and their limits without opening private spreadsheets, raw source registers, review screenshots or internal claim-support records. Those remain available for the private editorial trace, not as public web links.
-
-*Frozen numbers refer to the historical schema-v1.1 comparison, not a current audit.*
+*This is a historical schema-v1.1 comparison, not a current audit. Counts are copied from its locked final aggregate, not recomputed.*

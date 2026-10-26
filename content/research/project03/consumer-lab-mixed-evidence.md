@@ -1,26 +1,23 @@
 ---
-title: "Consumer Lab — Mixed evidence"
-description: "A scoped mixed-verification result and 27-file provenance example."
+title: "One failed check and a 27-file provenance match"
+description: "Consumer Lab: mixed check results and a positive subset match without whole-candidate lineage."
 type: research
 visibility: public
 status: published
+source_checked: 2026-10-25
 ---
 
-# Consumer Lab — Mixed evidence
+# One failed check and a 27-file provenance match
 
-[[research/project03/index|← Back to the Project 03 Story Map]]
+Consumer Lab is the case to read if you doubt the method. Among 15 repositories it holds the only recorded failed check and the only positive provenance result. Had the study simply rounded every repository to pass or fail, one would have hidden the other. They concern different objects, so neither cancels the other, and the record keeps both.
 
-Consumer Lab refuses to become one clean label. That's exactly why I need this example.
+## Three checks
 
-Its frozen exact-candidate verification evidence includes **three check components: two successes and one failure**. The repository-level state is `MIXED`. Calling it “mostly passed” would erase the failure; calling all its verification “failed” would erase the two observed successes. Neither shortcut is the recorded comparison state.
+The retained exact-candidate verification evidence contains **three check components: two successes and one failure**. The repository-level state is `MIXED`. Calling it a pass would erase the failure; treating all three checks as failed would erase the observed successes.
 
-## A second, positive result—at a different scope
+## A match for 27 files
 
-Another part of the record establishes provenance for a **declared subset of 27 files**. Those files had matching source and target blob identities under the scoped check.
-
-That matters. It is a positive, specific result. It is also **not** proof that the *whole exact candidate* travelled intact from source to public projection. Whole-candidate lineage remains `NOT_ESTABLISHED` for this repository.
-
-The useful distinctions are:
+A separate scoped check establishes matching source and target blob identities for **27 manifest-declared files**. This is a positive result for that declared subset. It is not “27 of all files passed” without a justified whole-candidate denominator.
 
 | Question | What the frozen evidence records |
 | --- | --- |
@@ -29,16 +26,22 @@ The useful distinctions are:
 | Provenance of declared 27-file subset | Established within that declared scope |
 | Whole exact candidate lineage | `NOT_ESTABLISHED` |
 
-A positive provenance check and an unresolved whole-candidate lineage state can coexist without contradiction. They evaluate different objects and claims.
+![Left: three checks on the exact candidate, two pass and one fail, giving MIXED. Right: nested scopes. A relationship between repositories is recorded; whole exact candidate lineage is not established; inside it, 27 declared files have matching blob identities, established for that subset only. Box sizes are not proportional.](../../assets/project03-consumer-lab-scopes-2026-10-25.svg)
 
-## What this case does not establish
+## Relationships, subsets and whole candidates
 
-The comparison alone does not explain **why** the failed check failed, whether the other two successes were representative of the candidate, why only that subset had a positive provenance record, or whether broader lineage evidence existed elsewhere.
+A recorded relationship between repositories is one claim. Matching blob identities for selected files is a narrower, directly scoped check. Binding a complete exact candidate across its source-to-target path is a stronger claim again.
 
-Even the number 27 has a boundary: it is **not** “27 of all files passed” without a justified whole-candidate denominator. It's 27 *manifest-declared* files in a scoped check. The historical screenshot of this result contains a private workbook reference and isn't reproduced here.
+The comparison preserves lower-scope relationships and positive subset provenance while whole exact candidate lineage remains `NOT_ESTABLISHED` for all 15 repositories. That does not mean that no relationship or provenance existed.
 
-If I have to describe Consumer Lab in one sentence, it is this: **one repository can contain positive, negative and unestablished evidence at the same time; a good analysis preserves all three.**
+For Consumer Lab, the 27-file result stays positive within its scope; it cannot be expanded into a claim about the whole candidate. The [[research/project03/evidence-explorer#the-fifteen-case-comparison|case table]] keeps that distinction alongside the mixed verification result.
 
-Read [[notes/candidate-verification|candidate verification]], [[notes/engineering-acceptance|engineering acceptance]] and [[notes/lineage-and-provenance|lineage and provenance]] separately. Then return to [[research/project03/what-project-03-shows|the synthesis]].
+## What remains unresolved
 
-*Research basis: frozen repository comparison and scoped-provenance record. No raw workbooks or screenshots are included.*
+The records do not establish why the failed check failed, whether the successes were representative, why only that subset had a positive provenance record or whether broader evidence existed elsewhere. The historical screenshot contains a private workbook reference and is not reproduced here.
+
+One repository can therefore contain positive, negative and unestablished evidence at the same time. Keeping those claims separate is more informative than forcing one overall label.
+
+Part of [[research/project03/index|Project 03]]. Term used here: [[notes/lineage-and-provenance|lineage and provenance]].
+
+*Basis: the frozen comparison and scoped-provenance record. No raw workbooks, private screenshots or new measurements are included.*

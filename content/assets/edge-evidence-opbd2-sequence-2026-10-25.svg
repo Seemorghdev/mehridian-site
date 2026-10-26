@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title id="t">OPBD-2: two problems, two responses</title>
+  <desc id="d">Four steps. First attempt: the reconcile command hit the 240-second harness timeout and cleanup raised NameError; the attempt was a run-level breach, its partial evidence passed integrity checks, and it was not resumed. Benchmark on a scratch copy: reconciliation took about 270 seconds. Correction: budget raised to 600 seconds, signal imported, monitored pipes replaced with temporary files, regression tests added. Fresh run of 7,200 seconds: OPBD2_2H_LIMITATION, with every capture accounted for, every replica read back and 75 iPad source gaps kept. The harness defect was fixed; the source gaps were kept.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1c1f23"/></marker></defs>
+  <rect width="760" height="330" fill="#ffffff"/>
+  <text x="24" y="32" font-size="16" font-weight="600" fill="#1c1f23">Two problems, two responses</text>
+  <text x="24" y="52" font-size="12" fill="#5d646d">OPBD-2 attempt sequence, from the run record. Order only; not to time scale.</text>
+
+  <g fill="none" stroke="#1c1f23">
+    <rect x="24" y="72" width="166" height="128" stroke="#9b1c1c" stroke-width="2"/>
+    <rect x="210" y="72" width="160" height="128"/>
+    <rect x="390" y="72" width="166" height="128"/>
+    <rect x="576" y="72" width="160" height="128"/>
+  </g>
+  <g stroke="#1c1f23" marker-end="url(#a)">
+    <line x1="190" y1="136" x2="208" y2="136"/><line x1="370" y1="136" x2="388" y2="136"/><line x1="556" y1="136" x2="574" y2="136"/>
+  </g>
+  <g font-size="12" font-weight="600" fill="#1c1f23">
+    <text x="34" y="92">1 · First attempt</text><text x="220" y="92">2 · Benchmark</text><text x="400" y="92">3 · Correction</text><text x="586" y="92">4 · Fresh run</text>
+  </g>
+  <g font-size="11" fill="#1c1f23">
+    <text x="34" y="112">reconcile hit 240 s</text><text x="34" y="128">timeout; cleanup</text><text x="34" y="144">raised NameError</text>
+    <text x="34" y="166" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#9b1c1c">run-level BREACH</text>
+    <text x="34" y="184" fill="#5d646d">not resumed</text>
+
+    <text x="220" y="112">scratch copy:</text><text x="220" y="128">reconciliation took</text>
+    <text x="220" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">~270 s</text>
+    <text x="220" y="184" fill="#5d646d">one measurement</text>
+
+    <text x="400" y="112">budget → 600 s</text><text x="400" y="128">import signal</text><text x="400" y="144">pipes → temp files</text><text x="400" y="160">regression tests</text>
+    <text x="400" y="184" fill="#5d646d">harness only</text>
+
+    <text x="586" y="112">7,200 s, fresh state</text>
+    <text x="586" y="134" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">OPBD2_2H_</text>
+    <text x="586" y="148" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIMITATION</text>
+    <text x="586" y="170">75 iPad gaps kept</text>
+  </g>
+
+  <line x1="24" y1="222" x2="736" y2="222" stroke="#d6d9dd"/>
+  <g font-size="12" fill="#1c1f23">
+    <rect x="24" y="238" width="14" height="10" fill="#ffffff" stroke="#9b1c1c" stroke-width="2"/>
+    <text x="46" y="248"><tspan font-weight="600">The project's own bug</tspan> (harness timeout and cleanup): fixed, then the run was repeated from scratch.</text>
+    <rect x="24" y="262" width="14" height="10" fill="#1c1f23"/>
+    <text x="46" y="272"><tspan font-weight="600">A property of what was measured</tspan> (iPad source gaps): kept in the result, not repaired away.</text>
+  </g>
+  <text x="24" y="310" font-size="11" fill="#5d646d">The corrected run's bookkeeping closed too, but it would read the same with or without gaps.</text>
+</svg>

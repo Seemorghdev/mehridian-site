@@ -28,6 +28,12 @@ presentation: home
   </div>
 </section>
 
+## Published reading paths
+
+- [[projects/edge-evidence|Edge Evidence]] — Processing media, copying the result and accepting the copy only after reading it back. A hosted read-only inspector and a retained worker result.
+- [[notes/extract-after-observation|Split out a worker after operation shows why]] — An observed lock conflict, not a diagram, decided the service boundary.
+- [[research/project03/index|What the records establish across 15 repositories]] is one guided historical study of checks, acceptance, provenance and runtime observation. Its comparison tables support the chapters rather than interrupting them.
+
 <section class="work-surface" aria-labelledby="surface-title">
   <div class="work-section-head">
     <div>

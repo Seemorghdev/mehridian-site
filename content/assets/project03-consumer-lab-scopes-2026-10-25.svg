@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title id="t">Consumer Lab: each claim has its own scope</title>
+  <desc id="d">Left: the three checks on the exact candidate, two passed and one failed, giving MIXED. Right: nested scopes. A relationship between repositories is recorded. The whole exact candidate's lineage is not established. Inside it, a declared subset of 27 files has matching source and target blob identities, which is established for that subset only. The subset's share of the whole candidate is not recorded.</desc>
+  <rect width="760" height="360" fill="#ffffff"/>
+  <text x="24" y="32" font-size="16" font-weight="600" fill="#1c1f23">Positive, negative and unestablished at the same time</text>
+  <text x="24" y="52" font-size="12" fill="#5d646d">Consumer Lab (Case 03), frozen comparison. Each answer applies only to its own object.</text>
+
+  <text x="24" y="86" font-size="12" font-weight="600" fill="#1c1f23">Checks on the exact candidate</text>
+  <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <rect x="24" y="98" width="72" height="40" fill="#1c1f23"/><text x="36" y="122" fill="#ffffff">pass</text>
+    <rect x="102" y="98" width="72" height="40" fill="#1c1f23"/><text x="114" y="122" fill="#ffffff">pass</text>
+    <rect x="180" y="98" width="72" height="40" fill="#ffffff" stroke="#9b1c1c" stroke-width="2"/><text x="192" y="122" fill="#9b1c1c">fail</text>
+    <text x="24" y="160" fill="#1c1f23">= MIXED</text>
+  </g>
+  <text x="24" y="182" font-size="11" fill="#5d646d">Not "passed" (that hides the failure),</text>
+  <text x="24" y="198" font-size="11" fill="#5d646d">not "failed" (that hides two successes).</text>
+
+  <text x="300" y="86" font-size="12" font-weight="600" fill="#1c1f23">Provenance, by scope</text>
+  <rect x="300" y="98" width="436" height="216" fill="#ffffff" stroke="#8a929b"/>
+  <text x="312" y="118" font-size="11" fill="#1c1f23">Relationship between repositories</text>
+  <text x="600" y="118" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#1c1f23">recorded</text>
+
+  <rect x="320" y="132" width="396" height="164" fill="#eef0f2" stroke="#8a929b"/>
+  <text x="332" y="152" font-size="11" fill="#1c1f23">Whole exact candidate, source → target</text>
+  <text x="560" y="152" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#5d646d">NOT_ESTABLISHED</text>
+
+  <rect x="340" y="176" width="200" height="96" fill="#1c1f23"/>
+  <text x="352" y="200" font-size="11" fill="#ffffff">27 manifest-declared files</text>
+  <text x="352" y="218" font-size="11" fill="#ffffff">blob identities match</text>
+  <text x="352" y="248" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#ffffff">ESTABLISHED</text>
+  <text x="352" y="262" font-size="10" fill="#d6d9dd">for this subset only</text>
+
+  <text x="556" y="200" font-size="11" fill="#5d646d">Box sizes are not</text>
+  <text x="556" y="216" font-size="11" fill="#5d646d">proportional: the</text>
+  <text x="556" y="232" font-size="11" fill="#5d646d">subset's share of the</text>
+  <text x="556" y="248" font-size="11" fill="#5d646d">whole is not recorded.</text>
+
+  <text x="24" y="342" font-size="11" fill="#5d646d">The records do not say why the failed check failed or why only this subset has a provenance record.</text>
+</svg>

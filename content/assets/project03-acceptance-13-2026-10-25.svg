@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="220" viewBox="0 0 720 220" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title id="t">Acceptance among the 13 repositories whose checks passed</title>
+  <desc id="d">Of the 13 repositories whose exact candidate passed its checks, 1 had acceptance established (Operations), 1 was unknown (Replication Projection) and 11 had acceptance not established.</desc>
+  <rect width="720" height="220" fill="#ffffff"/>
+  <text x="24" y="32" font-size="16" font-weight="600" fill="#1c1f23">Same green checks, different acceptance records</text>
+  <text x="24" y="52" font-size="12" fill="#5d646d">The 13 repositories whose exact candidate passed, by recorded acceptance state. Each block is one repository.</text>
+  <g>
+    <rect x="24" y="72" width="44" height="36" fill="#1c1f23"/>
+    <rect x="72" y="72" width="44" height="36" fill="#ffffff" stroke="#1c1f23" stroke-dasharray="3 2"/>
+    <g fill="#eef0f2" stroke="#8a929b">
+      <rect x="120" y="72" width="44" height="36"/><rect x="168" y="72" width="44" height="36"/><rect x="216" y="72" width="44" height="36"/><rect x="264" y="72" width="44" height="36"/><rect x="312" y="72" width="44" height="36"/><rect x="360" y="72" width="44" height="36"/>
+      <rect x="408" y="72" width="44" height="36"/><rect x="456" y="72" width="44" height="36"/><rect x="504" y="72" width="44" height="36"/><rect x="552" y="72" width="44" height="36"/><rect x="600" y="72" width="44" height="36"/>
+    </g>
+  </g>
+  <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#1c1f23">
+    <rect x="24" y="126" width="14" height="10" fill="#1c1f23"/><text x="46" y="135">ESTABLISHED 1 · Operations</text>
+    <rect x="24" y="144" width="14" height="10" fill="#ffffff" stroke="#1c1f23" stroke-dasharray="3 2"/><text x="46" y="153">UNKNOWN 1 · Replication Projection</text>
+    <rect x="24" y="162" width="14" height="10" fill="#eef0f2" stroke="#8a929b"/><text x="46" y="171">NOT_ESTABLISHED 11</text>
+  </g>
+  <text x="24" y="204" font-size="11" fill="#5d646d">Not established is not a rejection; it means no candidate-specific acceptance record was found.</text>
+</svg>
