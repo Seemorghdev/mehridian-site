@@ -119,9 +119,9 @@ The one it accepted says the record is prepared, no completed result is shown, a
 
 So, in these three turns, I identified no false claim in the text that reached the screen, and no question got a complete answer. That isn't a general safety finding. It shows which way this guard leans: towards withholding, not towards judging truth. Three turns are an observation, not a measurement.
 
-![Local workbench, Ask view: the question about what happens next for a prepared record, an EXPLANATION label and the model's two-sentence answer, with the inspector facts alongside](../assets/edge-evidence-local-workbench-explanation-2026-10-26.png)
+![Local workbench, Ask view: the complete-record question, an EXPLANATION label and the model's bounded answer](../assets/edge-evidence-local-workbench-summary-2026-10-26.png)
 
-*The accepted answer, 26 October 2026: accurate, but not a complete answer to the question.*
+*The accepted complete-record answer, 26 October 2026: the model explains the selected record without claiming independent readback.*
 
 ## How the hosted demo is assembled
 
