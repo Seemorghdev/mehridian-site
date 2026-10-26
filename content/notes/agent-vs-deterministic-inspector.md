@@ -41,15 +41,15 @@ In July 2025, METR published a [randomised study](https://metr.org/blog/2025-07-
 
 So, plainly: the exported workbench's offline test suite passed. Those tests use an explicitly mocked model transport that makes no model calls. They show the guards behave as written, and the workbench's own README says they must not be reported as a successful model run.
 
-Against the real local model there are three small sessions, and I'm reporting them separately. The first, on 20 October, asked three questions and got two explanations accepted and one withheld, at roughly 9 to 11 seconds a turn.
+Against the real local model there are only three small sessions, and I'm reporting them separately. The first, on 20 October, asked three questions and got two explanations accepted and one withheld, at roughly 9 to 11 seconds a turn.
 
 The second, on 26 October (Ollama 0.40.11, workbench head `963d9c6`), used three questions fixed in advance, one turn each, with no retries. It came out the other way: one accepted, two withheld. The withheld ones are the instructive part. In both, the model's raw text expressed the relevant boundary correctly: "You cannot approve the change from here because this inspector cannot authorize changes to the record", and "This record does not provide evidence that the stored copy matches the source." The guard still refused them.
 
-The third session asked the complete-record question once, with the same pinned workbench and no retry. It produced an explanation in 5.1 seconds: the record was complete, but the inspection did not process the artifact or establish independent readback. This is a single observed turn, not a comparison or benchmark.
-
 The reason is in [the policy code][15]. It treats any mention of approval, copies or verification as off-limits unless it appears in one of a short list of recognised denial phrasings, and those two sentences weren't on the list. The answer it did accept was accurate, but it wasn't a complete answer: it didn't address whether the next step happens automatically. The prompt restricts discussion of workers and execution, which may explain the omission; the run doesn't establish that.
 
-So: across these three small sessions, I identified no false claim in the text that reached the screen. That isn't a general safety finding. The second session's guard paid for safety by withholding answers that stated the boundary correctly, while the third session produced a bounded explanation. These turns cannot say how often the guard errs in either direction. This is not a benchmark, and I'm not presenting it as one.
+The third, later the same day at the merged revision `692713d`, asked for what the workbench is meant to do: explain a record in plain words. Asked to summarise the complete record in one or two sentences, the model wrote: "This record is complete and the inspector has read the label, but it does not process the artifact. No independent readback evidence is provided by this inspection." That is a complete, accurate answer, and it mentions readback without being refused, because it says what the record *doesn't* show. A request to explain the prepared record to a newcomer was withheld, and that session didn't retain the raw text, so I can't judge it. A third question was asked against the wrong record by mistake. I've left it out rather than rerun it.
+
+So: in the text that reached the screen in the second and third sessions, I identified no false claim. That isn't a general safety finding. The guard paid for it by withholding answers that stated the boundary correctly. It is a pattern list that leans towards silence, not a judge of truth. Eight usable questions can't say how often it errs in either direction. This is not a benchmark, and I'm not presenting it as one.
 
 ## Explaining is not doing
 
