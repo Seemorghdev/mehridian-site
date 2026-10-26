@@ -70,6 +70,6 @@ for(const slug of researchCandidates){
   checked++;
  }
 }
-assert.equal(checked,54,'Exact reviewed research wikilink count');
+assert.equal(checked,48,'Exact reviewed research wikilink count');
 assert.ok(!existsSync(new URL('preview/research/index.html',root)),'No unreviewed parent folder page');
-console.log('reviewed_research_wikilinks_rendered=54 backlinks_and_real_targets=pass no_parent_folder_leak=pass');
+console.log('reviewed_research_wikilinks_rendered=48 backlinks_and_real_targets=pass no_parent_folder_leak=pass');

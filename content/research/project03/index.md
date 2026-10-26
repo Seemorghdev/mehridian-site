@@ -44,6 +44,8 @@ The chapters take one question each:
 - [[research/project03/publication-and-runtime-reality|Published code is not observed runtime]]: what an independent runtime observation would have taken.
 - [[research/project03/what-project-03-shows|Findings and unanswered questions]]: the findings, and ten tempting claims the records rule out.
 
+Four short notes define the terms the chapters rely on: [[notes/candidate-verification|candidate verification]], [[notes/engineering-acceptance|engineering acceptance]], [[notes/evidence-verification|evidence verification]] and [[notes/lineage-and-provenance|lineage and provenance]].
+
 ## How the comparison was assembled
 
 I started with three deliberately different repositories (Cohort 1): a private control, a multi-projection platform and a generated public projection with almost no history. The method was tested on those three, then applied to all 15 in-scope repositories, each with its own reviewed evidence package. An accepted evidence package means its collection was reviewed for this study. It does not mean the software was accepted or deployed.

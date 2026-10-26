@@ -55,4 +55,6 @@ Both zeros answer a scoped question about what this study established. The runti
 
 What I take from them is practical. Neither kind of evidence appears by accident. A link from published copy to source exists only if the build records it. An independent sighting exists only if something other than the author goes and looks, and keeps what it saw. [[projects/edge-evidence|Edge Evidence]] is a separate engineering project, not a live monitor for these records, but it's where I build that habit into the system: a copy counts only after it has been read back.
 
+Part of [[research/project03/index|Project 03]]. Terms used here: [[notes/lineage-and-provenance|lineage and provenance]] and [[notes/evidence-verification|evidence verification]].
+
 *Research basis: the frozen schema-v1.1 comparison and the original Project 03 account. Exact private pointers stay in the internal review matrix; no source-workbook links are published. External context: [FAQ on the xz-utils backdoor (CVE-2024-3094)](https://gist.github.com/thesamesam/223949d5a074ebc3dce9ee78baad9e27); [SLSA](https://slsa.dev/) and its [build provenance specification](https://slsa.dev/spec/draft/build-provenance).*

@@ -55,4 +55,6 @@ What the drop from 13 to 1 does show is that the checks couldn't have stood in f
 
 That's the practical takeaway, and it's the same one DORA arrives at from the other direction: when producing code and passing checks get cheaper, the scarce, valuable step is the deliberate decision to accept it, and that decision only counts if it's written down against the exact version. The [[research/project03/evidence-explorer#engineering-acceptance|supporting table]] keeps the exact states.
 
+Part of [[research/project03/index|Project 03]]. Terms used here: [[notes/candidate-verification|candidate verification]] and [[notes/engineering-acceptance|engineering acceptance]].
+
 *Basis: the frozen schema-v1.1 comparison and the original candidate-specific review account. No new check or acceptance decision is reported. External context: DORA, [Impact of Generative AI in Software Development](https://dora.dev/ai/gen-ai-report/) (2024).*

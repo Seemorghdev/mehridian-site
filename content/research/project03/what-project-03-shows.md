@@ -78,4 +78,6 @@ Project 03 doesn't give one definition of "done." It shows that four questions h
 
 [[projects/edge-evidence|Edge Evidence]] is where I carry that into a working system: exact identities, readback before a copy counts, durable state transitions and recorded refusals. That's a method carried forward, not a new Project 03 result. [[notes/agent-vs-deterministic-inspector|A local model can explain a record without being trusted with it]] applies the same separation to AI: what a model says, and what it's allowed to do, are different questions too.
 
+Part of [[research/project03/index|Project 03]].
+
 *Research basis: the frozen closeout, final aggregate (copied, not recomputed), repository and projection comparisons, and the Cohort 1 academic roll-up, including its rejected-claims list. External context: METR (2025) and DORA (2024), linked above; neither studied these repositories.*

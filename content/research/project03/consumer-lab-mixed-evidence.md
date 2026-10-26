@@ -44,4 +44,6 @@ The records do not establish why the failed check failed, whether the successes 
 
 One repository can therefore contain positive, negative and unestablished evidence at the same time. Keeping those claims separate is more informative than forcing one overall label.
 
+Part of [[research/project03/index|Project 03]]. Term used here: [[notes/lineage-and-provenance|lineage and provenance]].
+
 *Basis: the frozen comparison and scoped-provenance record. No raw workbooks, private screenshots or new measurements are included.*
