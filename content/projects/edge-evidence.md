@@ -33,13 +33,17 @@ The snapshot was retrieved on 19 October 2026 and is marked as cached; its origi
 
 What it does not contain matters too. The Processor's interrupted-and-resumed job, its busy-lock deferral, Replication's adoption of an existing exact copy and its refusal to overwrite a conflicting one appear in the snapshot only as "standalone proofs passed". The walkthrough says so instead of illustrating steps it has no record of. Those behaviours are documented with their test expectations in the chapters linked below.
 
-## Recovering without inventing success
+<section aria-labelledby="problem-title">
+
+<h2 id="problem-title">Recovering without inventing success</h2>
 
 ![Diagram of the four stages. Capture writes PREPARED, then COMPLETE or GAP. Processor writes PREPARED before publishing, resumes the same job ID, and defers if the spool is locked. Replication creates, adopts an exact copy or refuses a different one with exit code 4. A separate read-only verify marks the replica VERIFIED or leaves it PENDING.](../assets/edge-evidence-record-flow-2026-10-25.svg)
 
 Processing derives a deterministic job identity from its exact input and commits a `PREPARED` record before it publishes anything. The database and the filesystem cannot share one atomic transaction, so that record marks the gap between them. If the process dies after `PREPARED`, the retry resumes the same job ID; it does not create a fresh job that looks successful. If processing finds the spool locked, it defers and writes nothing authoritative. Published files use no-replace links, and both directories are flushed to disk.
 
 The synthetic `resume` demonstration stops a child process at that exact point and checks one `PREPARED` job, zero derived artifacts and zero lineage rows, then the same job ID after retry, then `already_complete` on replay. [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/) traces it step by step.
+
+</section>
 
 ## A copy counts only after it is read back
 
