@@ -1,13 +1,13 @@
 ---
 title: Notes
-description: Seven technical notes spanning project evaluations, inspection, provenance, verification and acceptance.
+description: Technical notes spanning project evaluations, inspection, provenance, verification and acceptance.
 visibility: public
 status: published
 ---
 
 # Notes
 
-Seven technical notes about implementation and evaluation. Start with a concrete project observation or explore the engineering distinctions below.
+Technical notes about implementation and evaluation. Start with a concrete project observation or explore the engineering distinctions below.
 
 ## From the projects
 

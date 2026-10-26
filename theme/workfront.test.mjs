@@ -9,16 +9,16 @@ test('homepage leads with working evidence rather than a personal pitch',()=>{
   assert.match(home, /<h1 id="home-title">Edge Evidence/);
   assert.equal((home.match(/<h1\b/g)??[]).length,1);
   assert.doesNotMatch(home,/Curiosity,|Follow the evidence\.|Build\. Observe\. Share\.|independent engineering and research by|Python systems and platform engineer/i);
-  for(const url of ['./projects/edge-evidence.md','./assets/edge-evidence-gateway-inspect-2026-10-20.jpg','./research/project03/evidence-explorer.md','./notes/index.md','https://docs.mehridian.tech/edge-evidence/','https://github.com/Seemorghdev/edge-evidence-reference-platform-public']) assert.ok(home.includes(url),url);
+  for(const url of ['./projects/edge-evidence.md','./assets/edge-evidence-gateway-inspect-2026-10-25.png','./research/project03/evidence-explorer.md','./notes/index.md','https://docs.mehridian.tech/edge-evidence/','https://github.com/Seemorghdev/edge-evidence-reference-platform-public']) assert.ok(home.includes(url),url);
   assert.match(home,/Separate repository-level distributions/);
   assert.match(home,/frozen schema-v1\.1/);
   assert.match(home,/Proof shows a separate retained synthetic execution result/);
 });
-test('seven approved notes are visible and the homepage count agrees',()=>{
-  assert.match(home,/Browse all seven notes and their connections/);
-  assert.match(home,/SEVEN PUBLISHED TECHNICAL NOTES/);
+test('published notes are visible and the homepage count agrees',()=>{
+  assert.match(home,/Browse all notes and their connections/);
+  assert.match(home,/PUBLISHED TECHNICAL NOTES/);
   assert.doesNotMatch(home,/five (?:published|notes)/i);
-  assert.match(notes,/Seven technical notes/);
+  assert.match(notes,/Technical notes about implementation and evaluation/);
   for(const slug of ['agent-vs-deterministic-inspector','local-language-task-boundaries','evidence-verification','lineage-and-provenance','candidate-verification','engineering-acceptance']){
     const target='[[notes/'+slug;
     assert.ok(notes.includes(target),target);
