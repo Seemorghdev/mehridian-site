@@ -1,17 +1,20 @@
 ---
-title: "Project 03 — Evidence Explorer"
+title: "The 15-repository comparison: tables and method"
 description: "A selected frozen comparison of 15 repository evidence cases and 25 projection observations—not a score or live-status dashboard."
 type: research
 visibility: public
 status: published
 graph: false
+publication_approved: false
+owner_approval_required: true
+source_checked: 2026-10-25
 ---
 
-# Project 03 — Evidence Explorer
+# The 15-repository comparison: tables and method
 
-[[research/project03/index|← Project 03 Story Map]]
+[[research/project03/index|Study overview and reading order]]
 
-What did the records actually establish? This selected extract lets you compare fifteen repository evidence cases and twenty-five projection observations without turning verification, engineering acceptance, lineage and runtime into one score.
+These are the frozen values behind the study's main result: 13 of 15 exact candidates passed their checks, 1 had recorded acceptance, 0 were traced as a whole to their source and 0 of 25 published surfaces were independently observed running. The three distributions below give each question's full set of states. The case table at the end is the one to read across, because it shows which repository holds which state; the separate distributions cannot be lined up to show that.
 
 **Historical evidence, not live status.** All figures describe the frozen schema-v1.1 Project 03 comparison. An accepted W0–W8 package means the evidence was reviewed for the study—not that its software was accepted, deployed, healthy or operating today.
 
@@ -39,7 +42,7 @@ The mixed case includes two successful checks and one failed check. It is not a 
 | `UNKNOWN` | 1 |
 | `NOT_ESTABLISHED` | 13 |
 
-These are **separate distributions, not a cross-tab**. They do not identify which repositories overlap. The separately recorded 11/15 pairing is explained in [[research/project03/verification-is-not-acceptance|Verification is not acceptance]]; it cannot be deduced by aligning the chart totals. Package acceptance is not engineering acceptance.
+These are **separate distributions, not a cross-tab**. They do not identify which repositories overlap. The separately recorded 11/15 pairing is explained in [[research/project03/verification-is-not-acceptance|Passing checks and software acceptance are different findings]]; it cannot be deduced by aligning the chart totals. Package acceptance is not engineering acceptance.
 
 ## Independent runtime observation
 
@@ -53,7 +56,7 @@ These are **separate distributions, not a cross-tab**. They do not identify whic
 | `NOT_COLLECTED` | 1 |
 | `UNKNOWN` | 2 |
 
-Zero positive independent observations do not prove that the systems were offline. These historical records do not establish current uptime. [[research/project03/publication-and-runtime-reality|Publication and runtime reality]] explains why publication, runtime claims and independent observation answer different questions.
+Zero positive independent observations do not prove that the systems were offline. These historical records do not establish current uptime. [[research/project03/publication-and-runtime-reality|Published code is not observed runtime]] explains why publication, runtime claims and independent observation answer different questions.
 
 ## The fifteen-case comparison
 
@@ -84,9 +87,9 @@ Wide table: swipe or scroll sideways to read every field. Keyboard users can Tab
 - `NOT_ESTABLISHED` means the required evidence was not established in the frozen collection—not that the system failed or never existed.
 - `UNKNOWN`, `NOT_OBSERVED` and `NOT_COLLECTED` retain their distinct recorded meanings.
 - Whole exact candidate lineage is a complete candidate-binding question, not a denial of every repository relationship or scoped provenance result.
-- W0–W8 package review concerns the evidence package, potentially with qualifications—not engineering acceptance of its software.
+- W0–W8 package review concerns the evidence package, potentially with qualifications—not engineering acceptance of its software. Every case has one, so the column shows the study's coverage, not a difference between repositories.
 
-[[research/project03/consumer-lab-mixed-evidence|Consumer Lab]] shows this concretely: a mixed verification result and established provenance for a declared 27-file subset coexist with whole-candidate lineage `NOT_ESTABLISHED`. [[notes/lineage-and-provenance|Lineage and provenance]] explains the scope distinction.
+[[research/project03/consumer-lab-mixed-evidence|Consumer Lab]] shows this concretely: a mixed verification result and established provenance for a declared 27-file subset coexist with whole-candidate lineage `NOT_ESTABLISHED`. [[research/project03/consumer-lab-mixed-evidence#relationships-subsets-and-whole-candidates|The Consumer Lab provenance explanation]] explains the scope distinction.
 
 ## What is deliberately withheld
 
@@ -96,7 +99,7 @@ Activity windows were not fully aligned and historical conflicts remain unresolv
 
 ## Download the selected frozen extract
 
-These are the **unchanged values already displayed in this Explorer**, offered in machine-readable form—not full source workbooks or newly collected records.
+These are the **unchanged values displayed in this comparison**, offered in machine-readable form—not full source workbooks or newly collected records.
 
 - [Download the selected 15-case CSV](/assets/project03-selected-evidence-cases.csv) — 15 repository evidence cases, six columns, exact state tokens, original qualifications, and stable `Case 01`–`Case 15` **editorial pseudonyms**. Published examples can make a case recognizable; pseudonyms **do not guarantee anonymity**.
 - [Download the three frozen distributions as JSON](/assets/project03-frozen-chart-states.json) — **n=15 repositories** for verification, a **separate n=15** for engineering acceptance, and **n=25 projection observations** for independent runtime observation. The two repository distributions are **not** a cross-tab.

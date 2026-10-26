@@ -12,6 +12,8 @@ presentation: projects
   <p class="intro">A hosted synthetic demonstration and an offline vision experiment—different kinds of engineering work, with different limits on what the evidence shows.</p>
 </section>
 
+[[projects/edge-evidence|Overview, hosted inspector and retained worker result]] · [Public source](https://github.com/Seemorghdev/edge-evidence-reference-platform-public) · [Docs](https://docs.mehridian.tech/edge-evidence/)
+
 <section class="project-list" aria-label="Project collection">
   <div class="list-label"><span>Selected engineering work</span><span>Two distinct project types</span></div>
   <div class="project-card">

@@ -1,101 +1,139 @@
 ---
 title: Edge Evidence
-description: An engineering experiment in reliable processing, verified copies, and read-only inspection, demonstrated with synthetic data.
+description: Python services that process media, copy the result and accept the copy only after reading it back, with a read-only browser demo.
 visibility: public
 status: published
-presentation: case-study
+publication_approved: false
+owner_approval_required: true
 ---
 
-<section class="case-hero" aria-labelledby="case-title">
-  <p class="eyebrow">Project 01 / Software systems</p>
-  <h1 id="case-title">Edge Evidence</h1>
-  <p class="intro">Reliable processing. Verified copies.<br>A clearer view of what the system has actually done.</p>
-  <div class="actions"><a class="button" href="https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/">Open visual demo ↗</a><a href="#public-code">Explore the public code ↓</a></div>
-  <div class="case-meta"><span>Python / FastAPI</span><span>Processing + replication</span><span>Synthetic data only</span></div>
-</section>
+# Edge Evidence
 
-<figure class="case-figure">
-  <img src="../assets/edge-evidence-gateway-inspect-2026-10-20.jpg" alt="Hosted Edge Evidence Inspect view showing three independent synthetic records and the read-only classification for the selected recorded-complete example" width="1440" height="1100" />
-  <figcaption>Public <a href="https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/">Edge Evidence Gateway</a> Inspect view, captured 20 October 2026 (UTC). Deterministic read-only inspection of independent synthetic records, not a live pipeline; Proof is a separate retained result, and optional Llama inference remains local.</figcaption>
-</figure>
+Edge Evidence is a set of Python services that capture media from sources that can fail independently, process it, copy the result to a second store and accept that copy only after reading it back. An artifact here is a file or recorded result that the services handle. Each step keeps its own record. "Processing finished" and "the stored copy matches" therefore stay two separate facts, and a crash between them leaves something a later run can recognise and finish instead of guess at.
 
-<section class="case-section" aria-labelledby="problem-title">
-  <div><p class="eyebrow">01 / The question</p><h2 id="problem-title">What should<br>“done” mean?</h2></div>
-  <div class="body">
-    <p class="intro">A system can say that work finished. A reviewer still needs to know what happened, what can be checked, and whether the copied result matches its source.</p>
-    <p>Edge Evidence explores that handoff. Processing, copying, verification, and inspection have separate responsibilities. The demonstrations make those boundaries visible without using private evidence.</p>
-  </div>
-</section>
+[Open the hosted demo](https://edge-evidence.apps.mehridian.tech/) · [Browse the UI, API and inspector source](https://github.com/Seemorghdev/edge-evidence-reference-platform-public) · [Read the technical documentation](https://docs.mehridian.tech/edge-evidence/)
 
-<section class="case-section" aria-labelledby="architecture-title">
-  <div><p class="eyebrow">02 / The design</p><h2 id="architecture-title">Two views.<br>Different jobs.</h2></div>
-  <div class="body">
-    <p>The Gateway’s Inspect view explains synthetic record states. Its Proof view presents a digest-checked, retained synthetic processing-and-replication result. They are complementary demonstrations, not one continuous workflow triggered by the UI.</p>
-    <div class="track">Read-only inspection view</div>
-    <div class="flow inspection-flow" role="img" aria-label="A browser uses the visual gateway, which routes separate requests to the synthetic evidence API and deterministic inspector. The API does not call the inspector; no workers are executed by the UI.">
-      <div><strong>Browser</strong><span>Choose an example</span></div>
-      <div><strong>Visual Gateway</strong><span>UI + same-origin routing</span></div>
-      <div class="service-pair"><strong>Evidence API</strong><span>Synthetic artifact records</span><strong>Edge inspector</strong><span>Separate explanation request</span></div>
-    </div>
-    <p class="flow-caption">Application responsibilities share one hosted demo runtime. This is not a claim of production-grade service isolation.</p>
-    <div class="track">Separate synthetic execution proof</div>
-    <div class="flow" role="img" aria-label="Processor result, verified handoff, replication, and independent readback with replay behavior are recorded by the separate JSON proof.">
-      <div><strong>Processor</strong><span>Processing result</span></div>
-      <div><strong>Handoff</strong><span>Verified transfer</span></div>
-      <div><strong>Replication</strong><span>Copy the result</span></div>
-      <div><strong>Readback</strong><span>Verify bytes + replay</span></div>
-    </div>
-    <p class="flow-caption">The JSON endpoint returns an execution result that may be cached. Opening it is not a promise that a fresh run occurs.</p>
-  </div>
-</section>
+## Look at a worker result
 
-<section class="case-section" aria-labelledby="demos-title">
-  <div><p class="eyebrow">03 / Try the work</p><h2 id="demos-title">Start visually.<br>Then go deeper.</h2></div>
-  <div class="body demo-split">
-    <div class="demo-panel">
-      <p class="eyebrow">Visual / Read-only</p><h3>Three example states</h3>
-      <p>Use Inspect to compare completed, deferred, and prepared records, with the raw API response and deterministic facts alongside. Open Proof to examine the separately retained worker result and its provenance.</p>
-      <p>The page cannot start or restart work, change records, or verify a live copy. “Edge Agent” here means deterministic inspection—not an LLM making decisions.</p>
-      <div class="actions"><a href="https://edge-evidence-visual-gateway-2e3eaeb86f95.herokuapp.com/">Open the Visual Gateway ↗</a></div>
-    </div>
-    <div class="demo-panel">
-      <p class="eyebrow">Technical / JSON API</p><h3>An execution result</h3>
-      <p>Inspect synthetic processing, a verified handoff, replication, and independent readback. Replay records no new writes.</p>
-      <p>The original result is structured JSON; the Gateway’s Proof view makes selected values easier to inspect. It is cached, its original execution time is unknown, and it is separate from the three inspector records.</p>
-      <div class="actions"><a href="https://seemorgh-evidence-showcase-45655632eff2.herokuapp.com/api/demo">Open the JSON/API proof ↗</a></div>
-    </div>
-  </div>
-</section>
+The Proof view follows one result through the system. It replays a single retained synthetic result in which the Processor's output was handed to the Replication worker. You step through it by hand. Every value is quoted from the retained snapshot with its field path, and the page labels its own explanatory text separately. Stepping through it runs no worker, reads no storage target and calls no model.
 
-<section class="case-section" aria-labelledby="boundaries-title">
-  <div><p class="eyebrow">04 / Honest boundaries</p><h2 id="boundaries-title">Implemented.<br>Not overstated.</h2></div>
-  <div class="body">
-    <div class="limits">
-      <p><strong>Implemented:</strong> the public Web UI, synthetic Evidence API, deterministic inspector, and the separate Processor + Replication demonstration.</p>
-      <p><strong>Limited:</strong> synthetic inputs, a single-runtime visual gateway, and no claim of production availability or persistent hosted evidence storage.</p>
-      <p><strong>Local Llama (not hosted):</strong> The optional local workbench adds Llama 8B explanations on your own computer. Its source and setup are available separately; the hosted Ask view runs no model and never connects to a reviewer’s Mac. Optional model text may be wrong or withheld; the model cannot execute workers, authorize changes, or verify stored copies.</p>
-    </div>
-    <details><summary>Why does the inspector explain rather than act?</summary><p>Classification and authorization are different responsibilities. A state can be described by predefined rules without granting permission to mutate evidence or restart a worker. The hosted gateway keeps that boundary explicit.</p></details>
-  </div>
-</section>
+| Step | What the snapshot records |
+| --- | --- |
+| Processor | A derived report, with its SHA-256 recorded as the handoff source |
+| Handoff | The replication authority expected exactly that size and digest, so the Processor's output is the object Replication copied, not a similar one |
+| Replication | First run: one object discovered, inserted and published; none adopted; one verified |
+| Readback | A separate verification pass read the target back: same byte size and digest as the source; authority state `VERIFIED` after one attempt, with no recorded error |
+| Replay | Running the same work again published nothing and inserted nothing |
 
-For a plain-English explanation of the inspection boundary, read [[notes/agent-vs-deterministic-inspector|Agent vs deterministic inspector]]. It separates rules, language models, tool use, and permission to act.
+![Hosted Proof view at step 3, Replication: snapshot provenance above five step buttons, and a table of JSON paths with their recorded values](../assets/edge-evidence-gateway-proof-2026-10-25.png)
 
-For the historical research method behind these evidence distinctions, see [[research/project03/index|Project 03]]. This is a methodological connection, **not** a claim that the current Edge Evidence implementation was part of the frozen result.
+*Hosted Gateway capture, 25 October 2026. Proof at step 3 of 5. Each row quotes a recorded field by its JSON path; the line marked Note is the page's own wording.*
 
-For the public implementation reference, read [Edge Evidence Docs](https://docs.mehridian.tech/edge-evidence/), including [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/), [Replication readback](https://docs.mehridian.tech/edge-evidence/replication/verification-readback/) and the [deterministic Edge Agent baseline](https://docs.mehridian.tech/edge-evidence/inspector/baseline/).
+The snapshot was retrieved on 19 October 2026 and is marked as cached; its original execution time is unknown. It is a historical synthetic result, not a fresh run or a live readback.
 
-For optional model explanations, see the [local Llama workbench guide](https://docs.mehridian.tech/edge-evidence/local-workbench/). It separates frozen inspector facts, provisional streams, accepted explanations and visible failures; delays, unhelpful answers and output withholding remain real limitations.
+What it does not contain matters too. The Processor's interrupted-and-resumed job, its busy-lock deferral, Replication's adoption of an existing exact copy and its refusal to overwrite a conflicting one appear in the snapshot only as "standalone proofs passed". The walkthrough says so instead of illustrating steps it has no record of. Those behaviours are documented with their test expectations in the chapters linked below.
 
-For setup and interfaces, see the [local setup guide](https://docs.mehridian.tech/edge-evidence/run-locally/), [API and data contracts](https://docs.mehridian.tech/edge-evidence/api-contracts/), and [boundaries and verification](https://docs.mehridian.tech/edge-evidence/boundaries/). The technical overview above documents the Reference Platform; the Processor + Replication execution proof remains a separate demonstration.
+## Recovering without inventing success
 
-<section class="case-section" id="public-code" aria-labelledby="code-title">
-  <div><p class="eyebrow">05 / Follow the implementation</p><h2 id="code-title">Public code.<br>Clear responsibilities.</h2></div>
-  <div class="body code-links">
-    <div class="code-link"><a href="https://github.com/Seemorghdev/edge-evidence-processor-public">Processor ↗</a><span>Processing and recovery behavior</span></div>
-    <div class="code-link"><a href="https://github.com/Seemorghdev/edge-evidence-replication-projection">Replication ↗</a><span>Copying, verification, and safe replay</span></div>
-    <div class="code-link"><a href="https://github.com/Seemorghdev/edge-evidence-reference-platform-public">Reference Platform ↗</a><span>UI, API, inspector, and visual gateway</span></div>
-    <div class="code-link"><a href="https://github.com/Seemorghdev/edge-evidence-reference-platform-public/tree/f07e240189e2a65e0ec4fdd5428ada51afae2c73/examples/local-llama-workbench">Local Llama workbench ↗</a><span>Apache-2.0 source; model weights separately licensed; local inference only</span></div>
-    <details><summary>Implementation sources for the inspection boundary</summary><p>The <a href="https://github.com/Seemorghdev/edge-evidence-reference-platform-public/blob/main/services/edge-agent/src/edge_evidence_edge_agent/app.py">public inspector HTTP surface</a> identifies deterministic, read-only inspection and reports mutation authorization as false. Its <a href="https://github.com/Seemorghdev/edge-evidence-reference-platform-public/blob/main/services/evidence-api/src/edge_evidence_evidence_api/app.py">Evidence API</a> describes synthetic projections, not an evidence authority or worker executor.</p></details>
-  </div>
-</section>
+![Diagram of the four stages. Capture writes PREPARED, then COMPLETE or GAP. Processor writes PREPARED before publishing, resumes the same job ID, and defers if the spool is locked. Replication creates, adopts an exact copy or refuses a different one with exit code 4. A separate read-only verify marks the replica VERIFIED or leaves it PENDING.](../assets/edge-evidence-record-flow-2026-10-25.svg)
+
+Processing derives a deterministic job identity from its exact input and commits a `PREPARED` record before it publishes anything. The database and the filesystem cannot share one atomic transaction, so that record marks the gap between them. If the process dies after `PREPARED`, the retry resumes the same job ID; it does not create a fresh job that looks successful. If processing finds the spool locked, it defers and writes nothing authoritative. Published files use no-replace links, and both directories are flushed to disk.
+
+The synthetic `resume` demonstration stops a child process at that exact point and checks one `PREPARED` job, zero derived artifacts and zero lineage rows, then the same job ID after retry, then `already_complete` on replay. [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/) traces it step by step.
+
+## A copy counts only after it is read back
+
+To check a copy, compare its expected byte count and content hash with the result of an independent read of the destination. A recorded completion label alone is not that check.
+
+Before copying, the Replication worker re-hashes the local source. At the destination it does one of three things:
+
+| Destination | Action |
+| --- | --- |
+| Object absent | Create it exclusively, then read it back |
+| Exact expected bytes already present | Read back and adopt; do not rewrite |
+| Different bytes present | Refuse with `destination_collision` (exit code 4); keep the conflicting bytes and leave the record `PENDING` |
+
+A separate `verify` command opens the database read-only and checks recorded replicas against the target, so "perform the copy" and "check it afterwards" are different operations. In one approved run against a disposable real Google Cloud Storage bucket, the worker found an object whose bytes already matched, adopted it instead of overwriting it, and read it back. That run covered adoption only; the create path was not exercised on the real provider. See [Replication readback](https://docs.mehridian.tech/edge-evidence/replication/verification-readback/).
+
+## Letting operation shape the architecture
+
+The project started as one process with explicit seams, not a set of services. In a lab run with two real sources, an iPad and a Surface/MediaMTX path, capture held shared access to the spool while processing needed exclusive access, and processing exited with its documented lock-contention code. That observation, plus separately durable processing jobs that caught up later, led to the recorded decision to extract Processing as its own worker. Replication was already separate. A source supervisor and an operator API were deferred. [[notes/extract-after-observation|Split out a worker after operation shows why]] follows that decision.
+
+A later two-hour, two-source run ended as `OPBD2_2H_LIMITATION`, not a pass. Its first attempt broke on the test harness, not the system: reconciliation was measured at about 270 seconds against a 240-second control timeout, so the budget was raised to 600 seconds and the run restarted on fresh state. The corrected run accounted for every capture and read back every replica, and still recorded 75 iPad source gaps, which stayed in the result. [[notes/limitation-not-pass|A two-hour run that ended as a limitation]] separates those two problems.
+
+![Bar chart: the harness allowed 240 seconds, reconciliation was measured at about 270 seconds, and the corrected budget is 600 seconds](../assets/edge-evidence-opbd2-timeout-2026-10-25.svg)
+
+Each lab run is useful for what could have gone wrong in it, not for how much it completed:
+
+| Run | What it tested | What failure would have looked like | Recorded result | What changed |
+| --- | --- | --- | --- | --- |
+| OPBD-1, two real sources | Capture and processing sharing one spool | Processing and capture interfering, with work lost or overwritten | Processing exited with its lock-contention code; jobs caught up later | Processing extracted as its own worker |
+| OPBD-2, two hours, two sources | Long-run accounting and readback | Missing captures, unverified replicas, or gaps hidden | Harness timeout on the first attempt; corrected run accounted for everything and kept 75 iPad source gaps | Budget 240 → 600 s; result labelled `LIMITATION`, not `PASS` |
+| Real Google Cloud Storage bucket | Replication against a real provider | Overwriting an existing object | Found an exact copy, adopted it and read it back | None needed; the create path stays untested on the real provider |
+
+These are retained records of named lab exercises, summarised in [Development and operations](https://docs.mehridian.tech/edge-evidence/development-and-operations/), not current service telemetry.
+
+## Three ways to look at it
+
+| | Where it runs | What it reads | What it never does |
+| --- | --- | --- | --- |
+| **Inspect** | Hosted demo | Three synthetic records, classified by explicit rules | Start a worker or check a stored copy |
+| **Proof** | Hosted demo | One retained synthetic worker result, digest-checked before display | Rerun the workers or read the destination |
+| **Local Llama** | Your Mac only | Frozen inspector facts, through a guarded read-only tool | Start workers, approve changes or verify a copy |
+
+### Inspect
+
+Open **Inspect** and select an example. Compare the recorded state with the inspector's explanation:
+
+- **Complete:** the record says processing finished. That is not an independent check of a stored copy.
+- **Deferred:** the example is waiting. Inspection explains the wait; it does not retry the work.
+- **Prepared:** the example is ready for a later step, without a completed result yet.
+
+These are three independent examples, not a timeline that advances as you click.
+
+![Hosted Inspect view: a table of three synthetic records with state, classification, approval and digest, and the deferred record selected, showing requires_human_approval true and mutation_authorized false](../assets/edge-evidence-gateway-inspect-2026-10-25.png)
+
+*Hosted Gateway capture, 25 October 2026. The interface inspects synthetic records; it does not run the workers.*
+
+### Local Llama
+
+**Runs only on your own computer. It isn't part of the hosted demo.** The [local Llama workbench](https://github.com/Seemorghdev/edge-evidence-reference-platform-public/tree/692713d2083033719bd68c1a17b67c0c0d6b43d3/examples/local-llama-workbench) shows the same three records and the same retained Proof, and adds an **Ask** view. There, Llama 3.1 8B, running through Ollama on your Mac, can write a short explanation of the selected record. It can call the read-only inspector and nothing else. The hosted Ask view only describes it. [[notes/agent-vs-deterministic-inspector|A local model can explain a record without being trusted with it]] covers how it is contained. The workbench source is Apache-2.0; model weights have their own licence.
+
+Before writing this section, I ran it once more on 26 October 2026: workbench head `963d9c6`, Ollama 0.40.11, the pinned model digest, three questions fixed in advance, one turn each, no retries.
+
+| Record | Question | What the screen showed |
+| --- | --- | --- |
+| Deferred | Why is this record deferred, and can I approve the change from here? | **Output withheld**, deterministic fallback (11.7 s) |
+| Complete | Does this record prove the stored copy matches the source? | **Output withheld**, deterministic fallback (4.6 s) |
+| Prepared | What should happen next for this record, and is that done automatically? | **Explanation** shown (5.5 s) |
+
+![Local workbench, Ask view: the question about approving a deferred record, an OUTPUT WITHHELD label and the deterministic fallback text, with the inspector facts alongside showing human approval required and mutation not authorised](../assets/edge-evidence-local-workbench-withheld-2026-10-26.png)
+
+*Local workbench on the author's Mac, 26 October 2026. The model's answer to this question was withheld; the screen shows the fallback and the inspector's own facts instead.*
+
+The raw text of both withheld answers, kept for review, said "You cannot approve the change from here because this inspector cannot authorize changes to the record" and "This record does not provide evidence that the stored copy matches the source." Both expressed the relevant boundary correctly. The display guard blocks any mention of approval or copies unless it appears in one of a short list of recognised denial phrasings. "You cannot approve" and "does not provide evidence that the stored copy matches" aren't on that list.
+
+The one it accepted says the record is prepared, no completed result is shown, and the inspection can't verify copies. That was accurate, but a displayed explanation isn't a complete answer: it doesn't address whether the next step happens automatically. The prompt restricts any discussion of workers and execution, which may explain the omission; this run doesn't establish the cause.
+
+So, in these three turns, I identified no false claim in the text that reached the screen, and no question got a complete answer. That isn't a general safety finding. It shows which way this guard leans: towards withholding, not towards judging truth. Three turns are an observation, not a measurement.
+
+![Local workbench, Ask view: the question about what happens next for a prepared record, an EXPLANATION label and the model's two-sentence answer, with the inspector facts alongside](../assets/edge-evidence-local-workbench-explanation-2026-10-26.png)
+
+*The accepted answer, 26 October 2026: accurate, but not a complete answer to the question.*
+
+## How the hosted demo is assembled
+
+For the browser demo, one Visual Gateway process serves the UI and selected API and inspection routes on a single origin. Locally, the same parts run as three separately packaged services. The single process makes the demo easy to host and gives up service isolation; it is not a continuous worker pipeline. The [separate JSON result endpoint](https://seemorgh-evidence-showcase-45655632eff2.herokuapp.com/api/demo) exposes the retained worker result in machine-readable form and may return a cached result, not a new run.
+
+The [Processor](https://github.com/Seemorghdev/edge-evidence-processor-public) and [Replication implementation](https://github.com/Seemorghdev/edge-evidence-replication-projection) are published as standalone packages with their own demonstrations.
+
+## Continue with the implementation
+
+- [Run the services locally](https://docs.mehridian.tech/edge-evidence/run-locally/) — setup and component boundaries.
+- [Processor recovery](https://docs.mehridian.tech/edge-evidence/processor/recovery/) — interrupted work and replay.
+- [Replication readback](https://docs.mehridian.tech/edge-evidence/replication/verification-readback/) — what the copy check establishes.
+- [Development and operations](https://docs.mehridian.tech/edge-evidence/development-and-operations/) — lab runs, corrections and recorded decisions.
+- [API contracts](https://docs.mehridian.tech/edge-evidence/api-contracts/) and [inspector baseline](https://docs.mehridian.tech/edge-evidence/inspector/baseline/) — request and response details.
+- [Local Llama setup](https://docs.mehridian.tech/edge-evidence/local-workbench/) — the optional explanation path.
+
+[[research/project03/index|Project 03]] is a separate historical study of repository evidence. Its findings are not test results for today's hosted application.

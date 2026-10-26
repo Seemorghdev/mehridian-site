@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="380" viewBox="0 0 760 380" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title id="t">What one question to the local model can reach</title>
+  <desc id="d">A question of at most 2,000 characters goes to a server-side guard. The guard allows at most two requests to Llama 3.1 8B on its own loopback server on port 11435, with a 4,096-token context, 256 output tokens and about 30 seconds. The model can call only a read-only inspector tool, at most twice. The constrained final result is shown as an optional explanation, or as withheld, model failure or deterministic fallback. Workers, approvals and stored copies are outside its reach.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1c1f23"/></marker></defs>
+  <rect width="760" height="380" fill="#ffffff"/>
+  <text x="24" y="32" font-size="16" font-weight="600" fill="#1c1f23">What one question to the local model can reach</text>
+  <text x="24" y="52" font-size="12" fill="#5d646d">Limits are enforced by the workbench server, per turn. Values from the local workbench guide.</text>
+
+  <rect x="24" y="72" width="712" height="196" fill="none" stroke="#1c1f23"/>
+  <text x="36" y="90" font-size="11" fill="#5d646d">your Mac · loopback only · no cloud fallback · pinned model digest</text>
+
+  <g fill="none" stroke="#1c1f23">
+    <rect x="40" y="104" width="140" height="70"/>
+    <rect x="212" y="104" width="160" height="70"/>
+    <rect x="404" y="104" width="160" height="70"/>
+    <rect x="596" y="104" width="124" height="70"/>
+  </g>
+  <g stroke="#1c1f23" marker-end="url(#a)">
+    <line x1="180" y1="139" x2="210" y2="139"/>
+    <line x1="372" y1="139" x2="402" y2="139"/>
+    <line x1="564" y1="139" x2="594" y2="139"/>
+  </g>
+  <g font-size="12" font-weight="600" fill="#1c1f23">
+    <text x="50" y="124">Question</text><text x="222" y="124">Server-side guard</text><text x="414" y="124">Llama 3.1 8B</text><text x="606" y="124">Result</text>
+  </g>
+  <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#1c1f23">
+    <text x="50" y="144">≤ 2,000 chars</text><text x="50" y="160">no memory</text>
+    <text x="222" y="144">≤ 2 model requests</text><text x="222" y="160">≤ 30 s, cancel cleans up</text>
+    <text x="414" y="144">own server :11435</text><text x="414" y="160">4,096 ctx · 256 out</text>
+    <text x="606" y="144">provisional</text><text x="606" y="160">until checked</text>
+  </g>
+
+  <rect x="404" y="196" width="160" height="52" fill="#eef0f2"/>
+  <line x1="484" y1="174" x2="484" y2="194" stroke="#1c1f23" marker-end="url(#a)"/>
+  <text x="414" y="216" font-size="12" font-weight="600" fill="#1c1f23">Read-only inspector</text>
+  <text x="414" y="234" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#1c1f23">≤ 2 calls · the only tool</text>
+
+  <g font-size="11" fill="#1c1f23">
+    <text x="596" y="196">shown as one of:</text>
+    <text x="596" y="212">· optional explanation</text>
+    <text x="596" y="228">· withheld</text>
+    <text x="596" y="244">· model failure</text>
+    <text x="596" y="260">· deterministic fallback</text>
+  </g>
+
+  <g font-size="12" font-weight="600" fill="#1c1f23"><text x="24" y="300">Out of reach</text></g>
+  <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <rect x="24" y="310" width="170" height="24" fill="#ffffff" stroke="#1c1f23" stroke-dasharray="3 2"/><text x="34" y="326" fill="#1c1f23">start a worker</text>
+    <rect x="206" y="310" width="170" height="24" fill="#ffffff" stroke="#1c1f23" stroke-dasharray="3 2"/><text x="216" y="326" fill="#1c1f23">approve an action</text>
+    <rect x="388" y="310" width="170" height="24" fill="#ffffff" stroke="#1c1f23" stroke-dasharray="3 2"/><text x="398" y="326" fill="#1c1f23">read a stored copy</text>
+    <rect x="570" y="310" width="166" height="24" fill="#ffffff" stroke="#1c1f23" stroke-dasharray="3 2"/><text x="580" y="326" fill="#1c1f23">port 11434 (yours)</text>
+  </g>
+  <text x="24" y="364" font-size="11" fill="#5d646d">These are application guards, not an operating-system sandbox, and they do not make generated text true.</text>
+</svg>

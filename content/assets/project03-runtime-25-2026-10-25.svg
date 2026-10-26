@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="210" viewBox="0 0 720 210" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title id="t">Runtime observation across 25 published surfaces</title>
+  <desc id="d">Of 25 accepted projection observations: 0 established, 18 not established, 4 not observed, 1 not collected and 2 unknown.</desc>
+  <rect width="720" height="210" fill="#ffffff"/>
+  <text x="24" y="32" font-size="16" font-weight="600" fill="#1c1f23">None of 25 surfaces was independently seen running</text>
+  <text x="24" y="52" font-size="12" fill="#5d646d">Project 03 frozen projection observations, by recorded runtime state. Each block is one surface.</text>
+  <!-- 25 blocks, 26px each incl. 2px gap, starting x=24 -->
+  <g>
+    <!-- 18 NOT_ESTABLISHED -->
+    <g fill="#eef0f2" stroke="#8a929b">
+      <rect x="24" y="76" width="24" height="32"/><rect x="50" y="76" width="24" height="32"/><rect x="76" y="76" width="24" height="32"/><rect x="102" y="76" width="24" height="32"/><rect x="128" y="76" width="24" height="32"/><rect x="154" y="76" width="24" height="32"/>
+      <rect x="180" y="76" width="24" height="32"/><rect x="206" y="76" width="24" height="32"/><rect x="232" y="76" width="24" height="32"/><rect x="258" y="76" width="24" height="32"/><rect x="284" y="76" width="24" height="32"/><rect x="310" y="76" width="24" height="32"/>
+      <rect x="336" y="76" width="24" height="32"/><rect x="362" y="76" width="24" height="32"/><rect x="388" y="76" width="24" height="32"/><rect x="414" y="76" width="24" height="32"/><rect x="440" y="76" width="24" height="32"/><rect x="466" y="76" width="24" height="32"/>
+    </g>
+    <!-- 4 NOT_OBSERVED -->
+    <g fill="#8a929b"><rect x="492" y="76" width="24" height="32"/><rect x="518" y="76" width="24" height="32"/><rect x="544" y="76" width="24" height="32"/><rect x="570" y="76" width="24" height="32"/></g>
+    <!-- 1 NOT_COLLECTED -->
+    <g fill="#ffffff" stroke="#1c1f23"><rect x="596" y="76" width="24" height="32"/></g>
+    <!-- 2 UNKNOWN -->
+    <g fill="#ffffff" stroke="#1c1f23" stroke-dasharray="3 2"><rect x="622" y="76" width="24" height="32"/><rect x="648" y="76" width="24" height="32"/></g>
+  </g>
+  <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#1c1f23">
+    <text x="24" y="128">NOT_ESTABLISHED 18</text>
+    <text x="492" y="128">NOT_OBSERVED 4</text>
+    <text x="596" y="146">NOT_COLLECTED 1</text>
+    <text x="622" y="164">UNKNOWN 2</text>
+    <text x="24" y="146">ESTABLISHED 0</text>
+  </g>
+  <text x="24" y="196" font-size="11" fill="#5d646d">None of these is a failed runtime test. NOT_COLLECTED is a collection boundary; UNKNOWN is unresolved.</text>
+</svg>
