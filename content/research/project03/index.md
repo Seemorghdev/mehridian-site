@@ -4,8 +4,6 @@ description: "Project 03: I audited my own repositories. Green checks were nearl
 type: research
 visibility: public
 status: published
-publication_approved: false
-owner_approval_required: true
 source_checked: 2026-10-25
 ---
 

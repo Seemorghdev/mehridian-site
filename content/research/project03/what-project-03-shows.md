@@ -4,8 +4,6 @@ description: "What the three-repository test supported, what the fifteen-reposit
 type: research
 visibility: public
 status: published
-publication_approved: false
-owner_approval_required: true
 source_checked: 2026-10-25
 ---
 

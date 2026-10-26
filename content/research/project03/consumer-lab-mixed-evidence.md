@@ -4,8 +4,6 @@ description: "Consumer Lab: mixed check results and a positive subset match with
 type: research
 visibility: public
 status: published
-publication_approved: false
-owner_approval_required: true
 source_checked: 2026-10-25
 ---
 

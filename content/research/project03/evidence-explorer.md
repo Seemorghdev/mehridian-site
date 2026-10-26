@@ -5,8 +5,6 @@ type: research
 visibility: public
 status: published
 graph: false
-publication_approved: false
-owner_approval_required: true
 source_checked: 2026-10-25
 ---
 

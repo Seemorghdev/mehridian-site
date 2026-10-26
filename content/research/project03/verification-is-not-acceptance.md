@@ -4,8 +4,6 @@ description: "Thirteen repositories passed their checks; one recorded that the s
 type: research
 visibility: public
 status: published
-publication_approved: false
-owner_approval_required: true
 source_checked: 2026-10-25
 ---
 
