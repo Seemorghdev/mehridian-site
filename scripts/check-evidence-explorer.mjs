@@ -24,7 +24,7 @@ const projectLink=nodes.find(n=>n.tagName==='a'&&text(n)==='Edge Evidence case s
 assert.ok(projectLink,'Existing public case-study link');
 assert.equal(new URL(attr(projectLink,'href'),'https://mehridian.tech/research/project03/evidence-explorer').pathname,'/projects/edge-evidence');
 const index=JSON.parse(readFileSync(new URL('preview/static/contentIndex.json',root),'utf8'));
-assert.equal(Object.keys(index).length,21);assert.ok(index['notes/local-language-task-boundaries']);assert.ok(index['research/project03/index'].links.includes('research/project03/evidence-explorer'));
+assert.equal(Object.keys(index).length,22);assert.ok(index['notes/local-language-task-boundaries']);assert.ok(index['research/project03/index'].links.includes('research/project03/evidence-explorer'));
 assert.ok(index['research/project03/evidence-explorer'].links.includes('research/project03/verification-is-not-acceptance'));
 const forbidden=/private-source|public-safe-comparison|public-safe-figures/;
 const files=dir=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(new URL(e.name+'/',dir)):[e.name]);

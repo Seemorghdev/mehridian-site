@@ -35,6 +35,8 @@ Seven technical notes about implementation and evaluation. Start with a concrete
 - [[notes/limitation-not-pass|A two-hour run that ended as a limitation]]
 - [[notes/agent-vs-deterministic-inspector|A local model can explain a record without being trusted with it]]
 
+- [[notes/one-gap-closed-one-narrowed|One gap closed, one narrowed]]
+
 **[[research/project03/index|Project 03 — the research account]]** is a frozen historical comparison, not a report on today's deployments. Its accepted evidence packages are not engineering acceptance decisions.
 
 - [[research/project03/evidence-explorer|Evidence Explorer]] — Compare the recorded verification and acceptance distributions across **15 repositories**, and independent runtime-observation states across **25 projection observations**, with their separate denominators.
