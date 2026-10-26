@@ -4,7 +4,6 @@ description: A lock conflict seen in a lab run, not a diagram, decided which par
 type: note
 visibility: public
 status: published
-publication_approved: true
 source_checked: 2026-10-25
 ---
 

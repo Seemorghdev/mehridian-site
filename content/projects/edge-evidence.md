@@ -3,8 +3,6 @@ title: Edge Evidence
 description: Python services that process media, copy the result and accept the copy only after reading it back, with a read-only browser demo.
 visibility: public
 status: published
-publication_approved: false
-owner_approval_required: true
 ---
 
 # Edge Evidence

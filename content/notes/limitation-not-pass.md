@@ -4,7 +4,6 @@ description: One long test run held two different problems. One was the project'
 type: note
 visibility: public
 status: published
-publication_approved: true
 source_checked: 2026-10-25
 ---
 

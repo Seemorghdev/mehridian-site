@@ -5,8 +5,6 @@ type: note
 visibility: public
 status: published
 source_checked: 2026-10-25
-publication_approved: false
-owner_approval_required: true
 ---
 
 # A local model can explain a record without being trusted with it
