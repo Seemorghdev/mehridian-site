@@ -28,7 +28,7 @@ test('approved visuals retain artifact labels without leaking review-only depend
 });
 test('drone page itself exposes original outputs and bounded checkpoint findings',()=>{
  const page=read('content/projects/small-object-detection.md');
- for(const name of ['drone-retained-output-a.png','drone-retained-output-b.png']){
+ for(const name of ['drone-retained-output-a.png','drone-retained-output-b.png','drone-s2-whole-frame-2026-10-27.png','drone-s2-tiled-2026-10-27.png']){
   assert.ok(page.includes(name));
   assert.ok(existsSync(new URL('content/assets/'+name,root)));
  }
