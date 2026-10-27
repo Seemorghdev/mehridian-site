@@ -93,7 +93,7 @@ The notebook's dataset configuration and the [public AOD4 version-6 page](https:
 
 The checkpoint contains an **AGPL-3.0** notice, consistent with the [Ultralytics 8.4.87 source license](https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.87/LICENSE). Ultralytics describes its AGPL and Enterprise arrangements in its [licensing statement](https://www.ultralytics.com/license). No separate Enterprise agreement or permission to relicense the weights as Apache-2.0 was established in the inspected records. Dataset and model licenses are separate; this account documents notices, not legal clearance for distribution.
 
-Read the [complete sanitized training report](https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md) for the recorded results, provenance method and remaining limitations. The link pins the reviewed report revision. The report excludes keys, raw logs and private source references. A separate Hugging Face release now supplies the recovered weights and reviewed notebook derivatives, as linked below; the pinned report predates that release. No new training or evaluation was performed for that update.
+Read the [complete sanitized training report](https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md) for the recorded results, provenance method and remaining limitations. The link pins the reviewed report revision. The report excludes keys, raw logs and private source references. A separate Hugging Face release now supplies the recovered weights and reviewed notebook derivatives, as linked below; the pinned report predates that release. No new training, inference or evaluation was performed for that update.
 
 ## Public model and reviewed notebooks
 
@@ -116,7 +116,7 @@ The model release preserves the checkpoint's AGPL-3.0 designation; dataset CC BY
 
 The [saved evaluation summary](https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-summary.md) and [structured counts](https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-counts.json) describe historical outputs from a separate executed companion, not the identical public evaluation draft. These are prediction-presence counters without ground-truth matching, not accuracy, recall or a measured false-positive rate. The bird count is predicted boxes, not images with birds.
 
-These records do not reproduce the separate historical 7% → 22% table and must not be pooled with the selected field observations or training-validation metrics above. The links pin the reviewed public summary and counts; raw execution records and evidence references remain private. The 27 October rerun is a separate record and doesn't reproduce these counts.
+These records do not reproduce the separate historical 7% → 22% table and must not be pooled with the selected field observations or training-validation metrics above. The links pin the reviewed public summary and counts; raw execution records and evidence references remain private. No new experiment or inference was performed for these records; the 27 October rerun is separate and doesn't reproduce these counts.
 
 ## Reproduction prerequisites
 
