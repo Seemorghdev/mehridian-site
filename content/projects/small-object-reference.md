@@ -10,7 +10,7 @@ presentation: case-study
 
 [Project overview](./small-object-detection.md) · [Engineering note](../notes/small-evaluations.md)
 
-This reference documents existing work. It is not an installation guide for an operational detector. No new model run or field measurement was performed for this showcase.
+This reference documents existing work, plus one bounded run of the public checkpoint added on 27 October 2026. It is not an installation guide for an operational detector, and no new field measurement was made.
 
 ## What was built
 
@@ -37,13 +37,36 @@ The retained report covers **eight selected field frames**. A candidate near the
 
 The scans also produced competing candidates. A separate operator-cued selection check succeeded in **two of four paired observations**. These are different checks with different units: do not add their counts or turn them into a single success rate.
 
-The useful finding is that surfacing a plausible candidate and choosing the intended object are different problems. The record supports discussing that distinction, not a claim of a validated deployment.
+What worked: in every selected frame, the scan kept the object as a candidate instead of losing it to resizing. What's still open is choosing the intended object from among the candidates. The record supports both statements, not a claim of a validated deployment.
 
 | Retained check | Unit | Reported observation | Interpretation limit |
 | --- | --- | --- | --- |
 | Reference-matched candidate recovery | 8 selected frames | A candidate near the manual reference in each | Reference-assisted review; not precision, recall or autonomous identification |
 | Separate operator-cued selection | 4 paired observations | 2 selections succeeded | Different task and denominator; do not combine with the frame count |
-| Checkpoint identity | One recovered checkpoint | Digest matches a retained reference | Artifact identity, not training quality or fresh inference acceptance |
+| Checkpoint identity | One recovered checkpoint | Digest matches a retained reference | Artifact identity, not training quality |
+| Public rerun, 27 October 2026 | One public image, two passes | A box on the drone in both; tiled 0.42 airplane, whole frame 0.14 bird | One chosen image; not accuracy or a false-positive rate |
+
+## Public rerun, 27 October 2026
+
+The released `best.pt` (SHA-256 `2ebf2e1f5a36c8df0cc44664c35596aecbd25f762bed9f9edc25ae1bb08eae5b`, 5,475,418 bytes) was run once on the public 1080 × 1920 field image, on CPU with Ultralytics 8.4.87 and Python 3.12. The settings and the reference box were fixed in the script before the run, and the run wasn't repeated.
+
+| Setting | Value |
+| --- | --- |
+| Whole-frame input | Resized to 640 px on the long side |
+| Tiles | 640 px at full resolution, 20% overlap, 8 tiles |
+| Merging | Greedy non-maximum suppression at IoU 0.50 |
+| Confidence floor | 0.10 |
+| Reference box, drawn by eye before the run | x 300–375, y 630–680 |
+| Counted at the reference | A box whose centre lies inside the reference box |
+
+| Pass | Boxes | At the reference | Label, confidence | Elsewhere |
+| --- | ---: | ---: | --- | ---: |
+| Whole frame | 1 | 1 | bird, 0.1354 | 0 |
+| Tiled | 1 | 1 | airplane, 0.4154 | 0 |
+
+The study's evaluation notebook counts airplane, drone and helicopter as one aerial-object alert and bird separately. Under that rule, only the tiled pass raises an alert. Neither pass labelled the object "drone". The whole-frame time, 4.3 seconds, includes the model's first-call start-up, so it isn't compared with the tiled time.
+
+The [script, receipt, environment list and input image](https://huggingface.co/Seemorgh/yolo11n-aod4-v6/tree/8d8f622270dffef4a1529443b3ec781935fb4c7c/reproduce) are published next to the unchanged weights. The receipt records the input, checkpoint and script hashes, the package versions and every box. This is one chosen image: it shows the public model behaving as the design intends on that frame, not general accuracy.
 
 ## Recorded training results
 
@@ -70,7 +93,7 @@ The notebook's dataset configuration and the [public AOD4 version-6 page](https:
 
 The checkpoint contains an **AGPL-3.0** notice, consistent with the [Ultralytics 8.4.87 source license](https://raw.githubusercontent.com/ultralytics/ultralytics/v8.4.87/LICENSE). Ultralytics describes its AGPL and Enterprise arrangements in its [licensing statement](https://www.ultralytics.com/license). No separate Enterprise agreement or permission to relicense the weights as Apache-2.0 was established in the inspected records. Dataset and model licenses are separate; this account documents notices, not legal clearance for distribution.
 
-Read the [complete sanitized training report](https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md) for the recorded results, provenance method and remaining limitations. The link pins the reviewed report revision. The report excludes keys, raw logs and private source references. A separate Hugging Face release now supplies the recovered weights and reviewed notebook derivatives, as linked below; the pinned report predates that release. No new training, inference or evaluation was performed for this update.
+Read the [complete sanitized training report](https://github.com/Seemorghdev/drone-detection-showcase/blob/79b3a2096453f45d7d010fc7b1fdc987cf9e3764/docs/training-report.md) for the recorded results, provenance method and remaining limitations. The link pins the reviewed report revision. The report excludes keys, raw logs and private source references. A separate Hugging Face release now supplies the recovered weights and reviewed notebook derivatives, as linked below; the pinned report predates that release. No new training, inference or evaluation was performed for that update.
 
 ## Public model and reviewed notebooks
 
@@ -81,7 +104,7 @@ Published 22 October 2026 on [Hugging Face](https://huggingface.co/Seemorgh/yolo
 - [Exploratory evaluation notebook](https://huggingface.co/Seemorgh/yolo11n-aod4-v6/blob/692377dc55f682cbe5fe17fc5944514574ca9b08/notebooks/02_eval_tiling_range.ipynb): an **unexecuted draft in the retained record**, with unsupported validation claims corrected.
 - [Notebook review and sanitization notes](https://huggingface.co/Seemorgh/yolo11n-aod4-v6/blob/692377dc55f682cbe5fe17fc5944514574ca9b08/NOTEBOOK_REVIEW.md), including method limitations and publication edits.
 
-The notebook links pin the reviewed release revision. Publication-file checksums identify the released bytes; they do not supply the missing original cloud-to-local transfer receipt or independently authenticate the old training run. No new training, inference, conversion or evaluation was performed for publication. Exact checkpoint-to-Core-ML equivalence and successful device inference remain unverified.
+The notebook links pin the reviewed release revision. Publication-file checksums identify the released bytes; they do not supply the missing original cloud-to-local transfer receipt or independently authenticate the old training run. No new training, inference, conversion or evaluation was performed for that publication; the later rerun is described above. Exact checkpoint-to-Core-ML equivalence and successful device inference remain unverified.
 
 The public evaluation draft uses non-overlapping grids and does not reproduce the overlapping-crop field workflow described in the overview. Its image-level counts must not be presented as a reproduction of the retained field observations.
 
@@ -93,11 +116,11 @@ The model release preserves the checkpoint's AGPL-3.0 designation; dataset CC BY
 
 The [saved evaluation summary](https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-summary.md) and [structured counts](https://github.com/Seemorghdev/drone-detection-showcase/blob/1abd61840ad58d8a945c91a2dca6b47665afa523/docs/recorded-evaluation-counts.json) describe historical outputs from a separate executed companion, not the identical public evaluation draft. These are prediction-presence counters without ground-truth matching, not accuracy, recall or a measured false-positive rate. The bird count is predicted boxes, not images with birds.
 
-These records do not reproduce the separate historical 7% → 22% table and must not be pooled with the selected field observations or training-validation metrics above. The links pin the reviewed public summary and counts; raw execution records and evidence references remain private. No new experiment or inference was performed for this account.
+These records do not reproduce the separate historical 7% → 22% table and must not be pooled with the selected field observations or training-validation metrics above. The links pin the reviewed public summary and counts; raw execution records and evidence references remain private. No new experiment or inference was performed for these records; the 27 October rerun is separate and doesn't reproduce these counts.
 
 ## Reproduction prerequisites
 
-The original application source remains private. The recovered checkpoint and sanitized notebook copies are now public on Hugging Face. An archive inspection located a saved checkpoint whose SHA-256 matches a retained model-reference record. This establishes an artifact identity link, not a fresh model run. Inputs and third-party datasets have separate distribution considerations. A visitor cannot reproduce the reported result merely by copying a command from this page.
+The original application source remains private. The recovered checkpoint and sanitized notebook copies are now public on Hugging Face. An archive inspection located a saved checkpoint whose SHA-256 matches a retained model-reference record. This establishes an artifact identity link. Inputs and third-party datasets have separate distribution considerations. The 27 October rerun can be repeated from its published script; the eight-frame field result can't, because its frames and application aren't public.
 
 The public checkpoint and edited notebooks provide inspectable artifacts, but do not establish a complete reproducible benchmark. The environment is not locked, dataset rights and split independence require separate review, and the exploratory evaluation lacks ground-truth matching. This page does not automatically download weights or datasets.
 
@@ -107,6 +130,7 @@ The public checkpoint and edited notebooks provide inspectable artifacts, but do
 - **Public study artifacts:** [documentation and screened original images](https://github.com/Seemorghdev/drone-detection-showcase), not executable detector code.
 - **Original application implementation:** private.
 - **Recovered model and sanitized notebooks:** public on Hugging Face, as linked above; original unsanitized notebooks remain private.
+- **Public rerun:** script, receipt and input on Hugging Face, as linked above.
 - **Hosted model endpoint:** none offered here.
 - **Visuals in the overview:** screened input still and two unmodified annotated evaluation outputs, available full-size; not a fresh runtime demonstration.
 - **Later monorepo:** separately inventoried, not treated as acceptance of an integrated system.
